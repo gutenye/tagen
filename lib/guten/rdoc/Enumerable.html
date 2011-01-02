@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: Enumerable</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./kernel_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="kernel.rb">kernel.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-beach">#beach</a></li>
+					
+					<li><a href="#method-i-ffind">#ffind</a></li>
+					
+					<li><a href="#method-i-ffind_all">#ffind_all</a></li>
+					
+					<li><a href="#method-i-gach">#gach</a></li>
+					
+					<li><a href="#method-i-gach%21">#gach!</a></li>
+					
+					<li><a href="#method-i-geach">#geach</a></li>
+					
+					<li><a href="#method-i-geach%21">#geach!</a></li>
+					
+					<li><a href="#method-i-ieach">#ieach</a></li>
+					
+					<li><a href="#method-i-imap">#imap</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./Process.html">Process</a></li>
+				
+					<li><a href="./Process/Daemon.html">Process::Daemon</a></li>
+				
+					<li><a href="./Process/Ps.html">Process::Ps</a></li>
+				
+					<li><a href="./Process/Status.html">Process::Status</a></li>
+				
+					<li><a href="./Gable.html">Gable</a></li>
+				
+					<li><a href="./Gable/Error.html">Gable::Error</a></li>
+				
+					<li><a href="./Hash.html">Hash</a></li>
+				
+					<li><a href="./Hash/Error.html">Hash::Error</a></li>
+				
+					<li><a href="./Kernel.html">Kernel</a></li>
+				
+					<li><a href="./Kernel/FailError.html">Kernel::FailError</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./Class.html">Class</a></li>
+				
+					<li><a href="./Coord_M.html">Coord_M</a></li>
+				
+					<li><a href="./Enumerable.html">Enumerable</a></li>
+				
+					<li><a href="./Fixnum.html">Fixnum</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./Gable_eval.html">Gable_eval</a></li>
+				
+					<li><a href="./Gablee.html">Gablee</a></li>
+				
+					<li><a href="./Gnumber.html">Gnumber</a></li>
+				
+					<li><a href="./IO.html">IO</a></li>
+				
+					<li><a href="./Integer.html">Integer</a></li>
+				
+					<li><a href="./Marshal.html">Marshal</a></li>
+				
+					<li><a href="./Module.html">Module</a></li>
+				
+					<li><a href="./NilClass.html">NilClass</a></li>
+				
+					<li><a href="./Numberic.html">Numberic</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./Rational.html">Rational</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./Symbol.html">Symbol</a></li>
+				
+					<li><a href="./Time.html">Time</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">Enumerable</h1>
+
+		<div id="description">
+			<p>
+}}}1
+</p>
+<hr style="height: 1px"></hr><p>
+}}}1
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="public-instance-method-details" class="method-section section">
+			<h3 class="section-header">Public Instance Methods</h3>
+
+		
+			<div id="beach-method" class="method-detail ">
+				<a name="method-i-beach"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">beach</span><span
+						class="method-args">(&blk)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="beach-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 153</span>
+153:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">beach</span>(&amp;<span class="ruby-identifier">blk</span>)
+154: <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk</span>
+155:         <span class="ruby-identifier">rst</span> = <span class="ruby-keyword kw">nil</span>
+156:         <span class="ruby-identifier">each</span> {<span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+157:                 <span class="ruby-identifier">rst</span> = <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">v</span>)     
+158:         }
+159:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">rst</span>
+160: <span class="ruby-keyword kw">else</span>
+161:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">each</span>
+162: <span class="ruby-keyword kw">end</span>
+163:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="ffind-method" class="method-detail ">
+				<a name="method-i-ffind"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">ffind</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="ffind-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 176</span>
+176:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ffind</span>
+177: <span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+178:         <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">v</span>
+179:         <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">result</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result</span>
+180: <span class="ruby-keyword kw">end</span>
+181: <span class="ruby-keyword kw">nil</span>
+182:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="ffind-all-method" class="method-detail ">
+				<a name="method-i-ffind_all"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">ffind_all</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="ffind-all-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 184</span>
+184:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ffind_all</span>
+185: <span class="ruby-identifier">out</span> = []
+186: <span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+187:         <span class="ruby-identifier">result</span> = <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">v</span>
+188:         <span class="ruby-identifier">out</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">result</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">result</span>
+189: <span class="ruby-keyword kw">end</span>
+190: <span class="ruby-identifier">out</span>
+191:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="gach-method" class="method-detail ">
+				<a name="method-i-gach"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gach</span><span
+						class="method-args">(*args, &blk)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="gach-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 383</span>
+383:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gach</span>(*<span class="ruby-identifier">args</span>, &amp;<span class="ruby-identifier">blk</span>)  <span class="ruby-comment cmt">#{{{1</span>
+384:                 <span class="ruby-comment cmt"># param@ 10 memo :reverse :map find findall take drop ffind(==&gt;blk_rst, blk_rst can't false) ffindall</span>
+385: <span class="ruby-comment cmt"># handle args </span>
+386: <span class="ruby-identifier">start</span> = <span class="ruby-value">0</span>
+387: <span class="ruby-identifier">memo</span> = <span class="ruby-keyword kw">nil</span>
+388: <span class="ruby-identifier">rst</span> = []
+389: <span class="ruby-identifier">oph</span>={}
+390: <span class="ruby-identifier">args</span>.<span class="ruby-identifier">each</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">arg</span><span class="ruby-operator">|</span>
+391:         <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">arg</span>
+392:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Fixnum</span>
+393:                 <span class="ruby-identifier">start</span> = <span class="ruby-identifier">arg</span>
+394:         <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Symbol</span>
+395:                 <span class="ruby-identifier">oph</span>[<span class="ruby-identifier">arg</span>] = <span class="ruby-keyword kw">true</span>
+396:         <span class="ruby-keyword kw">else</span>
+397:                 <span class="ruby-identifier">memo</span> = <span class="ruby-identifier">arg</span>
+398:         <span class="ruby-keyword kw">end</span>
+399: <span class="ruby-keyword kw">end</span>
+400: 
+401: <span class="ruby-identifier">ary</span> = <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">dup</span>
+402: <span class="ruby-identifier">ary</span> = <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">reverse</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:reverse</span>]
+403: 
+404: <span class="ruby-comment cmt"># begin</span>
+405: <span class="ruby-identifier">ary</span>.<span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span> 
+406:         <span class="ruby-keyword kw">begin</span>
+407:                 <span class="ruby-identifier">blk_rst</span> = <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">v</span>, <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-identifier">start</span>, <span class="ruby-identifier">memo</span>) 
+408:         <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">ArgumentError</span> 
+409:                 <span class="ruby-identifier">blk_rst</span> = <span class="ruby-identifier">blk</span>.<span class="ruby-identifier">call</span>(<span class="ruby-identifier">v</span>) <span class="ruby-comment cmt"># for gach(&amp;:to_s)</span>
+410:         <span class="ruby-keyword kw">end</span>
+411:         <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:map</span>]
+412:                 <span class="ruby-identifier">rst</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">blk_rst</span> 
+413:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:find</span>]
+414:                 <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">v</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk_rst</span>
+415:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:findall</span>]
+416:                 <span class="ruby-identifier">rst</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">v</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk_rst</span>
+417:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:ffind</span>]
+418:                 <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">blk_rst</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk_rst</span>
+419:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:ffindall</span>]
+420:                 <span class="ruby-identifier">rst</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">blk_rst</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">blk_rst</span>
+421:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:take</span>]
+422:                 <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ary</span>[<span class="ruby-value">0</span><span class="ruby-operator">...</span><span class="ruby-identifier">i</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">blk_rst</span>
+423:         <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:drop</span>]
+424:                 <span class="ruby-keyword kw">return</span> <span class="ruby-identifier">ary</span>[<span class="ruby-identifier">i</span><span class="ruby-operator">..</span><span class="ruby-value">1</span>] <span class="ruby-keyword kw">if</span> <span class="ruby-keyword kw">not</span> <span class="ruby-identifier">blk_rst</span>      
+425:         <span class="ruby-keyword kw">else</span>
+426:                 <span class="ruby-identifier">rst</span> <span class="ruby-operator">&lt;&lt;</span> <span class="ruby-identifier">blk_rst</span> <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">blk_rst</span>.<span class="ruby-identifier">nil?</span>
+427:         <span class="ruby-keyword kw">end</span>
+428: <span class="ruby-keyword kw">end</span>
+429: 
+430: <span class="ruby-comment cmt"># return</span>
+431: <span class="ruby-keyword kw">return</span> (
+432: <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:find</span>] <span class="ruby-keyword kw">or</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:ffind</span>]
+433:         <span class="ruby-keyword kw">nil</span>
+434: <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:take</span>]
+435:         <span class="ruby-identifier">ary</span>
+436: <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">oph</span>[<span class="ruby-value">:drop</span>]
+437:         []
+438: <span class="ruby-keyword kw">elsif</span> <span class="ruby-identifier">memo</span>
+439:         <span class="ruby-identifier">memo</span>
+440: <span class="ruby-keyword kw">else</span>
+441:         <span class="ruby-identifier">rst</span>
+442: <span class="ruby-keyword kw">end</span>
+443: )
+444:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+				<div class="aliases">
+					Also aliased as: <a href="Enumerable.html#method-i-geach">geach</a>
+				</div>
+				
+
+				
+			</div>
+
+		
+			<div id="gach--method" class="method-detail ">
+				<a name="method-i-gach%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gach!</span><span
+						class="method-args">(*args,&blk)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="gach--source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 446</span>
+446:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gach!</span>(*<span class="ruby-identifier">args</span>,&amp;<span class="ruby-identifier">blk</span>) 
+447: <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">replace</span>(<span class="ruby-identifier">gach</span>(*<span class="ruby-identifier">args</span>, &amp;<span class="ruby-identifier">blk</span>))
+448:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+				<div class="aliases">
+					Also aliased as: <a href="Enumerable.html#method-i-geach%21">geach!</a>
+				</div>
+				
+
+				
+			</div>
+
+		
+			<div id="geach-method" class="method-detail method-alias">
+				<a name="method-i-geach"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">geach</span><span
+						class="method-args">(*args, &blk)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+				</div>
+
+				
+
+				
+				<div class="aliases">
+          Alias for: <a href="Enumerable.html#method-i-gach">gach</a>
+				</div>
+				
+			</div>
+
+		
+			<div id="geach--method" class="method-detail method-alias">
+				<a name="method-i-geach%21"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">geach!</span><span
+						class="method-args">(*args,&blk)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+				</div>
+
+				
+
+				
+				<div class="aliases">
+          Alias for: <a href="Enumerable.html#method-i-gach%21">gach!</a>
+				</div>
+				
+			</div>
+
+		
+			<div id="ieach-method" class="method-detail ">
+				<a name="method-i-ieach"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">ieach</span><span
+						class="method-args">(start=0)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="ieach-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 147</span>
+147:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">ieach</span>(<span class="ruby-identifier">start</span>=<span class="ruby-value">0</span>)
+148: <span class="ruby-identifier">each_with_index</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span>,<span class="ruby-identifier">i</span><span class="ruby-operator">|</span>
+149:         <span class="ruby-keyword kw">yield</span> <span class="ruby-identifier">i</span><span class="ruby-operator">+</span><span class="ruby-identifier">start</span>, <span class="ruby-identifier">v</span>
+150: <span class="ruby-keyword kw">end</span>
+151:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="imap-method" class="method-detail ">
+				<a name="method-i-imap"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">imap</span><span
+						class="method-args">(start=0)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="imap-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 165</span>
+165:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">imap</span>(<span class="ruby-identifier">start</span>=<span class="ruby-value">0</span>)
+166: <span class="ruby-identifier">i</span>=<span class="ruby-value">1</span><span class="ruby-operator">+</span><span class="ruby-identifier">start</span>
+167: <span class="ruby-identifier">map</span> <span class="ruby-keyword kw">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">v</span><span class="ruby-operator">|</span>
+168:         <span class="ruby-keyword kw">yield</span> (<span class="ruby-identifier">i</span><span class="ruby-operator">+=</span><span class="ruby-value">1</span>),<span class="ruby-identifier">v</span>
+169: <span class="ruby-keyword kw">end</span>
+170:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+

@@ -1,0 +1,78 @@
+have_header: checking for termios.h... -------------------- yes
+
+"gcc -o conftest -I/usr/include/ruby-1.9.1/i686-linux -I/usr/include/ruby-1.9.1/ruby/backward -I/usr/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -march=i686 -mtune=generic -O2 -pipe -O2 -g -Wall -Wno-parentheses  -fPIC conftest.c  -L. -L/usr/lib -Wl,-R/usr/lib -L. -Wl,--hash-style=gnu -Wl,--as-needed -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/lib -L/usr/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+
+"gcc -E -I/usr/include/ruby-1.9.1/i686-linux -I/usr/include/ruby-1.9.1/ruby/backward -I/usr/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -march=i686 -mtune=generic -O2 -pipe -O2 -g -Wall -Wno-parentheses  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <termios.h>
+/* end */
+
+--------------------
+
+have_func: checking for ioctl()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/ruby-1.9.1/i686-linux -I/usr/include/ruby-1.9.1/ruby/backward -I/usr/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -march=i686 -mtune=generic -O2 -pipe -O2 -g -Wall -Wno-parentheses  -fPIC conftest.c  -L. -L/usr/lib -Wl,-R/usr/lib -L. -Wl,--hash-style=gnu -Wl,--as-needed -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/lib -L/usr/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5:53: error: ‘ioctl’ undeclared (first use in this function)
+conftest.c:5:53: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))ioctl; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/ruby-1.9.1/i686-linux -I/usr/include/ruby-1.9.1/ruby/backward -I/usr/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -march=i686 -mtune=generic -O2 -pipe -O2 -g -Wall -Wno-parentheses  -fPIC conftest.c  -L. -L/usr/lib -Wl,-R/usr/lib -L. -Wl,--hash-style=gnu -Wl,--as-needed -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/lib -L/usr/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5:1: warning: implicit declaration of function ‘ioctl’
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { ioctl(); return 0; }
+/* end */
+
+--------------------
+
+have_func: checking for ttyname()... -------------------- yes
+
+"gcc -o conftest -I/usr/include/ruby-1.9.1/i686-linux -I/usr/include/ruby-1.9.1/ruby/backward -I/usr/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -march=i686 -mtune=generic -O2 -pipe -O2 -g -Wall -Wno-parentheses  -fPIC conftest.c  -L. -L/usr/lib -Wl,-R/usr/lib -L. -Wl,--hash-style=gnu -Wl,--as-needed -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/lib -L/usr/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5:53: error: ‘ttyname’ undeclared (first use in this function)
+conftest.c:5:53: note: each undeclared identifier is reported only once for each function it appears in
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { void ((*volatile p)()); p = (void ((*)()))ttyname; return 0; }
+/* end */
+
+"gcc -o conftest -I/usr/include/ruby-1.9.1/i686-linux -I/usr/include/ruby-1.9.1/ruby/backward -I/usr/include/ruby-1.9.1 -I.  -D_FILE_OFFSET_BITS=64  -march=i686 -mtune=generic -O2 -pipe -O2 -g -Wall -Wno-parentheses  -fPIC conftest.c  -L. -L/usr/lib -Wl,-R/usr/lib -L. -Wl,--hash-style=gnu -Wl,--as-needed -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/usr/lib -L/usr/lib -lruby-static  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:5:1: warning: implicit declaration of function ‘ttyname’
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: /*top*/
+4: int main() {return 0;}
+5: int t() { ttyname(); return 0; }
+/* end */
+
+--------------------
+

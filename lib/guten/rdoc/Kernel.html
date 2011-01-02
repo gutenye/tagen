@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+
+	<title>Module: Kernel</title>
+
+	<link rel="stylesheet" href="./rdoc.css" type="text/css" media="screen" />
+
+	<script src="./js/jquery.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/thickbox-compressed.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/quicksearch.js" type="text/javascript"
+		charset="utf-8"></script>
+	<script src="./js/darkfish.js" type="text/javascript"
+		charset="utf-8"></script>
+
+</head>
+<body class="module">
+
+	<div id="metadata">
+		<div id="home-metadata">
+			<div id="home-section" class="section">
+        <h3 class="section-header">
+          <a href="./index.html">Home</a>
+          <a href="./index.html#classes">Classes</a>
+          <a href="./index.html#methods">Methods</a>
+        </h3>
+			</div>
+		</div>
+
+		<div id="file-metadata">
+			<div id="file-list-section" class="section">
+				<h3 class="section-header">In Files</h3>
+				<div class="section-body">
+					<ul>
+					
+						<li><a href="./kernel_rb.html?TB_iframe=true&amp;height=550&amp;width=785"
+							class="thickbox" title="kernel.rb">kernel.rb</a></li>
+					
+					</ul>
+				</div>
+			</div>
+
+			
+		</div>
+
+		<div id="class-metadata">
+
+			<!-- Parent Class -->
+			
+
+			<!-- Namespace Contents -->
+			
+			<div id="namespace-list-section" class="section">
+				<h3 class="section-header">Namespace</h3>
+				<ul class="link-list">
+					
+					<li><span class="type">CLASS</span> <a href="Kernel/FailError.html">Kernel::FailError</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Method Quickref -->
+			
+			<div id="method-list-section" class="section">
+				<h3 class="section-header">Methods</h3>
+				<ul class="link-list">
+					
+					<li><a href="#method-i-arg2ary">#arg2ary</a></li>
+					
+					<li><a href="#method-i-args2oph">#args2oph</a></li>
+					
+					<li><a href="#method-i-assert">#assert</a></li>
+					
+					<li><a href="#method-i-assert1">#assert1</a></li>
+					
+					<li><a href="#method-i-blk2method">#blk2method</a></li>
+					
+					<li><a href="#method-i-echo">#echo</a></li>
+					
+					<li><a href="#method-i-gerror">#gerror</a></li>
+					
+					<li><a href="#method-i-linux%3F">#linux?</a></li>
+					
+					<li><a href="#method-i-util_assert">#util_assert</a></li>
+					
+					<li><a href="#method-i-win32%3F">#win32?</a></li>
+					
+				</ul>
+			</div>
+			
+
+			<!-- Included Modules -->
+			
+		</div>
+
+		<div id="project-metadata">
+			
+			
+
+			<div id="classindex-section" class="section project-section">
+				<h3 class="section-header">Class Index
+					<span class="search-toggle"><img src="./images/find.png"
+						height="16" width="16" alt="[+]"
+						title="show/hide quicksearch" /></span></h3>
+				<form action="#" method="get" accept-charset="utf-8" class="initially-hidden">
+				<fieldset>
+					<legend>Quicksearch</legend>
+					<input type="text" name="quicksearch" value=""
+						class="quicksearch-field" />
+				</fieldset>
+				</form>
+
+				<ul class="link-list">
+				
+					<li><a href="./Process.html">Process</a></li>
+				
+					<li><a href="./Process/Daemon.html">Process::Daemon</a></li>
+				
+					<li><a href="./Process/Ps.html">Process::Ps</a></li>
+				
+					<li><a href="./Process/Status.html">Process::Status</a></li>
+				
+					<li><a href="./Gable.html">Gable</a></li>
+				
+					<li><a href="./Gable/Error.html">Gable::Error</a></li>
+				
+					<li><a href="./Hash.html">Hash</a></li>
+				
+					<li><a href="./Hash/Error.html">Hash::Error</a></li>
+				
+					<li><a href="./Kernel.html">Kernel</a></li>
+				
+					<li><a href="./Kernel/FailError.html">Kernel::FailError</a></li>
+				
+					<li><a href="./Array.html">Array</a></li>
+				
+					<li><a href="./Class.html">Class</a></li>
+				
+					<li><a href="./Coord_M.html">Coord_M</a></li>
+				
+					<li><a href="./Enumerable.html">Enumerable</a></li>
+				
+					<li><a href="./Fixnum.html">Fixnum</a></li>
+				
+					<li><a href="./Float.html">Float</a></li>
+				
+					<li><a href="./Gable_eval.html">Gable_eval</a></li>
+				
+					<li><a href="./Gablee.html">Gablee</a></li>
+				
+					<li><a href="./Gnumber.html">Gnumber</a></li>
+				
+					<li><a href="./IO.html">IO</a></li>
+				
+					<li><a href="./Integer.html">Integer</a></li>
+				
+					<li><a href="./Marshal.html">Marshal</a></li>
+				
+					<li><a href="./Module.html">Module</a></li>
+				
+					<li><a href="./NilClass.html">NilClass</a></li>
+				
+					<li><a href="./Numberic.html">Numberic</a></li>
+				
+					<li><a href="./Object.html">Object</a></li>
+				
+					<li><a href="./Rational.html">Rational</a></li>
+				
+					<li><a href="./String.html">String</a></li>
+				
+					<li><a href="./Symbol.html">Symbol</a></li>
+				
+					<li><a href="./Time.html">Time</a></li>
+				
+				</ul>
+				<div id="no-class-search-results" style="display: none;">No matching classes.</div>
+			</div>
+
+			
+		</div>
+	</div>
+
+	<div id="documentation">
+		<h1 class="module">Kernel</h1>
+
+		<div id="description">
+			<p>
+<a href="Object.html">Object</a> mixes in the <a
+href="Kernel.html">Kernel</a> module  global function is private method in
+module <a href="Kernel.html">Kernel</a>
+</p>
+<hr style="height: 1px"></hr><p>
+Search Archive @ZhuanTi @options:  arg2opt args2oph #{{{1
+</p>
+
+		</div>
+
+		<!-- Constants -->
+		
+
+		<!-- Attributes -->
+		
+
+		<!-- Methods -->
+		
+		<div id="private-instance-method-details" class="method-section section">
+			<h3 class="section-header">Private Instance Methods</h3>
+
+		
+			<div id="arg-ary-method" class="method-detail ">
+				<a name="method-i-arg2ary"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">arg2ary</span><span
+						class="method-args">(opt)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="arg-ary-source">
+<pre>
+      <span class="ruby-comment cmt"># File kernel.rb, line 1255</span>
+1255:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">arg2ary</span> <span class="ruby-identifier">opt</span>
+1256: <span class="ruby-keyword kw">case</span> <span class="ruby-identifier">opt</span>
+1257: <span class="ruby-keyword kw">when</span> <span class="ruby-keyword kw">nil</span>
+1258:         []
+1259: <span class="ruby-keyword kw">when</span> <span class="ruby-constant">Array</span>
+1260:         <span class="ruby-identifier">opt</span>
+1261: <span class="ruby-keyword kw">else</span>
+1262:         [<span class="ruby-identifier">opt</span>]
+1263: <span class="ruby-keyword kw">end</span>
+1264:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="args-oph-method" class="method-detail ">
+				<a name="method-i-args2oph"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">args2oph</span><span
+						class="method-args">(*args)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="args-oph-source">
+<pre>
+      <span class="ruby-comment cmt"># File kernel.rb, line 1267</span>
+1267:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">args2oph</span> *<span class="ruby-identifier">args</span>
+1268: <span class="ruby-identifier">oph</span> = <span class="ruby-constant">Hash</span> <span class="ruby-operator">===</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">last</span> <span class="ruby-operator">?</span> <span class="ruby-identifier">args</span>.<span class="ruby-identifier">pop</span> <span class="ruby-operator">:</span> {}
+1269: [<span class="ruby-identifier">args</span>, <span class="ruby-identifier">oph</span>]
+1270:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="assert-method" class="method-detail ">
+				<a name="method-i-assert"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">assert</span><span
+						class="method-args">(test, msg=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+obsolete
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="assert-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 129</span>
+129:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert</span>(<span class="ruby-identifier">test</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword kw">nil</span>)             ; <span class="ruby-identifier">util_assert</span>(<span class="ruby-value">2</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">msg</span>, <span class="ruby-keyword kw">false</span>) <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="assert--method" class="method-detail ">
+				<a name="method-i-assert1"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">assert1</span><span
+						class="method-args">(test, msg=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="assert--source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 130</span>
+130:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">assert1</span>(<span class="ruby-identifier">test</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword kw">nil</span>)    ; <span class="ruby-identifier">util_assert</span>(<span class="ruby-value">3</span>, <span class="ruby-identifier">test</span>, <span class="ruby-identifier">msg</span>, <span class="ruby-keyword kw">false</span>) <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="blk-method-method" class="method-detail ">
+				<a name="method-i-blk2method"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">blk2method</span><span
+						class="method-args">(&blk)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+you can call a block with arguments
+</p>
+<p>
+<b>USAGE</b> 
+</p>
+<pre>
+  instance_eval(&amp;blk)
+  blk2method(&amp;blk).call *args</pre>
+					
+
+					
+					<div class="method-source-code"
+						id="blk-method-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 99</span>
+ 99:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">blk2method</span>(&amp;<span class="ruby-identifier">blk</span>) 
+100: <span class="ruby-keyword kw">self</span>.<span class="ruby-identifier">class</span>.<span class="ruby-identifier">class_eval</span> <span class="ruby-keyword kw">do</span>
+101:         <span class="ruby-identifier">define_method</span>(<span class="ruby-value">:__blk2method</span>, &amp;<span class="ruby-identifier">blk</span>)
+102: <span class="ruby-keyword kw">end</span>
+103: <span class="ruby-identifier">method</span>(<span class="ruby-value">:__blk2method</span>)
+104:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="echo-method" class="method-detail ">
+				<a name="method-i-echo"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">echo</span><span
+						class="method-args">(*args;)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+print with &#8220;n&#8220;
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="echo-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 138</span>
+138:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">echo</span> *<span class="ruby-identifier">args</span>; <span class="ruby-identifier">print</span> *<span class="ruby-identifier">args</span>,<span class="ruby-value str">&quot;\n&quot;</span> <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="gerror-method" class="method-detail ">
+				<a name="method-i-gerror"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">gerror</span><span
+						class="method-args">(test, msg=nil)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="gerror-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 132</span>
+132:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">gerror</span>(<span class="ruby-identifier">test</span>, <span class="ruby-identifier">msg</span>=<span class="ruby-keyword kw">nil</span>)
+133: (<span class="ruby-identifier">echo</span> <span class="ruby-node">&quot;Error: #{msg}&quot;</span>; <span class="ruby-identifier">exit</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">test</span>
+134:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="linux--method" class="method-detail ">
+				<a name="method-i-linux%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">linux?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+RUBY_PLATFORM is &#8220;i686-linux&#8221; &#8220;i386-migw32&#8220;
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="linux--source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 107</span>
+107:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">linux?</span>; <span class="ruby-constant">RUBY_PLATFORM</span><span class="ruby-operator">=~</span><span class="ruby-regexp re">/linux/</span> <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="util-assert-method" class="method-detail ">
+				<a name="method-i-util_assert"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">util_assert</span><span
+						class="method-args">(pos,test,msg,israise)</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					
+					
+
+					
+					<div class="method-source-code"
+						id="util-assert-source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 113</span>
+113:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">util_assert</span> <span class="ruby-identifier">pos</span>,<span class="ruby-identifier">test</span>,<span class="ruby-identifier">msg</span>,<span class="ruby-identifier">israise</span> 
+114: <span class="ruby-keyword kw">return</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">test</span>
+115: <span class="ruby-identifier">report</span> = <span class="ruby-value str">&quot;&quot;</span>
+116: <span class="ruby-keyword kw">begin</span>
+117:         <span class="ruby-identifier">raise</span> <span class="ruby-identifier">msg</span>.<span class="ruby-identifier">to_s</span>
+118: <span class="ruby-keyword kw">rescue</span> <span class="ruby-constant">Exception</span>
+119:         <span class="ruby-identifier">pos</span> = <span class="ruby-identifier">$!</span>.<span class="ruby-identifier">backtrace</span>[<span class="ruby-identifier">pos</span>]
+120:         <span class="ruby-comment cmt"># &quot;/home/guten/note/.a/b.rb:19:in `a'&quot;</span>
+121:         <span class="ruby-identifier">a</span>,<span class="ruby-identifier">pos</span>, <span class="ruby-identifier">method</span> = <span class="ruby-identifier">pos</span>.<span class="ruby-identifier">match</span>(<span class="ruby-regexp re">/(^.*?:\d+):.*?`(.*?)'/</span>).<span class="ruby-identifier">to_a</span>
+122:         <span class="ruby-identifier">report</span> <span class="ruby-operator">+=</span> <span class="ruby-node">&quot;Error: in `#{method}' [#{pos}] #{$!.message}\n&quot;</span>
+123:         <span class="ruby-identifier">raise</span> <span class="ruby-constant">FailError</span>, <span class="ruby-identifier">report</span> <span class="ruby-keyword kw">if</span> <span class="ruby-identifier">israise</span>
+124: <span class="ruby-keyword kw">end</span>
+125: (<span class="ruby-identifier">necho</span> <span class="ruby-identifier">report</span>; <span class="ruby-identifier">exit</span>) <span class="ruby-keyword kw">unless</span> <span class="ruby-identifier">israise</span>
+126:                 <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+			<div id="win--method" class="method-detail ">
+				<a name="method-i-win32%3F"></a>
+
+				<div class="method-heading">
+				
+					<span class="method-name">win32?</span><span
+						class="method-args">()</span>
+					<span class="method-click-advice">click to toggle source</span>
+				
+				</div>
+
+				<div class="method-description">
+					
+					<p>
+see <a href="Kernel.html#method-i-linux%3F">linux?</a>
+</p>
+					
+
+					
+					<div class="method-source-code"
+						id="win--source">
+<pre>
+     <span class="ruby-comment cmt"># File kernel.rb, line 109</span>
+109:                 <span class="ruby-keyword kw">def</span> <span class="ruby-identifier">win32?</span>; <span class="ruby-constant">RUBY_PLATFORM</span><span class="ruby-operator">=~</span><span class="ruby-regexp re">/mingw32|mswin/</span> <span class="ruby-keyword kw">end</span></pre>
+					</div>
+					
+				</div>
+
+				
+
+				
+			</div>
+
+		
+		</div>
+	
+
+	</div>
+
+
+	<div id="rdoc-debugging-section-dump" class="debugging-section">
+	
+		<p>Disabled; run with --debug to generate this.</p>
+	
+	</div>
+
+	<div id="validator-badges">
+		<p><small><a href="http://validator.w3.org/check/referer">[Validate]</a></small></p>
+		<p><small>Generated with the <a href="http://deveiate.org/projects/Darkfish-Rdoc/">Darkfish
+			Rdoc Generator</a> 1.1.6</small>.</p>
+	</div>
+
+</body>
+</html>
+
