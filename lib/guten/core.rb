@@ -3,6 +3,7 @@ require "date"
 require_relative "core/kernel"
 require_relative "core/gile"
 require_relative "core/pa"
+require_relative "core/ta"
 require_relative "core/formatter"
 
 
