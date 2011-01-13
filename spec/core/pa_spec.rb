@@ -9,4 +9,13 @@ describe Pa do
 			puts Pa.glob_s("/mnt/*")
 		end
 	end
+
+	describe "#mv" do
+
+	end
+
+	describe "#ls" do
+		puts Pa.ls("/")
+	end
+
 end

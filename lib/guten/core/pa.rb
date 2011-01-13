@@ -86,15 +86,10 @@ class<<self
 		ret
 	end
 
-	# "/home", nil 	=> /home
-	# "/home", "" 	=> /home/
-	# ""     , "a"	=> "a"
+	# skip nil and error at empty string.
 	def join *paths
-		# remove nil
-		paths = paths.collect do |v| 
-			raise Error, "path is empty string -- #{paths}" if v==""
-			v
-		end
+		raise Error, "path is empty string -- #{paths}" if paths.include? ""
+		paths.compact!
 		super(*paths)
 	end
 
@@ -215,7 +210,8 @@ class << Pa     # ¤dir
 		ls(*args, o, &blk)
 	end
 
-	# rescurive func for ls
+	# I'm rescurive
+	# use :level, not :rescurive
 	# opt@ .ret=[] level=0
 	def _ls(pa, o, opt, &blk)
 		opt[:level] += 1
@@ -564,7 +560,7 @@ class << Pa     # ¤cmd
 			begin
 				File.rename(src, dest)
 			rescue Errno::EXDEV # cross-device
-				cp(src, dest)
+				_copy(src, dest)
 				rm_r(src)
 			end
 
