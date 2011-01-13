@@ -91,7 +91,7 @@ class<<self
 	# ""     , "a"	=> "a"
 	def join *paths
 		# remove nil
-		paths = paths.each do |v| 
+		paths = paths.collect do |v| 
 			raise Error, "path is empty string -- #{paths}" if v==""
 			v
 		end
@@ -122,7 +122,7 @@ class<<self
 	def glob_s(path_s, *o)
 		paths = path_s.to_array
 
-		ret = paths.each do |path|
+		ret = paths.collect do |path|
 			glob(path, *o)
 		end
 		ret

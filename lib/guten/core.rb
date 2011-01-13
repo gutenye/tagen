@@ -72,7 +72,7 @@ class Object
 	def to_o *defaults
 		o1 = __parse_o(defaults)
 		o2 = __parse_o(self)
-		o1 + o2
+		o1.merge o2
 	end
 
 	def __parse_o obj
@@ -91,7 +91,7 @@ class Object
 				end
 				o2[k] = v
 			end
-			o1+o2
+			o1.merge o2
 		when Hash
 			obj
 		end
@@ -263,7 +263,6 @@ class Array  #¤ary
 	end
 end # class Array
 class Hash  #¤hash
-	alias :+ :merge
 	alias :len :length
 
 	alias :original_delete :delete

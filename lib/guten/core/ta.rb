@@ -1,16 +1,23 @@
 # Ta(Table) is something combine Hash and Struct
 
 # not use name Table. to avoid name confict
-class Ta  #{{{1
+class Ta  
 	Error = Class.new Exception
-	def self.rc klass, const=:Rc, &blk #{{{2
-		klass.const_update :Rc, klass.const_get(:Rc, true, Ta.new) + self.new(&blk)
+	def self.rc klass, const=:Rc, &blk 
+		rc = Ta.new
+		if klass.const_defined? :Rc
+			rc = klass.const_get(:Rc).dup
+			klass.__send__ :remove_const, :Rc
+		end
+
+		rc.merge! self.new(&blk)
+		klass.const_set :Rc, rc
 	end # self.rc
 
 	# option: Ta_readonly
 	def initialize(table={}, &blk) 
 		raise Error, "use Ta.rc module do .. end instead" if Module===table
-		table += Ta_eval.new(self.class, &blk).table if blk
+		table.merge! Ta_eval.new(self.class, &blk).table if blk
 
 		@oph = {}
 		@oph[:Ta_readonly] = table.delete(:Ta_readonly)
@@ -21,7 +28,7 @@ class Ta  #{{{1
 	def _table; @table end
 
 	# _add _delete #{{{2
-	# parma@ (table), (key,value)
+	# parma@ (hash), (key,value)
 	def _add(key, value=nil) 
 		# check process
 		raise "you need call super first in child class in an inheritance." if !@table
@@ -30,7 +37,7 @@ class Ta  #{{{1
 		table = Hash===key ? key : {key.to_sym => value}
 
 		# begin
-		@table += table
+		@table.merge! table
 
 		table.gach do |k,v|
 			# already have the method. return
@@ -67,13 +74,19 @@ class Ta  #{{{1
 		@table = x
 		@table.each {|k,v| _add(k,v)}
 	end
-	# + == [] []= table eql? #{{{2
-	def +(other) 
+	# merge == [] []= table eql? #{{{2
+	def merge(other) 
 		if other.class == self.class
 			self.class.new( @table.merge(other._table) )
 		else
 			raise Error,"the + for #{other}'s class(#{other.class}) is not implemented"
 		end
+	end
+
+	def merge! other
+		ta = merge(other)
+		_add(ta._table)
+		self
 	end
 
 	def ==(other)
