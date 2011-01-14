@@ -230,7 +230,6 @@ class << Pa     # ¤dir
 			next if (not o[:bak]) and fname=~/~$/
 
 			pa1 = Pa(join(pa.p, fname), join(pa.r, fname))
-			#pd pa1, pa.r,fname
 			blk_rst = blk.call(pa1, o[:start], o[:memo], err) 
 			opt[:ret] << blk_rst if o[:nil] or !blk_rst.nil?
 
@@ -545,7 +544,6 @@ class << Pa     # ¤cmd
 			if o[:overwrite]
 				ls(src) { |pa|
 					newdest = join(parent(dest), pa.p)
-					#pd src, dest, newdest
 					rm newdest
 					_move pa.p, newdest, o
 				}

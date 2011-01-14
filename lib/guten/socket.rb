@@ -27,9 +27,9 @@ class BasicSocket
 			end
 
 			$log << "send_obj... times:#{i}, isdone:#{isdone}, len:#{len}, data:#{data[i*256, len]}"
-			send [isdone].pack("c")
-			send [len].pack("n")
-			send data[i*256, len]
+			send [isdone].pack("c"), 0
+			send [len].pack("n"), 0
+			send data[i*256, len], 0
 			$log << "...send_obj_done\n"
 		end
 	end

@@ -153,7 +153,6 @@ class String #¤string
 		def lowercase; "abcdefghijklmnopqrstuvwxyz" end
 		def letters; uppercase+lowercase end
 	end
-	alias :len :length
 
 	# for Socket_addr. alse see #unaddr
 	def addr() self.split(".").map{|v|v.to_i}.pack("CCCC") end
@@ -220,7 +219,6 @@ module Enumerable  #¤enumrable
 	end
 end #module Enumerable
 class Array  #¤ary
-	alias :len :length
 	alias :append :push
 
 	# [ [1,2], [3,4] ].to_hash
@@ -263,7 +261,6 @@ class Array  #¤ary
 	end
 end # class Array
 class Hash  #¤hash
-	alias :len :length
 
 	alias :original_delete :delete
 	def delete *keys, &blk
@@ -275,9 +272,6 @@ class Hash  #¤hash
 	end
 
 end # class Hash
-class Struct
-	alias :len :length
-end
 
 class IO #¤io
 	# conflict
@@ -294,6 +288,12 @@ class Time #¤time
 	# an alias for Time.now.to_f
 	def self.time; now.to_f end
 end # class Time
+
+module Process
+	def self.exists?(pid)
+		File.exists?("/proc/#{pid}")
+	end
+end
 
 module Marshal #¤marshal
 class <<self

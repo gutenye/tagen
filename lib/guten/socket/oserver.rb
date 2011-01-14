@@ -1,12 +1,6 @@
 # contacts/server.rb
 
 class OServer
-	def self.daemon(host, port)
-		Process.daemon(nil,true) do
-			self.new(host, port)
-		end
-	end
-
 	attr_reader :_obj
 	def initialize(host, port)
 		@_obj = __setobj__
