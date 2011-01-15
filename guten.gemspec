@@ -1,12 +1,14 @@
-$: << File.expand_path("../lib", __FILE__)
-require "guten/version"
+$: << "."
+require "version"
 
-spec = Gem::Specification.new do |s|
+Gem::Specification.new do |s|
 	s.name = "guten"
-	s.version = VERSION
+	s.version = VERSION::STRING
 	s.summary = "guten's ruby extension"
+
 	s.author = "guten"
 	s.email = "ywzhaifei@gmail.com"
+	s.homepage = nil
 
 	s.files = `git ls-files`.split("\n")
 end

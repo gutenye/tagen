@@ -248,7 +248,7 @@ class Array  #¤ary
 		values.each do |v|
 			indexs << original_delete(v, &blk)
 		end
-		values.len==1 ? indexs[0] : indexs
+		values.length==1 ? indexs[0] : indexs
 	end
 
 	alias :original_delete_at :delete_at
@@ -257,7 +257,7 @@ class Array  #¤ary
 		indexs.each do |i|
 			values << original_delete_at(i, &blk)
 		end
-		indexs.len==1 ? values[0] : values
+		indexs.length==1 ? values[0] : values
 	end
 end # class Array
 class Hash  #¤hash
@@ -268,7 +268,7 @@ class Hash  #¤hash
 		keys.each do |k|
 			values << original_delete(k, &blk)
 		end
-		keys.len==1 ? values[0] : values
+		keys.length==1 ? values[0] : values
 	end
 
 end # class Hash

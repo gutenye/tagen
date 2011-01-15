@@ -48,12 +48,12 @@ module Tree
 			a = self.treetage
 			b = other.treetage
 
-			if a.len==b.len
+			if a.length==b.length
 				return 0 if a==b
-			elsif a.len < b.len
-				return 1 if a==b[0...a.len]
-			elsif a.len>b.len
-				return -1 if a[0...b.len]==b
+			elsif a.length < b.length
+				return 1 if a==b[0...a.length]
+			elsif a.length>b.length
+				return -1 if a[0...b.length]==b
 			end
 		end
 
