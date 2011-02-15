@@ -1,0 +1,14 @@
+Architecture
+============
+
+source file layout
+
+lib/tagen/
+	core.rb
+	core/
+		object/blank.rb
+
+	pathname.rb
+
+
+

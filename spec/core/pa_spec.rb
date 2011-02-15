@@ -5,7 +5,7 @@ require "guten/core/pa"
 
 describe Pa do
 	describe "#glob_s" do
-		it "print a lot" do
+		it "prints a lot" do
 			puts Pa.glob_s("/mnt/*")
 		end
 	end

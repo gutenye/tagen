@@ -1,0 +1,15 @@
+lib/tagen/core.rb 234432086835442129cfb2fa10913e952a218c5b
+lib/tagen/core/io.rb 26dd0d108d0bb066ec1562fbab3f6846991b0b41
+lib/tagen/core/pa.rb 3e47b4cc75b59c3ad10da03d2dd1f3dffe4fa4df
+lib/tagen/core/ta.rb d964ac898bf022b8dd873e52ff88051aec444ee3
+lib/tagen/core/time.rb 05a09bf3e66596edb6651d21eca452fa45968b2f
+lib/tagen/core/hash.rb 7ba5793520ac848645df82ffb2d625d57677dca2
+lib/tagen/core/array.rb ae02355e3547cae944fa311c4474fb2a470dfefa
+lib/tagen/core/string.rb 5e6d88ad60b9481fd6a9a10a4074f30c59630f3b
+lib/tagen/core/kernel.rb de0cbf601fa1258be91ec0280df21f6bc7c1460a
+lib/tagen/core/module.rb a4cfb524835d3269ca7d6a8a3a9958e2ff985928
+lib/tagen/core/process.rb 7f48e6ed2a6d7f1213c6abc080c1be4c4569c40f
+lib/tagen/core/marshal.rb 50101df34d04e25baf36044b43cfe15f2e239f08
+lib/tagen/core/numberic.rb f891d0a786bc7c683c7d4087c7f99e17f6b67020
+lib/tagen/core/string/format.rb 3f72da303695fdf5c03b40fe9955713a3531a72b
+lib/tagen/core/array/extract_options.rb 8e20517e27f869d4d8542020de11517171aeab7b

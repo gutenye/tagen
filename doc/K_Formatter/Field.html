@@ -1,0 +1,662 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: K_Formatter::Field</title>
+<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="../css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '..';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (F)</a> &raquo; 
+    <span class='title'><span class='object_link'><a href="../K_Formatter.html" title="K_Formatter (class)">K_Formatter</a></span></span>
+     &raquo; 
+    <span class="title">Field</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: K_Formatter::Field
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">K_Formatter::Field</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/tagen/core/string/format.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+  <h2>Constant Summary</h2>
+  
+    <dl class="constants">
+      
+        <dt id="PAT-constant" class="">PAT =
+          
+        </dt>
+        <dd><pre class="code"><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^ (?: ([^}]+)? ([&lt;&gt;=^]) )? ([ +-])? (\#)? (0)? 
+</span><span class='tstring_content'>(\d+)? (,)? (?: \.(\d+) )? ([bcdeEfFgGnosxX%])? </span><span class='regexp_end'>/x</span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse-class_method" title="parse (class method)">+ (Object) <strong>parse</strong>(spec, arg) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#format-instance_method" title="#format (instance method)">- (Object) <strong>format</strong>(arg) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (Field) <strong>initialize</strong> </a>
+    
+
+    
+  </span>
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>A new instance of Field.</p></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#parse_spec-instance_method" title="#parse_spec (instance method)">- (Object) <strong>parse_spec</strong>(spec) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <p class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="K_Formatter::Field (class)">Field</a></span></tt>) <strong>initialize</strong> 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>A new instance of Field</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/string/format.rb', line 64</span>
+
+<span class='kw'>def</span> <span class='id initialize'>initialize</span>
+	<span class='ivar'>@o</span> <span class='op'>=</span> <span class='lbrace'>{</span>
+		<span class='label'>fill:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+		<span class='label'>align:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+		<span class='label'>sign:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>-</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+		<span class='label'>alternate:</span> <span class='kw'>false</span><span class='comma'>,</span>
+		<span class='label'>zero_padding:</span> <span class='kw'>false</span><span class='comma'>,</span>
+		<span class='label'>width:</span> <span class='int'>0</span><span class='comma'>,</span>
+		<span class='label'>comma_sep:</span> <span class='kw'>false</span><span class='comma'>,</span>
+		<span class='label'>precision:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+		<span class='label'>type:</span> <span class='kw'>nil</span><span class='comma'>,</span>
+	<span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="parse-class_method">
+  
+    + (<tt>Object</tt>) <strong>parse</strong>(spec, arg) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/string/format.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id parse'>parse</span> <span class='id spec'>spec</span><span class='comma'>,</span> <span class='id arg'>arg</span>
+	<span class='id f'>f</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> 
+	<span class='id f'>f</span><span class='period'>.</span><span class='id parse_spec'>parse_spec</span> <span class='id spec'>spec</span> <span class='kw'>if</span> <span class='id spec'>spec</span>
+	<span class='id f'>f</span><span class='period'>.</span><span class='id format'>format</span> <span class='id arg'>arg</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="format-instance_method">
+  
+    - (<tt>Object</tt>) <strong>format</strong>(arg) 
+  
+
+  
+</p><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/string/format.rb', line 105</span>
+
+<span class='kw'>def</span> <span class='id format'>format</span> <span class='id arg'>arg</span>
+	<span class='comment'># arg is int str ..
+</span>	<span class='comment'># ret is str.
+</span>
+	<span class='kw'>case</span> <span class='id arg'>arg</span>
+	<span class='kw'>when</span> <span class='const'>Integer</span>	
+		<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>d</span><span class='tstring_end'>'</span></span>
+	<span class='kw'>else</span>  <span class='comment'># default is s
+</span>		<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>s</span><span class='tstring_end'>'</span></span>
+	<span class='kw'>end</span>
+	
+	<span class='id ret'>ret</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span> 
+	<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>s</span><span class='tstring_end'>'</span></span>
+		<span class='id arg'>arg</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_s'>to_s</span>
+		<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:precision</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='id arg'>arg</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:precision</span><span class='rbracket'>]</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id arg'>arg</span>
+	<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>c</span><span class='tstring_end'>'</span></span>
+		<span class='id arg'>arg</span><span class='period'>.</span><span class='id chr'>chr</span>
+
+	<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>b</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>o</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>d</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>x</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>X</span><span class='tstring_end'>'</span></span>
+		<span class='id arg'>arg</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_i'>to_i</span>
+
+		<span class='kw'>case</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>b</span><span class='tstring_end'>'</span></span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='int'>2</span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id do_comma'>do_comma</span> <span class='id ret1'>ret1</span>
+			<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:alternate</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>0b</span><span class='tstring_end'>'</span></span><span class='op'>+</span><span class='id ret1'>ret1</span> <span class='op'>:</span> <span class='id ret1'>ret1</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>o</span><span class='tstring_end'>'</span></span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='int'>8</span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id do_comma'>do_comma</span> <span class='id ret1'>ret1</span>
+			<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:alternate</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>0</span><span class='tstring_end'>'</span></span><span class='op'>+</span><span class='id ret1'>ret1</span> <span class='op'>:</span> <span class='id ret1'>ret1</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>d</span><span class='tstring_end'>'</span></span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='int'>10</span>
+			<span class='id do_comma'>do_comma</span> <span class='id ret1'>ret1</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>x</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>X</span><span class='tstring_end'>'</span></span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='int'>16</span>
+			<span class='id ret1'>ret1</span><span class='period'>.</span><span class='id upcase!'>upcase!</span> <span class='kw'>if</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>X</span><span class='tstring_end'>'</span></span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id do_comma'>do_comma</span> <span class='id ret1'>ret1</span>
+			<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:alternate</span><span class='rbracket'>]</span> <span class='op'>?</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='embexpr_beg'>#{</span><span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='rbrace'>}</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span><span class='id ret1'>ret1</span> <span class='op'>:</span> <span class='id ret1'>ret1</span>
+		<span class='kw'>end</span>
+
+	<span class='comment'># for float, need handle 'precision'
+</span>	<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>f</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>F</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>g</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>G</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>e</span><span class='tstring_end'>'</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>E</span><span class='tstring_end'>'</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>%</span><span class='tstring_end'>'</span></span>
+		<span class='id type'>type</span> <span class='op'>=</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span>
+
+		<span class='id num'>num</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_f'>to_f</span>
+
+		<span class='kw'>if</span> <span class='id type'>type</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>%</span><span class='tstring_end'>'</span></span>
+			<span class='id num'>num</span> <span class='op'>=</span> <span class='id num'>num</span><span class='op'>*</span><span class='int'>100</span> 
+			<span class='id type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>g</span><span class='tstring_end'>'</span></span>
+		<span class='kw'>elsif</span> <span class='id type'>type</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>F</span><span class='tstring_end'>'</span></span>
+			<span class='id type'>type</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>f</span><span class='tstring_end'>'</span></span>
+		<span class='kw'>end</span>
+
+		<span class='comment'># remove 0 1.00000
+</span>		<span class='kw'>if</span> <span class='id type'>type</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>f</span><span class='tstring_end'>'</span></span>
+			<span class='id sa'>sa</span><span class='comma'>,</span> <span class='id sb'>sb</span> <span class='op'>=</span> <span class='id num'>num</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span>
+			<span class='id prec'>prec</span> <span class='op'>=</span> <span class='id sb'>sb</span><span class='period'>.</span><span class='id len'>len</span>
+			<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:precision</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id prec'>prec</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:precision</span><span class='rbracket'>]</span>
+		<span class='kw'>elsif</span> <span class='id type'>type</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>e</span><span class='tstring_end'>'</span></span>
+			<span class='comment'># not implement yet
+</span>		<span class='kw'>end</span>
+
+		<span class='id spec'>spec</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%</span><span class='tstring_end'>&quot;</span></span>
+		<span class='id spec'>spec</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span> <span class='op'>+</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:precision</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id to_s'>to_s</span> <span class='kw'>if</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:precision</span><span class='rbracket'>]</span>
+		<span class='id spec'>spec</span> <span class='op'>+=</span> <span class='id type'>type</span>
+
+		<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id spec'>spec</span> <span class='op'>%</span> <span class='id num'>num</span>
+
+		<span class='comment'># '%g' % 1.0 =&gt; 1
+</span>
+		<span class='comment'># 'comma_sep'
+</span>		<span class='kw'>if</span> <span class='kw'>not</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>g</span><span class='words_sep'> </span><span class='tstring_content'>G</span><span class='words_sep'>)</span><span class='period'>.</span><span class='id include?'>include?</span> <span class='id type'>type</span>
+			<span class='id a'>a</span><span class='comma'>,</span> <span class='id b'>b</span> <span class='op'>=</span> <span class='id ret1'>ret1</span><span class='period'>.</span><span class='id split'>split</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='rparen'>)</span> 
+			<span class='id a'>a</span> <span class='op'>=</span> <span class='id do_comma'>do_comma</span> <span class='id a'>a</span>
+			<span class='id ret1'>ret1</span> <span class='op'>=</span> <span class='id b'>b</span><span class='op'>==</span><span class='kw'>nil</span> <span class='op'>?</span> <span class='id a'>a</span> <span class='op'>:</span> <span class='id a'>a</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>.</span><span class='tstring_end'>'</span></span><span class='op'>+</span><span class='id b'>b</span>
+		<span class='kw'>end</span>
+
+		<span class='id ret1'>ret1</span> <span class='op'>+=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>%</span><span class='tstring_end'>'</span></span> <span class='kw'>if</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:type</span><span class='rbracket'>]</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>%</span><span class='tstring_end'>'</span></span>
+		<span class='id ret1'>ret1</span>
+
+	<span class='kw'>end</span> <span class='comment'># case
+</span>
+	<span class='comment'>## sign
+</span>	<span class='kw'>if</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:sign</span><span class='rbracket'>]</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-</span><span class='tstring_end'>'</span></span>
+		<span class='id sign'>sign</span> <span class='op'>=</span> <span class='id arg'>arg</span><span class='period'>.</span><span class='id to_f'>to_f</span><span class='op'>&gt;=</span><span class='int'>0</span> <span class='op'>?</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:sign</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-</span><span class='tstring_end'>'</span></span>
+		<span class='id ret'>ret</span> <span class='op'>=</span> <span class='id sign'>sign</span><span class='op'>+</span><span class='id ret'>ret</span>
+	<span class='kw'>end</span>
+
+	<span class='comment'>## width
+</span>	<span class='id n'>n</span> <span class='op'>=</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:width</span><span class='rbracket'>]</span> <span class='op'>-</span> <span class='id ret'>ret</span><span class='period'>.</span><span class='id length'>length</span>
+	<span class='kw'>if</span> <span class='id n'>n</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+		<span class='id fill'>fill</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_end'>'</span></span>
+		<span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:fill</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id chars'>chars</span><span class='period'>.</span><span class='id cycle'>cycle</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id c'>c</span><span class='op'>|</span>
+			<span class='id fill'>fill</span> <span class='op'>&lt;&lt;</span> <span class='id c'>c</span>
+			<span class='kw'>break</span> <span class='kw'>if</span> <span class='id fill'>fill</span><span class='period'>.</span><span class='id length'>length</span> <span class='op'>==</span> <span class='id n'>n</span>
+		<span class='kw'>end</span>
+
+		<span class='id ret'>ret</span> <span class='op'>=</span> <span class='kw'>case</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:align</span><span class='rbracket'>]</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&gt;</span><span class='tstring_end'>'</span></span> <span class='kw'>then</span> <span class='id fill'>fill</span> <span class='op'>+</span> <span class='id ret'>ret</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>&lt;</span><span class='tstring_end'>'</span></span> <span class='kw'>then</span> <span class='id ret'>ret</span> <span class='op'>+</span> <span class='id fill'>fill</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>^</span><span class='tstring_end'>'</span></span> <span class='kw'>then</span> <span class='id fill'>fill</span><span class='lbracket'>[</span><span class='int'>0</span><span class='op'>...</span><span class='id fill'>fill</span><span class='period'>.</span><span class='id length'>length</span><span class='op'>/</span><span class='int'>2</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id ret'>ret</span> <span class='op'>+</span> <span class='id fill'>fill</span><span class='lbracket'>[</span><span class='id fill'>fill</span><span class='period'>.</span><span class='id length'>length</span><span class='op'>/</span><span class='int'>2</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+		<span class='kw'>when</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>=</span><span class='tstring_end'>'</span></span> 
+			<span class='kw'>if</span> <span class='ivar'>@o</span><span class='lbracket'>[</span><span class='symbol'>:sign</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='tstring'><span class='tstring_beg'>'</span><span class='tstring_content'>-</span><span class='tstring_end'>'</span></span>
+				<span class='id fill'>fill</span> <span class='op'>+</span> <span class='id ret'>ret</span>
+			<span class='kw'>else</span>
+				<span class='id ret'>ret</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>+</span> <span class='id fill'>fill</span> <span class='op'>+</span> <span class='id ret'>ret</span><span class='lbracket'>[</span><span class='int'>1</span><span class='op'>..</span><span class='op'>-</span><span class='int'>1</span><span class='rbracket'>]</span>
+			<span class='kw'>end</span>
+		<span class='kw'>end</span>
+	<span class='kw'>end</span>
+
+	<span class='id ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <p class="signature " id="parse_spec-instance_method">
+  
+    - (<tt>Object</tt>) <strong>parse_spec</strong>(spec) 
+  
+
+  
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  <h3>Raises:</h3>
+<ul class="raise">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="../K_Formatter.html#EFormatSpec-constant" title="K_Formatter::EFormatSpec (constant)">EFormatSpec</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/string/format.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='id parse_spec'>parse_spec</span> <span class='id spec'>spec</span>
+	<span class='id matched'>matched</span> <span class='op'>=</span> <span class='const'>PAT</span><span class='period'>.</span><span class='id match'>match</span><span class='lparen'>(</span><span class='id spec'>spec</span><span class='rparen'>)</span>
+	<span class='id raise'>raise</span> <span class='const'>EFormatSpec</span><span class='comma'>,</span> <span class='id spec'>spec</span> <span class='kw'>if</span> <span class='kw'>not</span> <span class='id matched'>matched</span>
+	<span class='id matched'>matched</span> <span class='op'>=</span> <span class='id matched'>matched</span><span class='period'>.</span><span class='id to_hash'>to_hash</span><span class='lparen'>(</span><span class='symbol'>:fill</span><span class='comma'>,</span> <span class='symbol'>:align</span><span class='comma'>,</span> <span class='symbol'>:sign</span><span class='comma'>,</span> <span class='symbol'>:alternate</span><span class='comma'>,</span> <span class='symbol'>:zero_padding</span><span class='comma'>,</span> 
+												<span class='symbol'>:width</span><span class='comma'>,</span> <span class='symbol'>:comma_sep</span><span class='comma'>,</span> <span class='symbol'>:precision</span><span class='comma'>,</span> <span class='symbol'>:type</span><span class='rparen'>)</span> 
+	<span class='ivar'>@o</span><span class='period'>.</span><span class='id merge!'>merge!</span> <span class='id matched'>matched</span> <span class='kw'>do</span><span class='op'>|</span><span class='id k'>k</span><span class='comma'>,</span><span class='id v1'>v1</span><span class='comma'>,</span><span class='id v2'>v2</span><span class='op'>|</span> <span class='id v2'>v2</span> <span class='op'>?</span> <span class='id v2'>v2</span> <span class='op'>:</span> <span class='id v1'>v1</span> <span class='kw'>end</span>
+	<span class='comment'># handle keys 
+</span>	<span class='ivar'>@o</span> <span class='op'>=</span> <span class='ivar'>@o</span><span class='period'>.</span><span class='id each'>each</span><span class='period'>.</span><span class='id with_object'>with_object</span><span class='lparen'>(</span><span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='lparen'>(</span><span class='id k'>k</span><span class='comma'>,</span><span class='id v'>v</span><span class='rparen'>)</span><span class='comma'>,</span><span class='id o'>o</span><span class='op'>|</span>
+		<span class='kw'>case</span> <span class='id k'>k</span> 
+		<span class='kw'>when</span> <span class='symbol'>:width</span><span class='comma'>,</span> <span class='symbol'>:precision</span>
+			<span class='id o'>o</span><span class='lbracket'>[</span><span class='id k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id v'>v</span><span class='period'>.</span><span class='id to_i'>to_i</span> <span class='kw'>if</span> <span class='id v'>v</span>
+		<span class='kw'>when</span> <span class='symbol'>:zero_padding</span>
+			<span class='kw'>if</span> <span class='id v'>v</span>
+				<span class='id o'>o</span><span class='lbracket'>[</span><span class='symbol'>:fill</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='tstring_end'>&quot;</span></span>
+			<span class='kw'>end</span>
+		<span class='kw'>when</span> <span class='symbol'>:align</span>
+			<span class='kw'>if</span> <span class='id v'>v</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>=</span><span class='tstring_end'>&quot;</span></span>
+				<span class='id o'>o</span><span class='lbracket'>[</span><span class='symbol'>:fill</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>0</span><span class='tstring_end'>&quot;</span></span>
+				<span class='id o'>o</span><span class='lbracket'>[</span><span class='symbol'>:sign</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>+</span><span class='tstring_end'>&quot;</span></span>
+			<span class='kw'>end</span>
+		<span class='kw'>when</span> <span class='symbol'>:precision</span>
+			<span class='id o'>o</span><span class='lbracket'>[</span><span class='symbol'>:precision</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>1</span> <span class='kw'>if</span> <span class='id v'>v</span><span class='op'>&lt;</span><span class='int'>1</span>
+		<span class='kw'>else</span>
+			<span class='id o'>o</span><span class='lbracket'>[</span><span class='id k'>k</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id v'>v</span>
+		<span class='kw'>end</span>
+	<span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Jan 26 10:19:18 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>

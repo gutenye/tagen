@@ -1,0 +1,7 @@
+--markup markdown
+
+lib/tagen/core.rb
+lib/tagen/core/**/*.rb
+
+-
+docs/*

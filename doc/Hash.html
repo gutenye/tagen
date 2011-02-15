@@ -1,0 +1,182 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta name="Content-Type" content="text/html; charset=utf-8" />
+<title>Class: Hash</title>
+<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+<link rel="stylesheet" href="css/common.css" type="text/css" media="screen" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  relpath = '';
+  if (relpath != '') relpath += '/';
+</script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+  </head>
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+    
+    <div id="header">
+      <div id="menu">
+  
+    <a href="_index.html">Index (H)</a> &raquo; 
+    
+    
+    <span class="title">Hash</span>
+  
+  
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  <a id="class_list_link" href="#">Class List</a>
+  <a id="method_list_link" href="#">Method List</a>
+  <a id ="file_list_link" href="#">File List</a>
+</div>
+
+      <div class="clear"></div>
+    </div>
+    
+    <iframe id="search_frame"></iframe>
+    
+    <div id="content"><h1>Class: Hash
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Hash</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+  
+  
+  
+    <dt class="r2 last">Defined in:</dt>
+    <dd class="r2 last">lib/tagen/core/hash.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#delete-instance_method" title="#delete (instance method)">- (Object) <strong>delete</strong>(*keys, &amp;blk) </a>
+    
+
+    
+      (also: #original_delete)
+    
+  </span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>support delete more than one keys.</p></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+    
+    
+      <div class="method_details first">
+  <p class="signature first" id="delete-instance_method">
+  
+    - (<tt>Object</tt>) <strong>delete</strong>(*keys, &amp;blk) 
+  
+
+  
+    <span class="aliases">Also known as:
+    <span class="names"><span id='original_delete-instance_method'>original_delete</span></span>
+    </span>
+  
+</p><div class="docstring">
+  <div class="discussion">
+    <p>support delete more than one keys original: delete(key) current: delete(<em>keys)</em></p>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+6
+7
+8
+9
+10
+11</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/hash.rb', line 6</span>
+
+<span class='kw'>def</span> <span class='id delete'>delete</span> <span class='op'>*</span><span class='id keys'>keys</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span>
+	<span class='id values'>values</span> <span class='op'>=</span> <span class='id keys'>keys</span><span class='period'>.</span><span class='id each'>each</span><span class='period'>.</span><span class='id with_object'>with_object</span> <span class='lbracket'>[</span><span class='rbracket'>]</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id k'>k</span><span class='comma'>,</span><span class='id m'>m</span><span class='op'>|</span>
+		<span class='id m'>m</span> <span class='op'>&lt;&lt;</span> <span class='id original_delete'>original_delete</span><span class='lparen'>(</span><span class='id k'>k</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='rparen'>)</span>
+	<span class='kw'>end</span>
+	<span class='id keys'>keys</span><span class='period'>.</span><span class='id length'>length</span><span class='op'>==</span><span class='int'>1</span> <span class='op'>?</span> <span class='id values'>values</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='op'>:</span> <span class='id values'>values</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+    
+    <div id="footer">
+  Generated on Wed Jan 26 10:19:17 2011 by 
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.6.4 (ruby-1.9.2).
+</div>
+
+  </body>
+</html>
