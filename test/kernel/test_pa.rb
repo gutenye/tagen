@@ -14,6 +14,7 @@ proc do
 end.call
 
 class Test_1 < MiniTest::Unit::TestCase
+
 	def init(&blk) #{{{1
 		dirs  = ["dir1a" , "dir1b" , ".dir1c" , "dir1a/dir2a" , "dir1a/dir2a/dir3a"]
 		files = ["file1a", "file1b", ".file1c", "dir1a/file2a", "dir1a/dir2a/file3a"] 
@@ -34,6 +35,7 @@ class Test_1 < MiniTest::Unit::TestCase
 			FileUtils.rm_r Dir.glob("*")
 		end
 	end # def init
+
 	# makesure rm * after blk
 	def cleanup &blk
 		begin
