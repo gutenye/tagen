@@ -9,4 +9,5 @@ class Hash
 		end
 		keys.length==1 ? values[0] : values
 	end
+
 end # class Hash
