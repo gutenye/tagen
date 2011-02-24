@@ -2,6 +2,10 @@ Core extensions
 ==============
 some come from ActiveSupport. 
 
+Usage
+-----
+	require "tagen/core" # include "time", "date"
+
 From Tagen
 ----------
 * {Object#deepdup}
@@ -24,6 +28,8 @@ From Tagen
 * {Process.exists?}(pid)
 
 * {Marshal}.load dump  _add Pa support_
+
+* {Pa} _a path lib_
 
 From ActiveSupport
 ------------------

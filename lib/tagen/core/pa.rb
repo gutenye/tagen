@@ -1,52 +1,173 @@
 =begin
-Pa(Path) is similary to Pathname, but more powerful,
-it conbimes fileutils, tmpdir, find, tempfile, File, Dir, Pathname
+Pa(Path) is similary to Pathname, but more powerful.
+it combines fileutils, tmpdir, find, tempfile, File, Dir, Pathname
 
-@example 
-  pa = Pa('/home/a.vim')
-  pa.path  	#=> '/home'
-  pa.fname 	#=> 'a.vim'
-  pa.name 	#=> 'a'
-  pa.ext  	#=> 'vim'
-  pa.fext		#=> '.vim'
+Examples:
+---------
+	pa = Pa('/home/a.vim')
+	pa.path  	#=> '/home'
+	pa.fname 	#=> 'a.vim'
+	pa.name 	#=> 'a'
+	pa.ext  	#=> 'vim'
+	pa.fext		#=> '.vim'
 
-/home/guten.ogg
-	base: guten.ogg
-	dir: /home
-	ext: ogg
-	file: guten
+
+Filename parts:
+---------
+	/home/guten.ogg
+	  base: guten.ogg
+	  dir: /home
+	  ext: ogg
+	  file: guten
 
 similar in a shell, basename dirname extname filename absolutename
+
+Additional method list
+---------------------
+* Pa.absolute _alias from `File.absolute_path`_
+* Pa.expand _aliss from `File.expand_path`_
 
 
 **Attributes**
 
-	name		abbr		description
+  name     abbr    description
 
-	path			p			
-	absolute	a			absolute path
-	dir				d			dirname of a path
-	base			b			basename of a path
-	file			f			filename of a path
-	ext				e			extname of a path,	return nil or "ogg"	
-	fext			fe		return nil or ".ogg"
-	relative	r			relative path, passed by Pa(path, relative)
+  path      p      
+  absolute  a      absolute path
+  dir       d      dirname of a path
+  base      b      basename of a path
+  file      f      filename of a path
+  ext       e      extname of a path,  return nil or "ogg"  
+  fext      fe     return nil or ".ogg"
+  relative  r      relative path, passed by Pa(path, relative)
 =end
 class Pa < File 
 	Error = Class.new Exception
 
-	attr_reader :path, :absolute, :dir, :base, :file, :ext, :fext, :relative
-	def initialize path, relative=nil
-		@path = path
-		@absolute = Pa.absolute(@path) 
-		@dir = Pa.dirname(@path)
-		@base = Pa.basename(@path) 
-		@file = Pa.basename(@path, true)[0] 
-		@ext = Pa.extname(@path) 
-		@fext = @ext.nil? ? nil : "."+@ext
-		@relative = relative
-	end
+	class<<self
+		undef_method :open, :truncate
 
+		# extname of a path
+		#
+		# @example
+		# 	"a.ogg" => "ogg"
+		# 	"a" => nil
+		#
+		# @param [String] path
+		# @return [String]
+		def extname path
+			_, ext = path.match(/\.([^.]+)$/).to_a
+			ext
+		end
+
+		alias absolute absolute_path
+		alias expand expand_path
+
+		# is path an absolute path ?
+		#
+		# @param [String] path
+		# @return [Boolean]
+		def absolute?(path) absolute(path) == path end
+
+		# get a basename of a path
+		#
+		# @param [String] name
+		# @param [] *o Guten style options, see extract_extra_options!
+		# options:
+		#   :ext (Boolean, String) wether keep extname.
+		#   
+		# @return [String] 
+		def basename(name, *o)
+			o = o.to_o
+			name = super(name)
+			if o[:ext]
+				_, name, ext = name.match(/^(.+?)(\.[^.]+)?$/).to_a
+				[ name, ext]
+			else
+				name
+			end
+		end
+		 
+		# split path
+		#
+		# @example
+		# 	path="/home/a/file"
+		# 	split(path)  #=> "/home/a", "file"
+		# 	split(path, :all)  #=> "/", "home", "a", "file"
+		#
+		# @param [String] name
+		# @param [] *o Guten style options, see extract_extra_options!
+		# @return [Array<String>]
+		def split(name, *o)
+			o = o.to_o
+			dir, fname = super(name)	
+			ret = basename(fname, o).to_array
+
+			if o[:all]
+				loop do
+					dir1, fname = File.split(dir)
+					break if dir1 == dir
+					ret.unshift fname
+					dir = dir1
+				end
+			end
+			ret.unshift dir
+			ret
+		end
+
+		# join paths, skip nil and error at empty string.
+		#
+		# @param [*Array<String>] *paths
+		# @return [String]
+		def join *paths
+			raise Error, "path is empty string -- #{paths}" if paths.include? ""
+			paths.compact!
+			super(*paths)
+		end
+
+		# get parent path
+		# 
+		# @param [String] path
+		# @return [String]
+		def parent path
+			join(path, "..")
+		end
+
+		# glob is * ** ? [set] {a,b}
+		#
+		# @param [String] path
+		# @param [] *o Guten style options, see extract_extra_options!
+		# @return [Array<String>] 
+		def glob(path, *o)
+			o = o.to_o
+			flag = 0
+			if o[:dot]
+				flag |= File::FNM_DOTMATCH
+			end
+
+			files = Dir.glob(path, flag)
+			files.delete(".", "..")
+			files
+		end
+
+		# glob_s
+		#
+		# @param [Array,String] path_s
+		# @param [] *o Guten style options, see extract_extra_options!
+		#
+		# @return [[]]
+		def glob_s(path_s, *o)
+			paths = path_s.to_array
+
+			ret = paths.collect do |path|
+				glob(path, *o)
+			end
+			ret
+		end
+	end # class << self
+
+
+	attr_reader :path, :absolute, :dir, :base, :file, :ext, :fext, :relative
 	alias p path
 	alias a absolute
 	alias d dir
@@ -56,6 +177,27 @@ class Pa < File
 	alias fe fext
 	alias r relative
 
+	# @param [String,Pathname,Pa] path
+	# @prams [String] relative relative path, used by {#ls_r}
+	def initialize path, relative=nil
+		@path = case path
+			when Pathname
+				path.to_s
+			when Pa
+				path.path
+			when String
+				path
+			end
+		@absolute = Pa.absolute(@path) 
+		@dir = Pa.dirname(@path)
+		@base = Pa.basename(@path) 
+		@file = Pa.basename(@path, true)[0] 
+		@ext = Pa.extname(@path) 
+		@fext = @ext.nil? ? nil : "."+@ext
+		@relative = relative
+	end
+
+	# @return [String]
 	def inspect
 		ret="#<" + self.class.to_s + " "
 		ret += "@path=\"#{@path}\", @absolute=\"#{@absolute}\", @relative=\"#{@relative}"
@@ -64,99 +206,23 @@ class Pa < File
 	end
 	alias to_s inspect
 
+	# missing methods goto Pa.method (Pa's class method)
 	def method_missing(name, *args)
 		self.class.__send__ name, @path, *args
 	end
-end
 
-class Pa     # path
-class<<self
-	undef_method :open, :truncate
 
-	# "a.ogg" => "ogg"
-	# "a" => nil
-	def extname path
-		_, ext = path.match(/\.([^.]+)$/).to_a
-		ext
-	end
-
-	alias absolute absolute_path
-	alias expand expand_path
-
-	def absolute?(path) absolute(path) == path end
-
-	# o@ :ext or ext:".ogg"
-	def basename(name, *o)
-		o = o.to_o
-		name = super(name)
-		if o[:ext]
-			_, name, ext = name.match(/^(.+?)(\.[^.]+)?$/).to_a
-			[ name, ext]
-		else
-			name
-		end
-	end
-	 
-	# "/home/a/file"
-	# 	split  			=> "/home/a", "file"
-	# 	split(:all) => "/", "home", "a", "file"
-	def split(name, *o)
-		o = o.to_o
-		dir, fname = super(name)	
-		ret = basename(fname, o).to_array
-
-		if o[:all]
-			loop do
-				dir1, fname = File.split(dir)
-				break if dir1 == dir
-				ret.unshift fname
-				dir = dir1
-			end
-		end
-		ret.unshift dir
-		ret
-	end
-
-	# skip nil and error at empty string.
-	def join *paths
-		raise Error, "path is empty string -- #{paths}" if paths.include? ""
-		paths.compact!
-		super(*paths)
-	end
-
-	def parent path
-		join(path, "..")
-	end
-
-	# o@ :dot
-	# return@ []
+	
+	## state 
 	#
-	# glob is * ** ? [set] {a,b}
-	def glob(path, *o)
-		o = o.to_o
-		flag = 0
-		if o[:dot]
-			flag |= File::FNM_DOTMATCH
-		end
 
-		files = Dir.glob(path, flag)
-		files.delete(".", "..")
-		files
-	end
-
-	# return@ [[]]
-	def glob_s(path_s, *o)
-		paths = path_s.to_array
-
-		ret = paths.collect do |path|
-			glob(path, *o)
-		end
-		ret
-	end
-end # class << self
-end # class Pa
-
-class << Pa     # state
+	# get file type
+	#
+	# file types:
+	#   "chardev" "blockdev" "symlink" ..
+	#
+	# @param [String] path
+	# @return [String] 
 	def type(path)
 		case (t=ftype(path))
 		when "characterSpecial"
@@ -169,7 +235,13 @@ class << Pa     # state
 			t
 		end
 	end # def type
-	# is path a dangling symlink ?
+
+	# is path a dangling symlink?
+	#
+	# a dangling symlink is a dead symlink.
+	#
+	# @param [String] path
+	# @return [Boolean]
 	def dangling? path
 		if symlink?(path)
 			src = readlink(path)
@@ -178,30 +250,72 @@ class << Pa     # state
 			nil
 		end
 	end # def dsymlink?
-	def mountpoint?
+
+	# is path a mountpoint?
+	#
+	# @param[String] path
+	# @return [Boolean]
+	def mountpoint? path
 		begin
-			stat1 = self.lstat
-			stat2 = self.parent.lstat
+			stat1 = path.lstat
+			stat2 = path.parent.lstat
 			stat1.dev == stat2.dev && stat1.ino == stat2.ino || stat1.dev != stat2.dev
 		rescue ENotEnt
 			false
 		end
 	end
 
+	# chmod
+	#
+	# @see {File.chmod}
+	# @param [Array<String>, String] path_s
+	# @return [nil]
 	def chmod(path_s, mode) super(mode, *path_s.to_array) end
+
+	# link chmod
+	#
+	# @see {File.lchmod}
+	# @param [Array<String>, String] path_s
+	# @return [nil]
 	def lchmod(path_s, mode) super(mode, *path_s.to_array) end
+
+	# chown
+	#
+	# @see {File.chown}
+	# @param [Array<String>, String] path_s
+	# @return [nil]
 	def chown(path_s, owner, group) super(owner, group, *path_s.to_array) end
+
+	# link chown
+	#
+	# @see {File.lchown}
+	# @param [Array<String>, String] path_s
+	# @return [nil]
 	def lchown(path_s, owner, group) super(owner, group, *path_s.to_array) end
-	def utime(path_s, atime, mtime) 
+
+	# utime
+	#
+	# @see {File.utime}
+	# @param [Array<String>, String] path_s
+	# @param [Time] atime
+	# @param [Time] mtime
+	# @return [nil]
+	def utime path_s, atime, mtime
 		path_s.to_array.each do |path|
 			atime ||= lstat(path).atime
 			mtime ||= lstat(path).mtime
 			super(atime, mtime, path)
 		end
 	end
-end
 
-class << Pa     # dir
+	
+	## dir
+	#
+
+	# is directory empty?
+	#
+	# @param [String] path
+	# @return [Boolean]
 	def empty?(path) Dir.entries(path).empty? end
 
 	# ls(path=".", start=1 or memo)
@@ -235,6 +349,8 @@ class << Pa     # dir
 		opt={ :ret => [], :level => 0 }
 		_ls(pa, o, opt, &blk)
 	end
+
+	# ls rescurive
 	def ls_r(*args, &blk)
 		o = args.to_o
 		o[:rescurive] = true
@@ -270,19 +386,47 @@ class << Pa     # dir
 
 		o[:memo] ? o[:memo] : opt[:ret]
 	end
+	private :_ls
 
-end
+	## cmd
+	#
 
-class << Pa     # cmd
-
-	##### pwd cd chroot
+	# print current work directory
+	# @return [String] path
 	def pwd() Dir.getwd end
+
+	# change directory
+	#
+	# @param [String] path
 	def cd(path=ENV["HOME"], &blk) Dir.chdir(path, &blk) end
+
+	# chroot
+	# @see {Dir.chroot}
+	#
+	# @param [String] path
+	# @return [nil]
 	def chroot(path) Dir.chroot(path) end
 
-	##### touch mkdir mknod mktmpdir mktmpfile
+	# touch a blank file
+	#
+	# @param [Array<String>, String] path_s
+	# @param [] *o Guten style options
+	# options:
+	#   :mode
+	#   :force
+	#   :mkdir
+	#
+	# @return [nil]
 	def touch(path_s, *o) 		_touch(path_s, *o) end
+
+	# touch force
+	# see {#touch}
+	#
+	# @param [Array<String>, String] path_s
+	# @pram [] *o Guten style options
+	# @return [nil]
 	def touch_f(path_s, *o) 	_touch(path_s, :force, *o)  end
+
 	# :mode :force :mkdir
 	def _touch(path_s, *o)
 		o = o.to_o
@@ -305,10 +449,20 @@ class << Pa     # cmd
 			end
 		}
 	end
+	private _touch
 
-	 # mkdir
+	# make a directory
+	# @param [Array<String>,String] path_s
+	# @param [] *o opts
+	# @return [nil]
 	def mkdir(path_s, *o) 	_mkdir(path_s, *o) end
+
+	# mkdir force
+	#
+	# @see mkdir
+	# @return [nil]
 	def mkdir_f(path_s, *o) _mkdir(path_s, :force, *o) end
+
 	def _mkdir(path_s, *o)
 		o = o.to_o
 		o[:mode] ||= 0744
@@ -331,8 +485,12 @@ class << Pa     # cmd
 			end
 		}
 	end
+	private :_mkdir
 
 
+	# mknode
+	# @note not implement yet
+	#
 	# (paths, type, o={})
 	# type@ :chardev :blockdev :fifo
 	# o@  
@@ -342,6 +500,11 @@ class << Pa     # cmd
 	#    type@ ?c ?b ?f ?p
 	#    BUG 0777 -> 0755
 	def mknod(path_s, type, *o) 	_mknod(path_s, type, *o) end
+
+	# mknode force
+	#
+	# @see mknod
+	# @return [nil]
 	def mknod_f(path_s, type, *o) _mknod(path_s, type, :force, *o) end
 
 	def _mknod(path_s, type, *o)
@@ -360,24 +523,38 @@ class << Pa     # cmd
 				o[:force] ? next : raise(Errno::EEXIST, "File exist -- #{p}")
 			end
 
-
 			dev = o[:dev] ? lstat(o[:dev]).rdev : 0
 			__mknod(p, type, o[:mode], dev)
 			chmod(p, o[:mode])
 		}
 	end # def mknod
+	private :_mknod
 
+	# make temp directory
+	#
+	# @param [Hash] o options
+	# @option o [Symbol] :prefix ("")
+	# @option o [Symbol] :suffix ("")
+	# @option o [Symbol] :tmpdir (ENV["TEMP"])
+	# @return [String] path
 	def mktmpdir(o={}, &blk) 
 		p = _mktmpname(o)
 		mkdir(p)
 		begin blk.call(p) ensure rm_r(p) end if blk
 		p
 	end # def mktmpdir
+
+	# make temp file
+	# @see mktmpdir
+	#
+	# @param [Hash] o options
+	# @return [String] path
 	def mktmpfile(o={}, &blk) 
 		p = _mktmpname(o) 
 		begin blk.call(p) ensure rm(p) end if blk
 		p
 	end # mktmpfile
+
 	def _mktmpname(o={})
 		# :prefix :suffix :tmpdir
 		# $$-(time*100_000).to_i.to_s(36)
@@ -398,19 +575,45 @@ class << Pa     # cmd
 
 		path
 	end # def mktmpname
+	private :_mktmpname
 
-	#### rm
-	# :force  no Errno::ENOENT
+	# delete a file
+	#
+	# @param [String] path
+	# @param [] *o options
+	# options:
+	#   :force
+	# @return [nil]
 	def delete(path, *o)
 		o = o.to_o
 		return if o[:force] and !exists?(path)
 		File.delete(path)
 	end
 
+	# rm file only
+	#
+	# @param [Array<String>, String] path_s support globbing
+	# @return [nil]
 	def rm(path_s) 		_rm(path_s) end
+
+	# rm rescurive, rm directory
+	#
+	# @see rm
+	# @return [nil]
 	def rm_r(path_s) 	_rm(path_s, :rescurive) end
+
+	# rm force
+	#
+	# @see rm
+	# @return [nil]
 	def rm_f(path_s) 	_rm(path_s, :force) end
+
+	# rm rescurive and force 
+	#
+	# @see rm
+	# @return [nil]
 	def rm_rf(path_s) _rm(path_s, :rescurive, :force) end
+
 	def _rm(path_s, *o)
 		o = o.to_o
 		pathss = glob_s(path_s)
@@ -428,6 +631,7 @@ class << Pa     # cmd
 			}
 		end
 	end
+	private :_rm
 
 	# I'm rescurive 
 	def _rmdir(path, o)
@@ -436,15 +640,37 @@ class << Pa     # cmd
 		end
 		directory?(path) ? Dir.rmdir(path) : delete(path, o)
 	end
+	private :_rmdir
 
-	#### cp and mv
-
+	# copy
+	#
+	# @param [Array<String>,String] src_s support globbing
+	# @param [String] dest_pa
+	# @param [] *o guten's options
+	# options:
+	#  :verbose
+	#  :follink follow link
+	#  :backupdest backup dest file when dest exists
+	#  :update only copy when src are newer then dest, ctime
+	#  :diff only copy when at different mtime
+	#  :fromfs only copy if same file system
+	#  :rmdestdir rm dest dir if dest is a directory
+	#  :overwrite overwrite dest file if dest is a file
+	#  :path support auto mkdir. Example: cp a/b dest #=> dest/a/b
+	#  :mkdir cp a dest/b/c if 'dest/b/c' not exists auto mkdir
+	# @return [nil]
 	def cp(src_s, dest_pa, *o)
 		method = self.method(:_copy)
 		_cpmv(method, src_s, dest_pa, *o)
 	end
 
-	# use rename for same device. and cp for cross device.
+	# move, use rename for same device. and cp for cross device.
+	# @see cp
+	#
+	# @param [Array<String, String] src_s support globbing
+	# @param [String] dest_pa
+	# @param [] *o guten's optioins
+	# @return [nil]
 	def mv(src_s, dest_pa, *o)
 		method = self.method(:_move)
 		_cpmv(method, src_s, dest_pa, *o)
@@ -504,6 +730,7 @@ class << Pa     # cmd
 			}
 		}
 	end # def mv
+	private :_cpmv
 
 	# I'm recursive 
 	def _copy(src, dest, o={})  
@@ -566,6 +793,7 @@ class << Pa     # cmd
 		rescue Errno::ENOENT
 		end
 	end # _copy
+	private :_copy
 
 	# I'm rescurive
 	def _move(src, dest, o=nil)
@@ -594,15 +822,45 @@ class << Pa     # cmd
 			end
 
 		end
-
 	end # def _move
+	private :_move
+
+	# rename 
+	# 
+	# @param [String] old
+	# @param [String] dest
+	# @param [Hash] o
+	# @return nil
 	def rename(old, dest, o=nil); mv(old, dirname(old)+"/#{dest}", o) end
 
 	# path@ dir fpath
 	# o@ :force
+	# link
+	#
+	# @param [Array<String>, String] src_s support globbing
+	# @param [String] path
+	# @param [] *o
+	# options: 
+	#   :force [Boolean] 
+	# @return [nil]
 	def ln(src_s, path, *o) _ln(method(:symlink), src_s, path, *o) end
+
+	# ln force
+	#
+	# @see ln
+	# @return [nil]
 	def ln_f(src_s, path, *o) _ln(method(:symlink), src_s, path, :force, *o) end
+
+	# symbol link
+	#
+	# @see ln
+	# @return [nil]
 	def symln(src_s, path, *o) _ln(method(:link), src_s, path, *o) end
+
+	# symln force
+	#
+	# @see ln
+	# @return [nil]
 	def symln_f(src_s, path, *o) _ln(method(:link), src_s, path, :force, *o) end
 
 	def _ln(method, src_s, path, *o)
@@ -617,12 +875,18 @@ class << Pa     # cmd
 			}	
 		end
 	end
+	private :_ln
+
 end
 
 module Kernel
+private
+	# a very convient function.
+	# 
+	# @example
+	#   Pa('/home').exists? 
 	def Pa(path, relative=nil)
 		Pa.new path, relative
 	end
-	private :Pa
 end
 
