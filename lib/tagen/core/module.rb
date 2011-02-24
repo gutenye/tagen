@@ -1,4 +1,4 @@
-class Module #¤module
+class Module 
 
 	alias :original_append_features :append_features
 
@@ -8,14 +8,14 @@ class Module #¤module
 	# @example
 	#   module Guten
 	#   	module ClassMethods
-	#   		def a; end     # after include Guten, `a` becomes a class method.
+	#   		def foo; end     # after include Guten, method 'foo' becomes a class method.
 	#   	end
 	#	  end
 	#  
 	#   class Tag
 	#   	include Guten
 	#	  end
-	#	  Tag.a
+	#	  Tag.foo
 	#
 	def append_features base
 		original_append_features base

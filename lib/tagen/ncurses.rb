@@ -4,7 +4,7 @@ Ncurses
 @stdscr @curscr @newscr
 @windows_hash
 .
-move(y,x)  «stdscr»
+move(y,x)  #stdscr
 wmove(win, y,x)
 
 == extensions
