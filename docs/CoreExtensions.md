@@ -4,27 +4,32 @@ some come from ActiveSupport.
 
 From Tagen
 ----------
+* {Object#deepdup}
+
 * {Numeric#div2}
 
-* {String}.[hex|oct]digits letters uppercase lowercase
+* {String}.hexdigits octdigits letters uppercase lowercase
 
 * {Array}
 	* `#extract_extend_options!  extract_options!`
-	* `#append`
+	* \#append
 	* `#delete(*values) delete_at` _support delete more than one values_
 
 * {Hash#delete}
 
 * {IO#fd}
+
 * {Time.time}
+
 * {Process.exists?}(pid)
+
 * {Marshal}.load dump  _add Pa support_
 
 From ActiveSupport
 ------------------
 see [ActiveSupport Core Extensions Guide](http://edgeguides.rubyonrails.org/active_support_core_extensions.html)
 
-* `Object #blank?/present? presence try`
+* `Object #blank? present? presence try`
 
 * `Module #mattr_x`
 

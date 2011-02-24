@@ -1,3 +1,6 @@
+=begin
+* **Install**: gem(rubytree)
+=end
 module Tree
 	Fatal = Class.new Exception
 	Error = Class.new Exception
@@ -5,6 +8,7 @@ module Tree
 
 	class TreeNode
 
+		# get a Node name
 		def get name
       return name if self.class===name
 			treetage = Array===name ? name : name.split(/ +/)
@@ -18,6 +22,7 @@ module Tree
       end
 		end
 
+		# set a Node name
 		def name= name
 			old = @name
 			@name = name
@@ -26,17 +31,20 @@ module Tree
 			children_hash[@name] = self
 		end
 
-		alias oldparentage parentage
-		# default => nil for root
-		# now => [] for root
+		alias original_parentage parentage
+		# * default return nil for root
+		# * now return [] for root
 		def parentage
-			is_root? ? [] : oldparentage
+			is_root? ? [] : original_parentage
 		end
 
+		# parentage in reverse
+		# @see parentage
 		def treetage
-			([self.name] + self.parentage.gach{|v| v.name}).reverse[1..-1]
+			([self.name] + self.parentage.map{|v| v.name}).reverse[1..-1]
 		end
 
+		# return "a b c"
 		def treename
 			self.treetage.join(" ")
 		end
@@ -57,6 +65,7 @@ module Tree
 			end
 		end
 
+		# is same node ?
 		def same?(other) __compare(other)==0 ? true : false end
 		def ancestor_of?(other) __compare(other)==1 ? true : false end
 		def descendant_of?(other) __compare(other)==-1 ? true : false end

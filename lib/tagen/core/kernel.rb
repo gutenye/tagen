@@ -1,7 +1,8 @@
 module Kernel 
 private
 
-	# same as ``, but add some options
+	# same as `` `` ``, but add some options
+	#
 	# @param [String] cmd a shell command
 	# @param [Symbol, Hash] *o
 	# @option o [Boolean] :verbose puts(cmd) to STDOUT
@@ -12,11 +13,13 @@ private
 	end
 
 	# convert block to method.
+	#
 	#   you can call a block with arguments
 	#
 	# @example USAGE
 	#   instance_eval(&blk)
 	#   blk2method(&blk).call *args
+	#
 	def blk2method &blk
 		self.class.class_eval do
 			define_method(:__blk2method, &blk)
@@ -26,15 +29,23 @@ private
 
 
 	# detect Platform information.
+	#
 	#   RUBY_PLATFORM is "i686-linux" "i386-migw32"
+	#
+	# @return [Boolean]
 	def linux?; RUBY_PLATFORM=~/linux/ end  
 
-	# @see #linux?
+	# detect PLatform information.
+	#
+	# @return [Boolean]
+	# @see {#linux?}
 	def win32?; RUBY_PLATFORM=~/mingw32|mswin/ end 
 
 		
-	# print debug
+	# pd(print debug)
+	#
 	# like p, but use " " in each argument instead of "\n".
+	#
 	#   p 1,2
 	#    =>
 	#     1
@@ -42,6 +53,8 @@ private
 	#   pd 1,2
 	#    =>
 	#     1 2
+	#
+	# @param [Array] args
 	def pd *args
 		args.each do |arg| print arg.inspect," " end
 		print "\n"

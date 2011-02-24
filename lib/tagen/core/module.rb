@@ -1,6 +1,7 @@
 class Module #¤module
 
 	alias :original_append_features :append_features
+
 	# after include module, convert methods in  ClassMethods to class methods.
 	# @see ruby-core Module#append_features
 	#

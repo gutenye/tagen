@@ -59,8 +59,8 @@
   
   
     <dt class="r1 last">Defined in:</dt>
-    <dd class="r1 last">lib/guten/ncurses.rb<span class="defines">,<br />
-  lib/guten/ncurses.rb,<br /> lib/guten/ncurses.rb</span>
+    <dd class="r1 last">lib/tagen/ncurses.rb<span class="defines">,<br />
+  lib/tagen/ncurses.rb,<br /> lib/tagen/ncurses.rb</span>
 </dd>
   
 </dl>
@@ -111,7 +111,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>end ncurses.</p></div></span>
   
 </li>
 
@@ -132,7 +132,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>a convient function.</p></div></span>
   
 </li>
 
@@ -149,25 +149,42 @@
       <div class="method_details first">
   <p class="signature first" id="end-class_method">
   
-    + (<tt>Object</tt>) <strong>end</strong> 
+    + (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>end</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>end ncurses</p>
+
+<p>call echo nocbreak nl endwin</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <h3>See Also:</h3>
+  <ul class="see">
+    
+      <li>selfself.new</li>
+    
+  </ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-51
-52
-53
-54
-55
-56</pre>
+69
+70
+71
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 51</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 69</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='kw'>end</span>
 	<span class='id echo'>echo</span>
@@ -183,35 +200,55 @@
       <div class="method_details ">
   <p class="signature " id="new-class_method">
   
-    + (<tt>Object</tt>) <strong>new</strong>(&amp;blk) 
+    + (<tt><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></tt>) <strong>new</strong>(&amp;blk) 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>a convient function.</p>
+
+<p>setup initscr cbreak nonl noecho</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code">new do |stdsrc|
+	..
+end</pre>
+    
+  </div>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-35
-36
-37
-38
-39
-40
-41
-42
-43
-44
-45
-46
 47
 48
 49
-50</pre>
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 47</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id new'>new</span> <span class='op'>&amp;</span><span class='id blk'>blk</span> 
 	<span class='kw'>begin</span>
@@ -239,7 +276,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Jan 25 19:07:43 2011 by 
+  Generated on Thu Feb 24 17:13:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.9.2).
 </div>

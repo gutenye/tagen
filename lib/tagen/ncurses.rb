@@ -7,7 +7,6 @@ Ncurses
 move(y,x)  «stdscr»
 wmove(win, y,x)
 
-
 == extensions
 
 class MEVENT; end
@@ -31,7 +30,20 @@ end
 
 =end
 
+=begin
+* **Install**: gem(rbcurse)
+=end
 module Ncurses
+
+	# a convient function.
+	#
+	# setup initscr cbreak nonl noecho 
+	#
+	# @example
+	# 	new do |stdsrc|
+	# 		..
+	# 	end
+	#
 	def self.new &blk 
 		begin
 			initscr
@@ -48,12 +60,19 @@ module Ncurses
 		end
 		stdscr
 	end
+
+	# end ncurses
+	#
+	# call echo nocbreak nl endwin
+	#
+	# @see self.new
 	def self.end
 		echo
 		nocbreak
 		nl
 		endwin
 	end
+
 end # module Ncurses
 
 module Ncurses # Key

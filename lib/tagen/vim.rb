@@ -1,3 +1,7 @@
+=begin
+used by VimL(Vim Script)
+=end
+
 # in vim
 # 	print "guten" => guten\n
 #   print "guten\ntag" => guten\n
@@ -8,7 +12,6 @@ def vimprint *args
 		arg.split("\n").each {|v| print v}
 	end
 end
-
 
 # fix bug 
 class <<$stdout

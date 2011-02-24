@@ -12,7 +12,12 @@ end
 # FF1. only change Cairo::Context -> Cairo::Contexg
 # FF2. Gtk::PrintContext config with cairo. so change Gtk::PrintContext
 
+=begin
+* **Install**: gem(cairo)
+=end
 module Cairo
+
+	# compute width height by rotate and scale
 	def self.compute_wh(w, h, rotate=0,scale=1) #{{{1
 	# selection=[x,y,w,h]
 		w,h=1,1 if w<=0 or h<=0
@@ -47,21 +52,33 @@ module Cairo
 			[length2, length1]
 		end
 	end # def self.compute_wh
+end
 
+module Cairo
 	# class FontExtents and TextExtents 
 	class FontExtents 
+		# return \[ascent, descent, height, max_x_advance, max_y_advance\]
 		def to_a
 			[ascent,descent,height,max_x_advance,max_y_advance]
 		end
 	end
 				
+	# Additional Method List
+	# ----------------------
+	# * \#w: _alias from width_
+	# * \#h: _alias from h_
 	class TextExtents 
 		alias w width
 		alias h height
+
+		# get width, height
 		def wh; [width, height] end
+		# get \[x_advance, y_advance\]
 		def xy_advance; [x_advance, y_advance] end
+		# get [x_bearing, y_bearing\]
 		def xy_bearing; [x_bearing, y_bearing] end
 	
+		# get \[x_bearing, y_bearing, width, height, x_advance, y_advance\]
 		def to_a
 			[x_bearing, y_bearing, width, height, x_advance, y_advance]
 		end
@@ -74,19 +91,22 @@ module Cairo
 			@wh=[width.to_f, height.to_f]
 		end
 
+		# get width, height
 		def wh; @wh end
+		# get width
 		def w; @wh[0] end
+		# get height
 		def h; @wh[1] end
 	end # class PDFSurface
 
 	class ImageSurface 
 		alias initialize_ initialize
-		def initialize(width, height, format=:argb32)
-			initialize_(Cairo.const_get("format_#{format}".upcase), width, height)
-		end
 
+		# get width, height
 		def wh; [width.to_f, height.to_f] end
+		# get width
 		def w; self.wh[0] end
+		# get height
 		def h; self.wh[1] end
 
 	end # class ImageSurface
@@ -220,7 +240,6 @@ module Cairo
 		alias copypage copy_page
 		alias surface target
 
-		# @text
 		alias textpath text_path
 		alias glyphpath glyph_path
 
@@ -313,7 +332,6 @@ module Cairo
 			showtext(text, true)
 		end
 
-		# @source 
 		def instroke?(x,y); in_stroke?(x,y) end
 		def infill?(x,y); in_fill?(x,y) end
 
@@ -379,7 +397,6 @@ module Cairo
 			group
 		end
 
-		# @path
 		#alias xy_ move_to
 		#def xy_(*xy) 	xy.empty? ? current_point : move_to(*xy) end
 		def mvxy(*xy) 	xy.empty? ? current_point : move_to(*__pos(*xy)) end
@@ -480,7 +497,6 @@ module Cairo
 			@line_dash
 		end
 
-		# @matrix 
 		def has_pos?; has_current_point? ? true : false end
 
 		# push pos
@@ -581,7 +597,7 @@ module Cairo
 			end
 		end
 
-		# :xy x y translate scale matrix
+		# options: xy x y translate scale matrix
 		# state size
 		def bak(name, *args) 
 			case name.to_sym
@@ -683,7 +699,7 @@ module Cairo
 		end # def paint_img
 
 		# base on scale(*wh)
-		# datas: [ [..], ]
+		# datas: \[ \[..\], \]
 		def table(datas, oph={}) 
 
 			# width height

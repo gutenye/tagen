@@ -53,10 +53,10 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></span>
       
         <ul class="fullTree">
-          <li>Object</li>
+          <li><span class='object_link'><a href="Object.html" title="Object (class)">Object</a></span></li>
           
             <li class="next">IO</li>
           
@@ -79,7 +79,19 @@
 </dl>
 <div class="clear"></div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <h2 id='additional_method_list'>Additional Method list</h2>
 
+<ul>
+<li><code>#fd</code> <em>alias from fileno</em></li>
+</ul>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div>
 
 
   
@@ -93,7 +105,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#append-class_method" title="append (class method)">+ (Object) <strong>append</strong>(path, text) </a>
+      <a href="#append-class_method" title="append (class method)">+ (String) <strong>append</strong>(path, text) </a>
     
 
     
@@ -114,7 +126,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#write-class_method" title="write (class method)">+ (Object) <strong>write</strong>(path, text) </a>
+      <a href="#write-class_method" title="write (class method)">+ (String) <strong>write</strong>(path, text) </a>
     
 
     
@@ -144,28 +156,69 @@
       <div class="method_details first">
   <p class="signature first" id="append-class_method">
   
-    + (<tt>Object</tt>) <strong>append</strong>(path, text) 
+    + (<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>) <strong>append</strong>(path, text) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>a convient function to append text. use open(path, &#8220;a&#8221;){|f| f.write(text)}</p>
+    <p>a convient function to append text.</p>
+
+<p>use open(path, &#8220;a&#8221;){|f| f.write(text)}</p>
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>path</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-7</pre>
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tagen/core/io.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/io.rb', line 26</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='id path'>path</span><span class='comma'>,</span> <span class='id text'>text</span><span class='rparen'>)</span> <span class='id open'>open</span><span class='lparen'>(</span><span class='id path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>a</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span> <span class='id f'>f</span><span class='period'>.</span><span class='id write'>write</span><span class='lparen'>(</span><span class='id text'>text</span><span class='rparen'>)</span><span class='rbrace'>}</span> <span class='kw'>end</span></pre>
     </td>
@@ -176,28 +229,69 @@
       <div class="method_details ">
   <p class="signature " id="write-class_method">
   
-    + (<tt>Object</tt>) <strong>write</strong>(path, text) 
+    + (<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>) <strong>write</strong>(path, text) 
   
 
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>a convient function to write text. use open(path, &#8220;w&#8221;){|f| f.write(text)}</p>
+    <p>a convient function to write text.</p>
+
+<p>use open(path, &#8220;w&#8221;){|f| f.write(text)}</p>
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>path</span>
+      
+      
+      
+    </li>
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+        <span class='name'>text</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-4</pre>
+17</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tagen/core/io.rb', line 4</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/io.rb', line 17</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id write'>write</span><span class='lparen'>(</span><span class='id path'>path</span><span class='comma'>,</span> <span class='id text'>text</span><span class='rparen'>)</span> <span class='id open'>open</span><span class='lparen'>(</span><span class='id path'>path</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>w</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id f'>f</span><span class='op'>|</span> <span class='id f'>f</span><span class='period'>.</span><span class='id write'>write</span><span class='lparen'>(</span><span class='id text'>text</span><span class='rparen'>)</span><span class='rbrace'>}</span> <span class='kw'>end</span></pre>
     </td>
@@ -210,7 +304,7 @@
 </div>
     
     <div id="footer">
-  Generated on Wed Jan 26 10:19:17 2011 by 
+  Generated on Thu Feb 24 17:13:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.9.2).
 </div>

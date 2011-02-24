@@ -1,13 +1,3 @@
-require_relative "string/format"
-=begin
-String.digits #=> "0123456789"
-String.hexdigits = "01234567890ABCDEF" 
-String.octdigits = "01234567" 
-String.uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
-String.lowercase = "abcdefghijklmnopqrstuvwxyz"
-String.letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-=end
-
 class String 
 	@@didits = "0123456789" 
 	@@hexdigits = "01234567890ABCDEF" 
@@ -15,12 +5,37 @@ class String
 	@@uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
 	@@lowercase = "abcdefghijklmnopqrstuvwxyz"
 	@@letters = @@uppercase + @@lowercase 
+
 	class << self
+
+		# "0123456789"
+		#
+		# @return [String]
 		def digits; @@digits end
+
+		# "01234567890ABCDEF" 
+		#
+		# @return [String]
 		def hexdigits; @@hexdigits end
+
+		# "01234567" 
+		#
+		# @return [String]
 		def octdigits; @@octdigits end
+
+		# "ABCDEFGHIJKLMNOPQRSTUVWXYZ" 
+		#
+		# @return [String]
 		def uppercase; @@uppercase end
+
+		# "abcdefghijklmnopqrstuvwxyz"
+		#
+		# @return [String]
 		def lowercase; @@lowercase end
+
+		# "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+		#
+		# @return [String]
 		def letters; @@letters end
 	end
 end # class String

@@ -78,7 +78,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#dump-class_method" title="dump (class method)">+ (Object) <strong>dump</strong>(obj, *args) </a>
+      <a href="#dump-class_method" title="dump (class method)">+ (String) <strong>dump</strong>(obj, *args) </a>
     
 
     
@@ -101,7 +101,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#load-class_method" title="load (class method)">+ (Object) <strong>load</strong>(obj) </a>
+      <a href="#load-class_method" title="load (class method)">+ (String) <strong>load</strong>(obj) </a>
     
 
     
@@ -133,7 +133,7 @@
       <div class="method_details first">
   <p class="signature first" id="dump-class_method">
   
-    + (<tt>Object</tt>) <strong>dump</strong>(obj, *args) 
+    + (<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>) <strong>dump</strong>(obj, *args) 
   
 
   
@@ -143,30 +143,60 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>add support with Pa Marshal.dump(obj, Pa(path)) dump(con, <span>obj</span>, limit=-1)</p>
+    <p>add support with Pa</p>
+
+<p>Marshal.dump(obj, Pa(path)) dump(con, <span>obj</span>, limit=-1)</p>
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>, <tt>Pa</tt>)</span>
+      
+      
+        <span class='name'>obj</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-13
-14
-15
-16
-17
-18
-19
-20
-21</pre>
+23
+24
+25
+26
+27
+28
+29
+30
+31</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tagen/core/marshal.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/marshal.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id dump'>dump</span><span class='lparen'>(</span><span class='id obj'>obj</span><span class='comma'>,</span> <span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span>
 	<span class='kw'>case</span> <span class='id args'>args</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
@@ -185,7 +215,7 @@
       <div class="method_details ">
   <p class="signature " id="load-class_method">
   
-    + (<tt>Object</tt>) <strong>load</strong>(obj) 
+    + (<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>) <strong>load</strong>(obj) 
   
 
   
@@ -195,24 +225,54 @@
   
 </p><div class="docstring">
   <div class="discussion">
-    <p>add support with Pa Marshal.load(Pa(path))</p>
+    <p>add support with Pa</p>
+
+<p>Marshal.load(Pa(path))</p>
 
   </div>
 </div>
 <div class="tags">
+  <h3>Parameters:</h3>
+<ul class="param">
   
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="IO.html" title="IO (class)">IO</a></span></tt>, <tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>, <tt>Pa</tt>)</span>
+      
+      
+        <span class='name'>obj</span>
+      
+      
+      
+    </li>
+  
+</ul>
+<h3>Returns:</h3>
+<ul class="return">
+  
+    <li>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="String.html" title="String (class)">String</a></span></tt>)</span>
+      
+      
+      
+      
+    </li>
+  
+</ul>
+
 </div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-7</pre>
+12</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/tagen/core/marshal.rb', line 7</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/core/marshal.rb', line 12</span>
 
-<span class='kw'>def</span> <span class='id load'>load</span><span class='lparen'>(</span><span class='id obj'>obj</span><span class='rparen'>)</span> <span class='id original_load'>original_load</span> <span class='const'>Pa</span><span class='op'>===</span><span class='id obj'>obj</span> <span class='op'>?</span> <span class='id gread'>gread</span><span class='lparen'>(</span><span class='id obj'>obj</span><span class='period'>.</span><span class='id p'>p</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id obj'>obj</span> <span class='kw'>end</span></pre>
+<span class='kw'>def</span> <span class='id load'>load</span><span class='lparen'>(</span><span class='id obj'>obj</span><span class='rparen'>)</span> <span class='id original_load'>original_load</span> <span class='const'>Pa</span><span class='op'>===</span><span class='id obj'>obj</span> <span class='op'>?</span> <span class='const'>File</span><span class='period'>.</span><span class='id read'>read</span><span class='lparen'>(</span><span class='id obj'>obj</span><span class='period'>.</span><span class='id p'>p</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='id obj'>obj</span> <span class='kw'>end</span></pre>
     </td>
   </tr>
 </table>
@@ -223,7 +283,7 @@
 </div>
     
     <div id="footer">
-  Generated on Wed Jan 26 10:19:17 2011 by 
+  Generated on Thu Feb 24 17:13:01 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.9.2).
 </div>

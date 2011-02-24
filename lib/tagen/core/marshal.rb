@@ -2,14 +2,24 @@ module Marshal
 class <<self
 
 	alias :original_load :load
+
 	# add support with Pa
+	#
 	#   Marshal.load(Pa(path))
-	def load(obj) original_load Pa===obj ? gread(obj.p) : obj end
+	#
+	# @param [IO,String,Pa] obj
+	# @return [String]
+	def load(obj) original_load Pa===obj ? File.read(obj.p) : obj end
 
 	alias :original_dump :dump
+
 	# add support with Pa
+	#
 	#   Marshal.dump(obj, Pa(path))
 	#   dump(con, [obj], limit=-1)
+	#
+	# @param [String,Pa] obj
+	# @return [String]
 	def dump(obj, *args)
 		case args[0]
 		when String, Pa
@@ -19,5 +29,6 @@ class <<self
 			original_dump con, *args
 		end
 	end
+
 end
 end

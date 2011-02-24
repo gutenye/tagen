@@ -53,10 +53,10 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><span class='object_link'><a href="../../../Object.html" title="Object (class)">Object</a></span></span>
       
         <ul class="fullTree">
-          <li>Object</li>
+          <li><span class='object_link'><a href="../../../Object.html" title="Object (class)">Object</a></span></li>
           
             <li class="next">Jabber::Roster::Helper::RosterItem</li>
           
@@ -74,7 +74,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/guten/xmpp4r/roster.rb</dd>
+    <dd class="r2 last">lib/tagen/xmpp4r/roster.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -106,7 +106,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'></div></span>
+    <span class="summary_desc"><div class='inline'><p>unsubscribe an item.</p></div></span>
   
 </li>
 
@@ -123,23 +123,31 @@
       <div class="method_details first">
   <p class="signature first" id="unsubscribe-instance_method">
   
-    - (<tt>Object</tt>) <strong>unsubscribe</strong> 
+    - (<tt><span class='object_link'><a href="../../../Object.html" title="Object (class)">Object</a></span></tt>) <strong>unsubscribe</strong> 
   
 
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    <p>unsubscribe an item</p>
+
+  </div>
+</div>
+<div class="tags">
+  
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-5
-6
-7
-8</pre>
+13
+14
+15
+16</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/xmpp4r/roster.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/xmpp4r/roster.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id unsubscribe'>unsubscribe</span>
 	<span class='id pres'>pres</span> <span class='op'>=</span> <span class='const'>Presence</span><span class='period'>.</span><span class='id new'>new</span><span class='period'>.</span><span class='id set_type'>set_type</span><span class='lparen'>(</span><span class='symbol'>:unsubscribe</span><span class='rparen'>)</span><span class='period'>.</span><span class='id set_to'>set_to</span><span class='lparen'>(</span><span class='id jid'>jid</span><span class='period'>.</span><span class='id strip'>strip</span><span class='rparen'>)</span>
@@ -155,7 +163,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Jan 25 19:07:44 2011 by 
+  Generated on Thu Feb 24 17:13:01 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.9.2).
 </div>

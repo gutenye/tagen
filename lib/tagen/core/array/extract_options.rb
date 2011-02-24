@@ -1,5 +1,7 @@
 class Array
 	# extend options are symbols and hash, symbol as a boolean option.
+	#
+	# @example
 	#   :a #=> { a: true }
 	#   :_a #=> { a: false}
 	#
@@ -9,6 +11,8 @@ class Array
 	#
 	#   foo(1, :a, :_b, :c => 2) #=> {a: true, b: false, c: 2}
 	#   
+	# @param [Symbol, Hash] *defaults
+	# @return [Hash]
 	# @see extract_options!
 	def extract_extend_options! *defaults
 		o1 = _parse_o(defaults)
@@ -43,6 +47,7 @@ class Array
 	# element in the array if it's a hash, otherwise returns a blank hash.
 	# you can also pass a default option.
 	#
+	# @example
 	#   def options(*args)
 	#     o = args.extract_options!(:a=>1)
 	#   end
@@ -50,6 +55,9 @@ class Array
 	#   options(1, 2)           # => {:a=>1}
 	#   options(1, 2, :a => :b) # => {:a=>:b}
 	#
+	# @param [Hash] default default options
+	# @return [Hash]
+	# @see {#extract_extra_options!}
 	def extract_options! default={}
 		if self.last.is_a?(Hash) && self.last.instance_of?(Hash)
 			self.pop.merge default

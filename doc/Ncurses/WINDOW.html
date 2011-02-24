@@ -53,10 +53,10 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></span>
       
         <ul class="fullTree">
-          <li>Object</li>
+          <li><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></li>
           
             <li class="next">Ncurses::WINDOW</li>
           
@@ -74,7 +74,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/guten/ncurses.rb</dd>
+    <dd class="r2 last">lib/tagen/ncurses.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -593,13 +593,13 @@
       <pre class="lines">
 
 
-103
-104
-105
-106</pre>
+122
+123
+124
+125</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 103</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 122</span>
 
 <span class='kw'>def</span> <span class='id initialize'>initialize</span>
 	<span class='ivar'>@stdscr</span> <span class='op'>=</span> <span class='const'>Ncurses</span><span class='period'>.</span><span class='id stdscr'>stdscr</span>
@@ -620,7 +620,7 @@
       <div class="method_details first">
   <p class="signature first" id="beginx-instance_method">
   
-    - (<tt>Object</tt>) <strong>beginx</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>beginx</strong> 
   
 
   
@@ -630,10 +630,10 @@
       <pre class="lines">
 
 
-150</pre>
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 150</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 169</span>
 
 <span class='kw'>def</span> <span class='id beginx'>beginx</span><span class='semicolon'>;</span> <span class='id beginxy'>beginxy</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='kw'>end</span></pre>
     </td>
@@ -644,7 +644,7 @@
       <div class="method_details ">
   <p class="signature " id="beginxy-instance_method">
   
-    - (<tt>Object</tt>) <strong>beginxy</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>beginxy</strong> 
   
 
   
@@ -654,14 +654,14 @@
       <pre class="lines">
 
 
-145
-146
-147
-148
-149</pre>
+164
+165
+166
+167
+168</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 145</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 164</span>
 
 <span class='kw'>def</span> <span class='id beginxy'>beginxy</span>
 	<span class='id y'>y</span><span class='comma'>,</span><span class='id x'>x</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -676,7 +676,7 @@
       <div class="method_details ">
   <p class="signature " id="beginy-instance_method">
   
-    - (<tt>Object</tt>) <strong>beginy</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>beginy</strong> 
   
 
   
@@ -686,10 +686,10 @@
       <pre class="lines">
 
 
-151</pre>
+170</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 151</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 170</span>
 
 <span class='kw'>def</span> <span class='id beginy'>beginy</span><span class='semicolon'>;</span> <span class='id beginxy'>beginxy</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>end</span></pre>
     </td>
@@ -700,7 +700,7 @@
       <div class="method_details ">
   <p class="signature " id="convert_xy-instance_method">
   
-    - (<tt>Object</tt>) <strong>convert_xy</strong>(x = nil, y = nil) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>convert_xy</strong>(x = nil, y = nil) 
   
 
   
@@ -710,21 +710,21 @@
       <pre class="lines">
 
 
-153
-154
-155
-156
-157
-158
-159
-160
-161
-162
-163
-164</pre>
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 153</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 172</span>
 
 <span class='kw'>def</span> <span class='id convert_xy'>convert_xy</span> <span class='id x'>x</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span><span class='id y'>y</span><span class='op'>=</span><span class='kw'>nil</span>
 	<span class='id x'>x</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id x'>x</span><span class='op'>+</span><span class='id x'>x</span><span class='period'>.</span><span class='id to_i'>to_i</span> <span class='kw'>if</span> <span class='id x'>x</span> <span class='kw'>and</span> <span class='const'>String</span><span class='op'>===</span><span class='id x'>x</span>
@@ -746,7 +746,7 @@
       <div class="method_details ">
   <p class="signature " id="echo-instance_method">
   
-    - (<tt>Object</tt>) <strong>echo</strong>(*args) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>echo</strong>(*args) 
   
 
   
@@ -756,10 +756,10 @@
       <pre class="lines">
 
 
-223</pre>
+242</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 223</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 242</span>
 
 <span class='kw'>def</span> <span class='id echo'>echo</span> <span class='op'>*</span><span class='id args'>args</span><span class='semicolon'>;</span> <span class='id necho'>necho</span> <span class='op'>*</span><span class='id args'>args</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>\n</span><span class='tstring_end'>&quot;</span></span> <span class='kw'>end</span></pre>
     </td>
@@ -770,7 +770,7 @@
       <div class="method_details ">
   <p class="signature " id="getc-instance_method">
   
-    - (<tt>Object</tt>) <strong>getc</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>getc</strong> 
   
 
   
@@ -780,21 +780,21 @@
       <pre class="lines">
 
 
-209
-210
-211
-212
-213
-214
-215
-216
-217
-218
-219
-220</pre>
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 209</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 228</span>
 
 <span class='kw'>def</span> <span class='id getc'>getc</span>
 	<span class='id key'>key</span> <span class='op'>=</span> <span class='id getch'>getch</span>
@@ -816,7 +816,7 @@
       <div class="method_details ">
   <p class="signature " id="h-instance_method">
   
-    - (<tt>Object</tt>) <strong>h</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>h</strong> 
   
 
   
@@ -826,10 +826,10 @@
       <pre class="lines">
 
 
-143</pre>
+162</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 143</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 162</span>
 
 <span class='kw'>def</span> <span class='id h'>h</span><span class='semicolon'>;</span> <span class='id wh'>wh</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>end</span></pre>
     </td>
@@ -840,7 +840,7 @@
       <div class="method_details ">
   <p class="signature " id="mvx-instance_method">
   
-    - (<tt>Object</tt>) <strong>mvx</strong>(x, &amp;blk) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>mvx</strong>(x, &amp;blk) 
   
 
   
@@ -850,10 +850,10 @@
       <pre class="lines">
 
 
-130</pre>
+149</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 130</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 149</span>
 
 <span class='kw'>def</span> <span class='id mvx'>mvx</span> <span class='id x'>x</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='semicolon'>;</span> <span class='id mvxy'>mvxy</span><span class='lparen'>(</span><span class='id x'>x</span><span class='comma'>,</span> <span class='kw'>self</span><span class='period'>.</span><span class='id y'>y</span><span class='rparen'>)</span> <span class='kw'>end</span></pre>
     </td>
@@ -864,7 +864,7 @@
       <div class="method_details ">
   <p class="signature " id="mvxy-instance_method">
   
-    - (<tt>Object</tt>) <strong>mvxy</strong>(x, y, &amp;blk) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>mvxy</strong>(x, y, &amp;blk) 
   
 
   
@@ -874,18 +874,18 @@
       <pre class="lines">
 
 
-120
-121
-122
-123
-124
-125
-126
-127
-128</pre>
+139
+140
+141
+142
+143
+144
+145
+146
+147</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 139</span>
 
 <span class='kw'>def</span> <span class='id mvxy'>mvxy</span> <span class='id x'>x</span><span class='comma'>,</span><span class='id y'>y</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span>
 	<span class='id x'>x</span><span class='comma'>,</span><span class='id y'>y</span> <span class='op'>=</span> <span class='id convert_xy'>convert_xy</span><span class='lparen'>(</span><span class='id x'>x</span><span class='comma'>,</span><span class='id y'>y</span><span class='rparen'>)</span>
@@ -904,7 +904,7 @@
       <div class="method_details ">
   <p class="signature " id="mvy-instance_method">
   
-    - (<tt>Object</tt>) <strong>mvy</strong>(y, &amp;blk) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>mvy</strong>(y, &amp;blk) 
   
 
   
@@ -914,10 +914,10 @@
       <pre class="lines">
 
 
-131</pre>
+150</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 131</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 150</span>
 
 <span class='kw'>def</span> <span class='id mvy'>mvy</span> <span class='id y'>y</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='semicolon'>;</span> <span class='id mvxy'>mvxy</span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id x'>x</span><span class='comma'>,</span> <span class='id y'>y</span><span class='rparen'>)</span> <span class='kw'>end</span></pre>
     </td>
@@ -928,7 +928,7 @@
       <div class="method_details ">
   <p class="signature " id="necho-instance_method">
   
-    - (<tt>Object</tt>) <strong>necho</strong>(*args) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>necho</strong>(*args) 
   
 
   
@@ -938,10 +938,10 @@
       <pre class="lines">
 
 
-222</pre>
+241</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 222</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 241</span>
 
 <span class='kw'>def</span> <span class='id necho'>necho</span><span class='lparen'>(</span><span class='op'>*</span><span class='id args'>args</span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='const'>Ncurses</span><span class='period'>.</span><span class='id addstr'>addstr</span><span class='lparen'>(</span><span class='id args'>args</span><span class='period'>.</span><span class='id gach'>gach</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id v'>v</span><span class='op'>|</span><span class='id v'>v</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id join'>join</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'> </span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>end</span></pre>
     </td>
@@ -952,7 +952,7 @@
       <div class="method_details ">
   <p class="signature " id="restore-instance_method">
   
-    - (<tt>Object</tt>) <strong>restore</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>restore</strong> 
   
 
   
@@ -962,10 +962,10 @@
       <pre class="lines">
 
 
-118</pre>
+137</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 118</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 137</span>
 
 <span class='kw'>def</span> <span class='id restore'>restore</span><span class='semicolon'>;</span> <span class='id xy'>xy</span> <span class='op'>*</span><span class='ivar'>@save_xy</span> <span class='kw'>end</span></pre>
     </td>
@@ -976,7 +976,7 @@
       <div class="method_details ">
   <p class="signature " id="rmvx-instance_method">
   
-    - (<tt>Object</tt>) <strong>rmvx</strong>(x, &amp;blk) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>rmvx</strong>(x, &amp;blk) 
   
 
   
@@ -986,10 +986,10 @@
       <pre class="lines">
 
 
-134</pre>
+153</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 134</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 153</span>
 
 <span class='kw'>def</span> <span class='id rmvx'>rmvx</span> <span class='id x'>x</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='semicolon'>;</span> <span class='id mvx'>mvx</span><span class='lparen'>(</span><span class='id x'>x</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='rparen'>)</span> <span class='kw'>end</span></pre>
     </td>
@@ -1000,7 +1000,7 @@
       <div class="method_details ">
   <p class="signature " id="rmvxy-instance_method">
   
-    - (<tt>Object</tt>) <strong>rmvxy</strong>(x, y, &amp;blk) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>rmvxy</strong>(x, y, &amp;blk) 
   
 
   
@@ -1010,10 +1010,10 @@
       <pre class="lines">
 
 
-133</pre>
+152</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 152</span>
 
 <span class='kw'>def</span> <span class='id rmvxy'>rmvxy</span> <span class='id x'>x</span><span class='comma'>,</span><span class='id y'>y</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='semicolon'>;</span> <span class='id mvxy'>mvxy</span><span class='lparen'>(</span><span class='id x'>x</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='comma'>,</span> <span class='id y'>y</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='rparen'>)</span> <span class='kw'>end</span></pre>
     </td>
@@ -1024,7 +1024,7 @@
       <div class="method_details ">
   <p class="signature " id="rmvy-instance_method">
   
-    - (<tt>Object</tt>) <strong>rmvy</strong>(y, &amp;blk) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>rmvy</strong>(y, &amp;blk) 
   
 
   
@@ -1034,10 +1034,10 @@
       <pre class="lines">
 
 
-135</pre>
+154</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 154</span>
 
 <span class='kw'>def</span> <span class='id rmvy'>rmvy</span> <span class='id y'>y</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='semicolon'>;</span> <span class='id mvy'>mvy</span><span class='lparen'>(</span><span class='id y'>y</span><span class='period'>.</span><span class='id to_s'>to_s</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id blk'>blk</span><span class='rparen'>)</span> <span class='kw'>end</span></pre>
     </td>
@@ -1048,7 +1048,7 @@
       <div class="method_details ">
   <p class="signature " id="save-instance_method">
   
-    - (<tt>Object</tt>) <strong>save</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>save</strong> 
   
 
   
@@ -1058,10 +1058,10 @@
       <pre class="lines">
 
 
-117</pre>
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 117</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id save'>save</span><span class='semicolon'>;</span> <span class='ivar'>@save_xy</span> <span class='op'>=</span> <span class='id xy'>xy</span> <span class='kw'>end</span></pre>
     </td>
@@ -1072,7 +1072,7 @@
       <div class="method_details ">
   <p class="signature " id="w-instance_method">
   
-    - (<tt>Object</tt>) <strong>w</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>w</strong> 
   
 
   
@@ -1082,10 +1082,10 @@
       <pre class="lines">
 
 
-142</pre>
+161</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 161</span>
 
 <span class='kw'>def</span> <span class='id w'>w</span><span class='semicolon'>;</span> <span class='id wh'>wh</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='kw'>end</span></pre>
     </td>
@@ -1096,7 +1096,7 @@
       <div class="method_details ">
   <p class="signature " id="wh-instance_method">
   
-    - (<tt>Object</tt>) <strong>wh</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>wh</strong> 
   
 
   
@@ -1106,14 +1106,14 @@
       <pre class="lines">
 
 
-137
-138
-139
-140
-141</pre>
+156
+157
+158
+159
+160</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 137</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 156</span>
 
 <span class='kw'>def</span> <span class='id wh'>wh</span>
 	<span class='id y'>y</span><span class='comma'>,</span><span class='id x'>x</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1128,7 +1128,7 @@
       <div class="method_details ">
   <p class="signature " id="x-instance_method">
   
-    - (<tt>Object</tt>) <strong>x</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>x</strong> 
   
 
   
@@ -1138,10 +1138,10 @@
       <pre class="lines">
 
 
-114</pre>
+133</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 114</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 133</span>
 
 <span class='kw'>def</span> <span class='id x'>x</span><span class='semicolon'>;</span> <span class='id xy'>xy</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span> <span class='kw'>end</span></pre>
     </td>
@@ -1152,7 +1152,7 @@
       <div class="method_details ">
   <p class="signature " id="xy-instance_method">
   
-    - (<tt>Object</tt>) <strong>xy</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>xy</strong> 
   
 
   
@@ -1170,14 +1170,14 @@
       <pre class="lines">
 
 
-109
-110
-111
-112
-113</pre>
+128
+129
+130
+131
+132</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 128</span>
 
 <span class='kw'>def</span> <span class='id xy'>xy</span>
 	<span class='id y'>y</span><span class='comma'>,</span><span class='id x'>x</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -1192,7 +1192,7 @@
       <div class="method_details ">
   <p class="signature " id="y-instance_method">
   
-    - (<tt>Object</tt>) <strong>y</strong> 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>y</strong> 
   
 
   
@@ -1202,10 +1202,10 @@
       <pre class="lines">
 
 
-115</pre>
+134</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/ncurses.rb', line 115</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/ncurses.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id y'>y</span><span class='semicolon'>;</span> <span class='id xy'>xy</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='kw'>end</span></pre>
     </td>
@@ -1218,7 +1218,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Jan 25 19:07:43 2011 by 
+  Generated on Thu Feb 24 17:13:00 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.9.2).
 </div>

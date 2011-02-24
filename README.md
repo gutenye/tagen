@@ -1,6 +1,8 @@
 Tagen, a core and extra extension to Ruby library.
 ==========================================
-provide some usefull Ruby core extension.  some comes from ActiveSupport. ActiveSupport is mainly target to Rails, but tagen is target to generic ruby development, and tagen is smaller.
+Ruby has an 'Open Class' feature, so we can extend any class by ourself. 
+
+This library provides some usefull Ruby core extension.  some comes from ActiveSupport. ActiveSupport is mainly target to Rails, but tagen is target to generic ruby development, and tagen is smaller. It is a colletion of most common core,extra extensions.
 
 Usage
 -----
@@ -8,7 +10,7 @@ use core extension
 
 	require "tagen/core" 
 
-then we have String#blank? method, for a list of core extensions, see {file:docs/CoreExtensions}.
+then we have String#blank? method, for a list of core extensions, see {file:docs/CoreExtensions.md docs/CoreExtensions}.
 
 use extra extension
 
@@ -17,6 +19,11 @@ use extra extension
 
 add #path method to Pathname, see api doc.
 
+Documentation
+-------------
+* {file:docs/CoreExtensions.md CoreExtensions} A list of core extensions.
+* {file:docs/ExtraExtensions.md ExtraExtensions} A list of extra extensions.
+* {file:docs/Architecture.md Architecture} Source code architecture.
 
 Install
 ----------
@@ -25,8 +32,8 @@ Install
 Contributing
 -------------
 	* fork it and pull a request.
-	* report buts/featues to issue tracker.
-	* improve documentation. (English is my second language)  
+	* report bugs/featues to issue tracker.
+	* improve documentation. 
 	* any ideas are welcome.
 
 See Also
@@ -40,6 +47,9 @@ Info & Links
 **Author**: 	Guten  
 **API-Docs**: yard  
 **Bugs**: github  
+
+Contributors
+-------------
 
 Copyright
 ---------

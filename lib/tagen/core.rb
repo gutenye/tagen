@@ -22,9 +22,6 @@ core/hash
 core/time
 core/io
 core/process
-
-core/pa
-core/ta
 ).each {|n| require_relative n }
 require "time"
 require "date"

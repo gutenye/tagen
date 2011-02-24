@@ -53,10 +53,10 @@
   
     <dt class="r1">Inherits:</dt>
     <dd class="r1">
-      <span class="inheritName">Object</span>
+      <span class="inheritName"><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></span>
       
         <ul class="fullTree">
-          <li>Object</li>
+          <li><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></li>
           
             <li class="next">Gtk::ListStore</li>
           
@@ -74,7 +74,7 @@
   
   
     <dt class="r2 last">Defined in:</dt>
-    <dd class="r2 last">lib/guten/gtk2.rb</dd>
+    <dd class="r2 last">lib/tagen/gtk2.rb</dd>
   
 </dl>
 <div class="clear"></div>
@@ -133,7 +133,7 @@
       <div class="method_details first">
   <p class="signature first" id="append-instance_method">
   
-    - (<tt>Object</tt>) <strong>append</strong>(rows) 
+    - (<tt><span class='object_link'><a href="../Object.html" title="Object (class)">Object</a></span></tt>) <strong>append</strong>(rows) 
   
 
   
@@ -141,7 +141,27 @@
     <span class="names"><span id='append_-instance_method'>append_</span></span>
     </span>
   
-</p><table class="source_code">
+</p><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h3>Examples:</h3>
+    
+      <h4><div class='inline'></div></h4>
+      <pre class="example code"><span class='id data'>data</span><span class='op'>=</span><span class='lbracket'>[</span>
+	<span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span> <span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span>
+	<span class='lbracket'>[</span><span class='int'>3</span><span class='comma'>,</span> <span class='int'>4</span><span class='rbracket'>]</span>
+<span class='rbracket'>]</span>
+<span class='id liststore'>liststore</span><span class='period'>.</span><span class='id append'>append</span><span class='lparen'>(</span><span class='id data'>data</span><span class='rparen'>)</span></pre>
+    
+  </div>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
@@ -157,12 +177,12 @@
 29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/guten/gtk2.rb', line 22</span>
+      <pre class="code"><span class="info file"># File 'lib/tagen/gtk2.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id append'>append</span> <span class='id rows'>rows</span>
-	<span class='id rows'>rows</span><span class='period'>.</span><span class='id gach'>gach</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id row'>row</span><span class='op'>|</span>
+	<span class='id rows'>rows</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id row'>row</span><span class='op'>|</span>
 		<span class='id iter'>iter</span> <span class='op'>=</span> <span class='id append_'>append_</span>
-		<span class='id row'>row</span><span class='period'>.</span><span class='id gach'>gach</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id col'>col</span><span class='comma'>,</span> <span class='id col_i'>col_i</span><span class='op'>|</span>
+		<span class='id row'>row</span><span class='period'>.</span><span class='id each'>each</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id col'>col</span><span class='comma'>,</span> <span class='id col_i'>col_i</span><span class='op'>|</span>
 			<span class='id iter'>iter</span><span class='lbracket'>[</span><span class='id col_i'>col_i</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id col'>col</span>
 		<span class='kw'>end</span>
 	<span class='kw'>end</span>
@@ -177,7 +197,7 @@
 </div>
     
     <div id="footer">
-  Generated on Tue Jan 25 19:07:42 2011 by 
+  Generated on Thu Feb 24 17:12:59 2011 by 
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.6.4 (ruby-1.9.2).
 </div>
