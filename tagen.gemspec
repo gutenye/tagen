@@ -9,9 +9,10 @@ Gem::Specification.new do |s|
 an extension to ruby core and gem library. use some active_support/core_ext, but smaller than active_support. active_support is mainly target to Rails, but tagen is target to generic ruby development.
 	EOF
 
-	s.author = "guten"
+	s.author = "Guten"
 	s.email = "ywzhaifei@gmail.com"
-	s.homepage = nil
+	s.homepage = "http://github.com/GutenLinux/tagen"
+	s.rubyforge_project = "xx"
 
 	s.files = `git ls-files`.split("\n")
 
