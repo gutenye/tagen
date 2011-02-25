@@ -191,7 +191,7 @@ class Pa < File
 		@absolute = Pa.absolute(@path) 
 		@dir = Pa.dirname(@path)
 		@base = Pa.basename(@path) 
-		@file = Pa.basename(@path, true)[0] 
+		@file = Pa.basename(@path, ext: true)[0] 
 		@ext = Pa.extname(@path) 
 		@fext = @ext.nil? ? nil : "."+@ext
 		@relative = relative
