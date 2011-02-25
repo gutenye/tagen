@@ -1,3 +1,5 @@
+require_relative "array/extract_options"
+
 =begin
 Additional method list
 ----------------------

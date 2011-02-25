@@ -20,14 +20,13 @@ class Array
 		o1.merge o2
 	end
 
-	private
 	def _parse_o obj
 		case obj
 		when Array
 			# name:1
 			o1 = Hash === obj.last ? obj.pop : {}
 			# :force :_force
-			rst = obj.find_all!{|v| Symbol===v}
+			rst = obj.select{|v| Symbol===v}.delete_if{|v| Symbol===v}
 			o2={}
 			rst.each do |k|
 				v = true
@@ -42,6 +41,7 @@ class Array
 			obj
 		end
 	end
+	private :_parse_o
 
 	# Extracts options from a set of arguments. Removes and returns the last
 	# element in the array if it's a hash, otherwise returns a blank hash.

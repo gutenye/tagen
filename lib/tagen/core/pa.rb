@@ -78,7 +78,7 @@ class Pa < File
 		#   
 		# @return [String] 
 		def basename(name, *o)
-			o = o.to_o
+			o = o.extract_extend_options!
 			name = super(name)
 			if o[:ext]
 				_, name, ext = name.match(/^(.+?)(\.[^.]+)?$/).to_a
@@ -99,7 +99,7 @@ class Pa < File
 		# @param [] *o Guten style options, see extract_extra_options!
 		# @return [Array<String>]
 		def split(name, *o)
-			o = o.to_o
+			o = o.extract_extend_options!
 			dir, fname = super(name)	
 			ret = basename(fname, o).to_array
 
@@ -139,7 +139,7 @@ class Pa < File
 		# @param [] *o Guten style options, see extract_extra_options!
 		# @return [Array<String>] 
 		def glob(path, *o)
-			o = o.to_o
+			o = o.extract_extend_options!
 			flag = 0
 			if o[:dot]
 				flag |= File::FNM_DOTMATCH
@@ -180,12 +180,12 @@ class Pa < File
 	# @param [String,Pathname,Pa] path
 	# @prams [String] relative relative path, used by {#ls_r}
 	def initialize path, relative=nil
-		@path = case path
-			when Pathname
+		@path = case path.class.to_s
+			when "Pathname"
 				path.to_s
-			when Pa
+			when "Pa"
 				path.path
-			when String
+			when "String"
 				path
 			end
 		@absolute = Pa.absolute(@path) 
@@ -326,7 +326,7 @@ class Pa < File
 	#
 	#   'level'=nil start with 1
 	def ls(*args, &blk)
-		o = args.to_o :dot, :bak, :all
+		o = args.extract_extend_options! :dot, :bak, :all
 		if not o[:all] then o[:dot]=false; o[:bak]=false end
 		o[:level] = o[:rescurive] ? nil : 1
 		o[:start] = 0
@@ -352,7 +352,7 @@ class Pa < File
 
 	# ls rescurive
 	def ls_r(*args, &blk)
-		o = args.to_o
+		o = args.extract_extend_options!
 		o[:rescurive] = true
 		ls(*args, o, &blk)
 	end
@@ -429,7 +429,7 @@ class Pa < File
 
 	# :mode :force :mkdir
 	def _touch(path_s, *o)
-		o = o.to_o
+		o = o.extract_extend_options!
 		o[:mode] ||= 0644
 		paths = path_s.to_array
 		paths.each {|p|
@@ -449,7 +449,7 @@ class Pa < File
 			end
 		}
 	end
-	private _touch
+	private :_touch
 
 	# make a directory
 	# @param [Array<String>,String] path_s
@@ -464,7 +464,7 @@ class Pa < File
 	def mkdir_f(path_s, *o) _mkdir(path_s, :force, *o) end
 
 	def _mkdir(path_s, *o)
-		o = o.to_o
+		o = o.extract_extend_options!
 		o[:mode] ||= 0744
 		paths = path_s.to_array
 		paths.each {|p|
@@ -509,7 +509,7 @@ class Pa < File
 
 	def _mknod(path_s, type, *o)
 		paths = path_s.to_array
-		o = args.to_o
+		o = args.extract_extend_options!
 		o[:mode] ||= 0644
 		type = case type
 			when :file; 'f'   # same as normal file
@@ -585,7 +585,7 @@ class Pa < File
 	#   :force
 	# @return [nil]
 	def delete(path, *o)
-		o = o.to_o
+		o = o.extract_extend_options!
 		return if o[:force] and !exists?(path)
 		File.delete(path)
 	end
@@ -615,7 +615,7 @@ class Pa < File
 	def rm_rf(path_s) _rm(path_s, :rescurive, :force) end
 
 	def _rm(path_s, *o)
-		o = o.to_o
+		o = o.extract_extend_options!
 		pathss = glob_s(path_s)
 		pathss.each do |paths|
 			paths.each { |path|
@@ -679,7 +679,7 @@ class Pa < File
 	# for cp() and mv()
 	# use method.call  # _copy and _move
 	def _cpmv(method, src_s, dest_pa, *o)
-		o = o.to_o
+		o = o.extract_extend_options!
 		srcss = glob_s(src_s)
 
 		# 'mkdir'
@@ -864,7 +864,7 @@ class Pa < File
 	def symln_f(src_s, path, *o) _ln(method(:link), src_s, path, :force, *o) end
 
 	def _ln(method, src_s, path, *o)
-		o = o.to_o
+		o = o.extract_extend_options!
 		srcss = glob_s(src_s)
 		srcss.each do |srcs|
 			srcs.each {|src|
