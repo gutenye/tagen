@@ -1,6 +1,6 @@
-#!/usr/bin/rspec
-require "guten/core"
-require "guten/core/pa"
+#!/usr/bin/rspec --example=each
+require "tagen/core"
+require "tagen/core/pa"
 
 require "fileutils"
 require "tmpdir"
@@ -37,7 +37,7 @@ describe Pa do
 		end
 	end
 
-	describe "#ls" do
+	describe "#each" do
 		# fa .fa fa~ 
 		# dira/
 		#   dirb/
@@ -47,36 +47,18 @@ describe Pa do
 			FileUtils.touch(%w(fa .fa fa~ dira/dirb/b))
 		end
 
-		it "ls() -> ls all" do
-			Pa.ls().sort.sholud == %w(.fa dira fa fa~)
+		it "each() -> Enumerator" do
+			Pa.each.should be_an_instance_of Enumerator
+			Pa.each.with_object([]){|pa,m|m<<pa.b}.sort.should == %w(.fa dira fa fa~)
 		end
 
-		it "ls(:_dot) -> ls all except dot file" do
-			Pa.ls(:_dot).sort.should == %w(dira fa fa~)
+		it "each(nodot: true) -> list all files except dot file" do
+			Pa.each(nodot: true).with_object([]){|pa,m|m<<pa.b}.sort.should == %w(dira fa fa~)
 		end
 
-		it "ls_r -> ls rescurive" do
-		 	Pa.ls_r.sort.should == %w(.fa dira dira/dirb dira/dirb/b fa fa~)
-		end
-
-
-		it "ls(1) -> ls with option start=1" do
-			Pa.ls(1) do |pa,i|
-				i.shold == 1
-				break
-			end
-		end
-
-		it "ls{} -> ls with block" do
-			Pa.ls{|pa| pa.fn if pa.fn=="fa"}.should == ["fa"]
-		end
-
-		it "ls(:nil){} -> ls with block with :nil option" do
-			Pa.ls(:nil){|pa| pa.fn if pa.fn=="fa"}.gach(&:to_s).sort.should == ["","","","fa"]
-		end
-
-		it "ls([]){} -> ls with memo=[]" do
-			Pa.ls([]){|pa,i,m| next if pa.fn=="fa"; m<<pa.fn; m }.sort.shold == %w(.fa dira fa~)
+		it "each_r -> Enumerator" do
+			Pa.each_r.should be_an_instance_of Enumerator
+		 	Pa.each_r.with_object([]){|(pa,r),m|m<<r}.sort.should == %w(.fa dira dira/dirb dira/dirb/b fa fa~)
 		end
 
 	end

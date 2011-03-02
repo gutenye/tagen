@@ -1,48 +1,4 @@
 class Array
-	# extend options are symbols and hash, symbol as a boolean option.
-	#
-	# @example
-	#   :a #=> { a: true }
-	#   :_a #=> { a: false}
-	#
-	#   def foo(*args)
-	#     options = args.extract_extend_options!
-	#   end
-	#
-	#   foo(1, :a, :_b, :c => 2) #=> {a: true, b: false, c: 2}
-	#   
-	# @param [Symbol, Hash] *defaults
-	# @return [Hash]
-	# @see extract_options!
-	def extract_extend_options! *defaults
-		o1 = _parse_o(defaults)
-		o2 = _parse_o(self)
-		o1.merge o2
-	end
-
-	def _parse_o obj
-		case obj
-		when Array
-			# name:1
-			o1 = Hash === obj.last ? obj.pop : {}
-			# :force :_force
-			rst = obj.select{|v| Symbol===v}.delete_if{|v| Symbol===v}
-			o2={}
-			rst.each do |k|
-				v = true
-				if k=~/^_/
-					k = k[1..-1].to_sym
-					v = false
-				end
-				o2[k] = v
-			end
-			o1.merge o2
-		when Hash
-			obj
-		end
-	end
-	private :_parse_o
-
 	# Extracts options from a set of arguments. Removes and returns the last
 	# element in the array if it's a hash, otherwise returns a blank hash.
 	# you can also pass a default option.
@@ -57,7 +13,6 @@ class Array
 	#
 	# @param [Hash] default default options
 	# @return [Hash]
-	# @see {#extract_extra_options!}
 	def extract_options! default={}
 		if self.last.is_a?(Hash) && self.last.instance_of?(Hash)
 			self.pop.merge default
@@ -65,4 +20,21 @@ class Array
 			default
 		end
 	end
+
+	# extract options
+	# @see extract_options!
+	# @example
+	#   def mkdir(*args)
+	#     paths, o = args.extract_options
+	#   end
+	#
+	# @return [Array<Array,Hash>] 
+	def extract_options default={}
+		if self.last.is_a?(Hash) && self.last.instance_of?(Hash)
+			[self[0...-1], self[-1].merge(default)]
+		else
+			[self, default]
+		end
+	end
+
 end
