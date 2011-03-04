@@ -39,3 +39,5 @@ class String
 		def letters; @@letters end
 	end
 end # class String
+
+require_relative "string/pyformat"

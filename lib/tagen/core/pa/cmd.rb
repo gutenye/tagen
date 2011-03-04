@@ -1,38 +1,44 @@
-module Pa::Cmd
-	# print current work directory
-	# @return [String] path
-	def pwd() Dir.getwd end
-
-	# change directory
-	#
-	# @param [String] path
-	def cd(path=ENV["HOME"], &blk) Dir.chdir(path, &blk) end
+=begin
+rm family
+	* rm     _rm file only_
+	* rmdir  _rm directory only_
+	* rm_r   _rm recurive, both file and directory_
+	* rm_if  _with condition, use rm_r_
+=== Example 
+  rm path # it's clear: remove a file
+  rmdir path #  it's clear: remove a directory
+=end
+class Pa
+module Cmd
 
 	# chroot
 	# @see {Dir.chroot}
 	#
 	# @param [String] path
 	# @return [nil]
-	def chroot(path) Dir.chroot(path) end
+	def chroot(path) Dir.chroot(get(path)) end
 
 	# touch a blank file
 	#
-	# @param [Array<String>, String] path_s
-	# @param [Hash] o option
-	# @option o [Fixnum,String] :mode
-	# @option o [Boolean] :mkdir
-	# @return [nil]
-	def touch(path_s, o) 		_touch(path_s, o) end
+	# @overload touch(*paths, o={})
+	#   @param [String] *paths
+	#   @param [Hash] o option
+	#   @option o [Fixnum,String] :mode
+	#   @option o [Boolean] :mkdir auto mkdir if path contained directory not exists.
+	#   @option o [Boolean] :force 
+	#   @return [nil]
+	def touch(*args) paths, o = args.extract_options; _touch(*paths, o) end
 
 	# touch force
-	# see touch
+	# @see touch
 	#
-	# @return [nil]
-	def touch_f(path_s, o={}) o[:force]=true; 	_touch(path_s, o)  end
+	# @overload touch_f(*paths, o={})
+	#   @return [nil]
+	def touch_f(*args) paths, o = args.extract_options; o[:force]=true; 	_touch(*paths, o) end
 
-	def _touch(path_s, o={})
+	def _touch(paths, o)
 		o[:mode] ||= 0644
-		paths = Array.wrap(path_s)
+		paths.map!{|v|get(v)}
 		paths.each {|p|
 			if exists?(p) 
 				o[:force] ? next : raise(Errno::EEXIST, "File exist -- #{p}")
@@ -54,36 +60,39 @@ module Pa::Cmd
 
 	# make a directory
 	#
-	# @param [Array<String>,String] path_s
-	# @param [Hash] o option
-	# @option o [Fixnum] :mode
-	# @return [nil]
-	def mkdir(path_s, o) 	_mkdir(path_s, o) end
+	# @overload mkdir(*paths, o={})
+	#   @param [String] *paths
+	#   @param [Hash] o option
+	#   @option o [Fixnum] :mode
+	#   @option o [Boolean] :force
+	#   @return [nil]
+	def mkdir(*args) paths, o = args.extract_options; _mkdir(paths, o) end
 
 	# mkdir force
-	#
 	# @see mkdir
-	# @return [nil]
-	def mkdir_f(path_s, o) o[:force]=true; _mkdir(path_s, o) end
+	#
+	# @overload mkdir_f(*paths, o={})
+	#   @return [nil]
+	def mkdir_f(*args) paths, o = args.extract_options; o[:force]=true; _mkdir(*paths, o) end
 
-	def _mkdir(path_s, o)
+	def _mkdir(paths, o)
 		o[:mode] ||= 0744
-		paths = Array.wrap(path_s)
+		paths.map!{|v|get(v)}
 		paths.each {|p|
-			if exists?(p)
+			if File.exists?(p)
 				o[:force] ? next : raise(Errno::EEXIST, "File exist -- #{p}")
 			end
 
 			stack = []
 			until p == stack.last
-				break if exists?(p)
+				break if File.exists?(p)
 				stack << p
-				p = dirname(p)
+				p = File.dirname(p)
 			end
 
 			stack.reverse.each do |path|
 				Dir.mkdir(path)
-				chmod(path, o[:mode])
+				File.chmod(o[:mode], path)
 			end
 		}
 	end
@@ -98,10 +107,12 @@ module Pa::Cmd
 	# @return [String] path
 	def mktmpdir(o={}, &blk) 
 		p = _mktmpname(o)
-		mkdir(p)
-		begin blk.call(p) ensure rm_r(p) end if blk
+		File.mkdir(p)
+		begin blk.call(p) ensure Dir.delete(p) end if blk
 		p
 	end # def mktmpdir
+
+	def home(user=nil) Dir.home end
 
 	# make temp file
 	# @see mktmpdir
@@ -110,7 +121,7 @@ module Pa::Cmd
 	# @return [String] path
 	def mktmpfile(o={}, &blk) 
 		p = _mktmpname(o) 
-		begin blk.call(p) ensure rm(p) end if blk
+		begin blk.call(p) ensure File.delete(p) end if blk
 		p
 	end # mktmpfile
 
@@ -136,285 +147,228 @@ module Pa::Cmd
 	end # def mktmpname
 	private :_mktmpname
 
-	# delete a file
-	#
-	# @param [String] path
-	# @param [Hash] o options
-	# @option o [Boolean] :force (false)
-	# @return [nil]
-	def delete(path, o={})
-		return if o[:force] and !exists?(path)
-		File.delete(path)
-	end
-
 	# rm file only
 	#
-	# @param [Array<String>, String] path_s support globbing
+	# @param [String] *paths support globbing
 	# @return [nil]
-	def rm(path_s) 		_rm(path_s) end
-
-	# rm rescurive, rm directory
-	#
-	# @see rm
-	# @return [nil]
-	def rm_r(path_s) 	_rm(path_s, rescurive: true) end
-
-	# rm force
-	#
-	# @see rm
-	# @return [nil]
-	def rm_f(path_s) 	_rm(path_s, force: true) end
-
-	# rm rescurive and force 
-	#
-	# @see rm
-	# @return [nil]
-	def rm_rf(path_s) _rm(path_s, rescurive: true, force: true) end
-
-	def _rm(path_s, o={})
-		paths = glob(*Array.wrap(path_s))
-		paths.each { |path|
-			if !exists?(path)
-				o[:force] ? next : raise(Errno::ENOTENT, "path doesn't exists -- #{path}")
-			end
-
-			if directory?(path) 
-				_rmdir(path, o) if o[:rescurive]
-			else
-				delete(path, o)
-			end
+	def rm(*paths) 
+		glob(*paths) { |pa|
+			next if not pa.exists?
+			File.delete(pa.p)
 		}
 	end
-	private :_rm
 
-	# I'm rescurive 
-	def _rmdir(path, o)
-		ls(path) do|pa|
-			pa.directory? ? _rmdir(pa.p, o) : delete(pa.p, o)
+	# rm directory only. still remove if directory is not empty.
+	#
+	# @param [String] *paths support globbing
+	# @return [nil]
+	def rmdir *paths
+		glob(*paths) { |pa|
+			raise Errno::ENOTDIR, "-- #{pa}" if not pa.directory?
+			_rmdir(pa)
+		}
+	end
+
+	# rm recusive, rm both file and directory
+	#
+	# @see rm
+	# @return [nil]
+	def rm_r(*paths)
+		glob(*paths){ |pa|
+			next if not pa.exists?
+			pa.directory?  ? _rmdir(pa) : File.delete(pa.p)
+		}
+	end
+
+	# rm_r(path) if condition is true
+	#
+	# @example
+	#   Pa.rm_if '/tmp/**/*.rb' do |pa|
+	#     pa.name == 'old'
+	#   end
+	#
+	# @param [String] *paths support globbing
+	# @yield [path]
+	# @yieldparam [Pa] path
+	# @yieldreturn [Boolean] rm_r path if true
+	# @return [nil]
+	def rm_if(*paths, &blk)
+		glob(*paths) do |pa|
+			rm_r pa if blk.call(pa)
 		end
-		directory?(path) ? Dir.rmdir(path) : delete(path, o)
+	end
+
+	# I'm recusive 
+	# param@ [Pa] path
+	def _rmdir(pa, o={})
+		return if not pa.exists?
+		pa.each {|pa1|
+			pa1.directory? ? _rmdir(pa1, o) : File.delete(pa1.p)
+		}
+		pa.directory? ? Dir.rmdir(pa.p) : File.delete(pa.p)
 	end
 	private :_rmdir
 
 	# copy
 	#
-	# @param [Array<String>,String] src_s support globbing
-	# @param [String] dest_pa
-	# @param [Hash] o option
-	# @option o [Boolean] :verbose echo cmd when execute
-	# @option o [Boolean] :follink follow link
-	# @option o [Boolean] :backupdest backup dest file when dest exists
-	# @option o [Boolean] :update only copy when src are newer then dest, ctime
-	# @option o [Boolean] :diff only copy when at different mtime
-	# @option o [String] :fromfs only copy if same file system
-	# @option o [Boolean] :rmdestdir rm dest dir if dest is a directory
-	# @option o [Boolean] :overwrite overwrite dest file if dest is a file
-	# @option o [Boolean] :path support auto mkdir. Example: cp a/b dest #=> dest/a/b
-	# @option o [Boolean] :mkdir cp a dest/b/c if 'dest/b/c' not exists auto mkdir
-	# @return [nil]
-	def cp(src_s, dest_pa, o)
-		method = self.method(:_copy)
-		_cpmv(method, src_s, dest_pa, o)
-	end
-
-	# move, use rename for same device. and cp for cross device.
-	# @see cp
+	# cp file dir
+	#  cp 'a', 'dir' #=> dir/a 
+	#  cp 'a', 'dir/a' #=> dir/a
 	#
-	# @return [nil]
-	def mv(src_s, dest_pa, o)
-		method = self.method(:_move)
-		_cpmv(method, src_s, dest_pa, o)
+	# cp file1 file2 .. dir
+	#  cp ['a','b'], 'dir' #=> dir/a dir/b
+	#
+	# @example
+	#  cp '*', 'dir' do |src, dest, o|
+	#    skip if src.name=~'.o$'
+	#    dest.replace 'dirc' if src.name=="foo"
+	#    yield  # use yield to do the actuactal cp work
+	#  end
+	#
+	# @overload cp(src_s, dest, o)
+	#   @param [Array<String>, String] src_s support globbing
+	#   @param [String,Pa] dest
+	#   @param [Hash] o option
+	#   @option o [Boolean] :mkdir mkdir(dest) if dest not exists.
+	#   @option o [Boolean] :verbose puts cmd when execute
+	#   @option o [Boolean] :folsymlink follow symlink
+	#   @option o [Boolean] :overwrite overwrite dest file if dest is a file
+	#   @return [nil]
+	# @overload cp(src_s, dest, o)
+	#   @yield [src,dest,o]
+	#   @return [nil]
+	def cp(src_s, dest, o={}, &blk)
+		srcs = glob(*Array.wrap(src_s))
+		dest = Pa(dest)
+
+		if o[:mkdir] and (not dest.exists?)
+			mkdir dest
+		end
+
+		# cp file1 file2 .. dir
+		if srcs.size>1 and (not dest.directory?)
+			raise Errno::ENOTDIR, "dest not a directory when cp more than one src -- #{dest}"  
+		end
+
+		srcs.each do |src|
+			dest1 = dest.directory? ? dest.join(src.b) : dest
+
+			if blk
+				blk.call src, dest1, o, proc{_copy(src, dest1, o)}
+			else
+				_copy src, dest1, o
+			end
+
+		end
 	end
 
-	# for cp() and mv()
-	# use method.call  # _copy and _move
-	def _cpmv(method, src_s, dest_pa, o={})
-		srcs = glob(*Array.wrap(src_s))
-
-		# 'mkdir'
-		mkdir_f(dirname(dest_pa)) if o[:mkdir]
-
-		# 'rmdestdir'
-		rm_r dest_pa if o[:rmdestdir] and directory?(dest_pa)
-
-		# dest_pa must be directory for
-		#   o[:parent] 
-		#   src_s is array
-		if (Array===src_s or o[:parent]) and (not directory?(dest_pa)) 
-			raise Errno::ENOTDIR, "target is not a directory -- #{dest_pa}"
-		end
-
-		# o[:parent] only implement in linux 
-		if o[:parent] and win32?
-			raise Pa::Error, "option `parent' is for linux operation system only."
-		end
-
-		srcs.each {|src|
-			dest = 
-				if directory?(dest_pa)
-					# 'parent' 'path'
-					dest1 = if o[:parent] then absolute(src) elsif o[:path] then src else basename(src) end
-					dest1 = join(dest_pa, dest1)
-					mkdir_f dirname(dest1)
-					dest1
-				else
-					dest_pa
-				end
-
-			# cp name dir/
-			#  is to dir/name
-			
-			# cp name/ dir/   in _copy
-			#  is to dir/name/
-
-			# cp name dir/name/
-			#  is EEXIST
-			raise EEXIST, "can't copy name to dir/name/. -- #{src} |--| #{dest}" if 
-					directory?(dest) and !directory?(src)
-
-			# cp name/ dir/name/    in _copy
-					
-			method.call src, dest, o
-		}
-	end # def mv
-	private :_cpmv
 
 	# I'm recursive 
+	#
+	# @param [Pa] src
+	# @param [Pa] dest
 	def _copy(src, dest, o={})  
-		#p "_copy", src, dest
-		o[:formfs] = Array.wrap(o[:fromfs])
+		raise Errno::EEXIST, "dest exists -- #{dest}" if dest.exists? and (not o[:overwrite])
 
-		o[:formfs].each {|fs| return if lstat(fs).dev != lstat(src).dev }
-
-		# begin
-		if exists?(dest) and !directory?(src)
-			# :update
-			if o[:update]
-				return if mtime(src) <= mtime(dest)
-			# :diff
-			elsif o[:diff]
-				return if mtime(src) == mtime(dest)
-			elsif o[:backupdest] 
-				_copy dest, dest+"~"
-				rm dest
-			elsif o[:overwrite]
-				rm dest
-			else
-				raise Errno::EEXIST, "Path exists -- #{dest}" if exists?(dest)
-			end
-		end
-
-		case type=self.type(src)
+		case type=src.type
 		when "file", "socket"
-			echo "cp #{src} #{dest}" if o[:verbose]
-			copy_stream(src, dest)
+			puts "cp #{src} #{dest}" if o[:verbose]
+			File.copy_stream(src.p, dest.p)
 		when "directory"
 			begin
 				mkdir dest
-				echo "mkdir #{dest}" if o[:verbose]
+				puts "mkdir #{dest}" if o[:verbose]
 			rescue Errno::EEXIST
 			end
-			ls(src) { |pa|
-				_copy(pa.p, join(dest, pa.fn), o)
+			each(src) { |pa|
+				_copy(pa, dest.join(pa.b), o)
 			}
 		when "symlink"
-			if o[:follink] 
-				_copy(readlink(src), dest) 
+			if o[:folsymlink] 
+				_copy(src.readlink, dest) 
 			else
-			 symlink(readlink(src), dest)	
-				echo "symlink #{src} #{dest}" if o[:verbose]
+				symln(src.readlink, dest, force: true)	
+				puts "symlink #{src} #{dest}" if o[:verbose]
 			end
-		when "chardev", "blockdev", "fifo"
-			mknod(dest, type, dev=src)
-			echo "mknod #{dest}(:#{type})" if o[:verbose]
 		when "unknow"
-			raise Error, "Can't handle unknow type(#{:type}) -- #{src}"
+			raise EUnKnownType, "Can't handle unknow type(#{:type}) -- #{src}"
 		end
 
 		# chmod chown utime
-		src_stat = o[:follink] ? stat(src) : lstat(src)
+		src_stat = o[:folsymlink] ? stat(src) : lstat(src)
 		begin
-			chmod(dest, src_stat.mode)
-			chown(dest, src_stat.uid, src_stat.gid)
-			utime(dest, src_stat.atime, src_stat.mtime)
+			chmod(src_stat.mode, dest)
+			chown(src_stat.uid, src_stat.gid, dest)
+			utime(src_stat.atime, src_stat.mtime, dest)
 		rescue Errno::ENOENT
 		end
 	end # _copy
 	private :_copy
 
-	# I'm rescurive
-	def _move(src, dest, o=nil)
+	# move, use rename for same device. and cp for cross device.
+	# @see cp
+	#
+	# @param [Hash] o option
+	# @option o [Boolean] :verbose
+	# @option o [Boolean] :mkdir
+	# @option o [Boolean] :overwrite
+	# @return [nil]
+	def mv(src_s, dest, o={}, &blk)
+		srcs = glob(*Array.wrap(src_s))
+		dest = Pa(dest)
 
-		# mv "name/ dirb/name/" overwrite=true
-		if directory?(src) and directory?(dest)
-			if o[:overwrite]
-				ls(src) { |pa|
-					newdest = join(parent(dest), pa.p)
-					rm newdest
-					_move pa.p, newdest, o
-				}
-				rm_r(src)
+		if o[:mkdir] and (not dest.exists?)
+			mkdir dest
+		end
+
+		# mv file1 file2 .. dir
+		if srcs.size>1 and (not dest.directory?)
+			raise Errno::ENOTDIR, "dest not a directory when mv more than one src -- #{dest}"  
+		end
+
+		srcs.each do |src|
+			dest1 = dest.directory? ? dest.join(src.b) : dest
+
+			if blk
+				blk.call src, dest1, o, proc{_move(src, dest1, o)}
 			else
-				raise Errno::EEXIST, "mv name/ dirb/name/ -- #{src} |==| #{dest}"
+				_move src, dest1, o
 			end
 
-		# mv "name/ dirb/" 
-		# mv "name dirb/"
+		end
+	end
+
+	# I'm recusive
+	#
+	# _move "file", "dir/file"
+	#
+	# @param [Pa] src
+	# @param [Pa] dest
+	def _move(src, dest, o)
+		raise Errno::EEXIST, "dest exists -- #{dest}" if dest.exists? and (not o[:overwrite])
+
+		# overwrite. mv "dir", "dira" and 'dira' exists and is a directory. 
+		if dest.exists? and dest.directory? 
+				ls(src) { |pa|
+					dest1 = dest.join(pa.b)
+					_move pa, dest1, o
+				}
+				rm_r src
+
 		else
 			begin
-				File.rename(src, dest)
+				rm_r dest if o[:overwrite] and dest.exists?
+				puts "rename #{src} #{dest}" if o[:verbose]
+				File.rename(src.p, dest.p)
 			rescue Errno::EXDEV # cross-device
-				_copy(src, dest)
-				rm_r(src)
+				_copy(src, dest, o)
+				rm_r src
 			end
 
 		end
 	end # def _move
 	private :_move
 
-	# rename 
-	# 
-	# @param [String] old
-	# @param [String] dest
-	# @param [Hash] o
-	# @return nil
-	def rename(old, dest, o=nil); mv(old, dirname(old)+"/#{dest}", o) end
 
-	# link
-	#
-	# @param [Array<String>, String] src_s support globbing
-	# @param [String] path
-	# @param [Hash] o option
-	# @option o [Boolean] :force force overwrite it if dest exists.
-	# @return [nil]
-	def ln(src_s, path, o={}) _ln(method(:symlink), src_s, path, o) end
-
-	# ln force
-	#
-	# @see ln
-	# @return [nil]
-	def ln_f(src_s, path, o) o[:force]=true; _ln(method(:symlink), src_s, path, o) end
-
-	# symbol link
-	#
-	# @see ln
-	# @return [nil]
-	def symln(src_s, path, o) _ln(method(:link), src_s, path, o) end
-
-	# symln force
-	#
-	# @see ln
-	# @return [nil]
-	def symln_f(src_s, path, o) o[:force]=true; _ln(method(:link), src_s, path, o) end
-
-	def _ln(method, src_s, path, o={})
-		srcs = glob(*Array.wrap(src_s))
-		srcs.each {|src|
-			dest = join(path, basename(src)) if directory?(path)
-			rm_r(dest, force: true) if o[:force]
-			method.call(src, dest)
-			o[:symln] ? symlink(src, dest) : link(src, dest)
-		}	
-	end
-	private :_ln
+end
 end

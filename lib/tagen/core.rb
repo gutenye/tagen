@@ -20,6 +20,7 @@
 	core/string
 	core/array
 	core/hash
+	core/re
 
 	core/time
 	core/io

@@ -2,6 +2,8 @@
 Pa(Path) is similary to Pathname, but more powerful.
 it combines fileutils, tmpdir, find, tempfile, File, Dir, Pathname
 
+all class methods support Pa as parameter.
+
 Examples:
 ---------
 	pa = Pa('/home/a.vim')
@@ -10,7 +12,6 @@ Examples:
 	pa.name 	#=> 'a'
 	pa.ext  	#=> 'vim'
 	pa.fext		#=> '.vim'
-
 
 Filename parts:
 ---------
@@ -25,6 +26,22 @@ Additional method list
 * Pa.absolute _alias from `File.absolute_path`_
 * Pa.expand _aliss from `File.expand_path`_
 
+=== create, modify path
+Example1:
+	pa = Pa('/home/foo')
+	pa.join('a.txt') #=> new Pa('/home/foo/a.txt')
+
+Example2:
+	pa1 = Pa('/home/foo/a.txt')
+	pa2 = Pa('/home/bar/b.txt')
+	pa1+'~' #=> new Pa('/home/foo/a.txt~')
+	Pa.join(pa1.dir, pa2.base) #=> '/home/foo/b.txt'
+
+Example3:
+	pa1 = Pa('/home/foo/a.txt')
+	pa2 = Pa('/home/bar')
+	pa2.join(pa1.base)  #=> new Pa('/home/bar/a.txt')
+		
 **Attributes**
 
   name     abbr    description
@@ -38,10 +55,9 @@ Additional method list
   fext      fe     return "" or ".ogg"
 =end
 
-class Pa < File
-	undef :open
-
+class Pa 
 	Error = Class.new Exception
+	EUnkonwType = Class.new Error
 
 	attr_accessor :path
 	attr_reader :absolute, :dir, :base, :name, :ext, :fext
@@ -53,7 +69,8 @@ class Pa < File
 	alias e ext
 	alias fe fext
 
-	# @param [String,Pathname,Pa] path
+	# @param [String,Pa,Pathname] path
+	# @api also used by replace
 	def initialize path
 		@path = case path.class.to_s
 			when "Pathname"
@@ -72,6 +89,26 @@ class Pa < File
 		@fext = @ext.empty? ? "" : "."+@ext
 	end
 
+	# @param [String,Pa,Pathname]
+	# @return [Pa] the same Pa object
+	def replace path
+		initialize path
+	end
+
+	# add string to path
+	# 
+	# @example 
+	#  pa = Pa('/home/foo/a.txt')
+	#  pa+'~' #=> new Pa('/home/foo/a.txt~')
+	#
+	# @param [String] str
+	# @return [Pa]
+	def + str
+		Pa(@path+str)
+	end
+
+	# return '#<Pa @path="foo", @absolute="/home/foo">'
+	#
 	# @return [String]
 	def inspect
 		ret="#<" + self.class.to_s + " "
@@ -79,7 +116,13 @@ class Pa < File
 		ret += " >"
 		ret
 	end
-	alias to_s inspect
+
+	# return '/home/foo'
+	#
+	# @return [String] path
+	def to_s
+		@path
+	end
 
 	# join path
 	#
@@ -96,27 +139,39 @@ class Pa < File
 		Pa(Pa.join(@path, '..'))
 	end
 
+
 	# missing method goes to Pa.class-method 
-	def method_missing(name, *args)
-		self.class.__send__ name, *args, @path
+	# return@ [Pa,..] return Pa for some methods.
+	def method_missing(name, *args, &blk)
+		ret = self.class.__send__(name, *args, @path, &blk)
+		[ :readlink ]
+			.include?(name) ? Pa(ret) : ret
 	end
 end
+
 
 require_relative "pa/path"
 require_relative "pa/cmd"
 require_relative "pa/dir"
 require_relative "pa/state"
-class <<Pa
-	alias absolute absolute_path
-	alias expand expand_path
+class Pa
+class << self
+
+	# missing method goes to File class method
+	def method_missing name, *args, &blk
+		return if args.size>1
+		File.__send__ name, get(args[0]), &blk
+	end
+
 end
+end
+
 class Pa
 	extend Path
-	extend Dir
+	extend Directory
 	extend State
 	extend Cmd
 end
-
 
 module Kernel
 private

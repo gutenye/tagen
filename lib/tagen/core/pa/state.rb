@@ -1,4 +1,22 @@
-module Pa::State
+class Pa
+module State
+
+	# @see File.chmod
+	def chmod(mode, *paths) paths.map!{|v|get(v)}; File.chmod(mode, *paths) end
+
+	# @see File.lchmod
+	def lchmod(mode, *paths) paths.map!{|v|get(v)}; File.lchmod(mode, *paths) end
+
+	# @see File.chown
+	def chown(user, group, *paths) paths.map!{|v|get(v)}; File.chown(user, group, *paths) end
+
+	# @see File.lchown
+	def lchown(user, group, *paths) paths.map!{|v|get(v)}; File.lchown(user, group, *paths) end
+
+	# @see File.utime
+	def utime(atime, mtime, *paths) paths.map!{|v|get(v)}; File.utime(atime, mtime, *paths) end
+
+
 	# get file type
 	#
 	# file types:
@@ -7,7 +25,7 @@ module Pa::State
 	# @param [String] path
 	# @return [String] 
 	def type(path)
-		case (t=ftype(path))
+		case (t=ftype(get(path)))
 		when "characterSpecial"
 			"chardev"
 		when "blockSpecial"
@@ -19,26 +37,13 @@ module Pa::State
 		end
 	end # def type
 
-	# is path a dangling symlink?
-	#
-	# a dangling symlink is a dead symlink.
-	#
-	# @param [String] path
-	# @return [Boolean]
-	def dangling? path
-		if symlink?(path)
-			src = readlink(path)
-			not exists?(src)
-		else
-			nil
-		end
-	end # def dsymlink?
 
 	# is path a mountpoint?
 	#
 	# @param[String] path
 	# @return [Boolean]
 	def mountpoint? path
+		path=get(path)
 		begin
 			stat1 = path.lstat
 			stat2 = path.parent.lstat
@@ -47,4 +52,5 @@ module Pa::State
 			false
 		end
 	end
+end
 end

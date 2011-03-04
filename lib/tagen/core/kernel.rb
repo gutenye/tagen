@@ -42,10 +42,11 @@ private
 	def win32?; RUBY_PLATFORM=~/mingw32|mswin/ end 
 
 		
-	# pd(print debug)
+	# *for debug* pd(print debug), search 'pd' is much easier than 'p' in a text-editor.
 	#
 	# like p, but use " " in each argument instead of "\n".
 	#
+	# @example
 	#   p 1,2
 	#    =>
 	#     1
@@ -54,10 +55,19 @@ private
 	#    =>
 	#     1 2
 	#
-	# @param [Array] args
+	# @param [Object] *args
+	# @return nil
 	def pd *args
 		args.each do |arg| print arg.inspect," " end
 		print "\n"
+	end
+
+	# *for debug* print hr. puts '='*14 + " #{name}"
+	#
+	# sometime, we just need a horizonal line to separate message for debug.
+	# @param [String] name
+	def phr name=nil
+		puts '='*14 + " #{name}"
 	end
 
 end # module Kernel

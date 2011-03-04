@@ -31,6 +31,8 @@ From Tagen
 
 * {Pa} _a path lib_
 
+* {MatchData#to_hash}
+
 From ActiveSupport
 ------------------
 see [ActiveSupport Core Extensions Guide](http://edgeguides.rubyonrails.org/active_support_core_extensions.html)
