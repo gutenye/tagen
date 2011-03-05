@@ -1,3 +1,4 @@
+=begin
 require "tagen/cairo"
 
 include Cairo
@@ -133,4 +134,4 @@ img.write("a.png")
 #}}}1
 end
 
-
+=end

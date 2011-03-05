@@ -6,6 +6,8 @@ This library provides some usefull Ruby core extension.  some comes from ActiveS
 
 not support ruby1.8, win32
 
+This library comes with a path lib named {Pa} and a string format lib named {PyFormat}.
+
 Usage
 -----
 use core extension
@@ -19,7 +21,7 @@ use extra extension
 	require "pathname"
 	require "tagen/pathname"
 
-add #path method to Pathname, see api doc.
+add #path method to Pathname, see API doc.
 
 Documentation
 -------------

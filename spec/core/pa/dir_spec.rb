@@ -2,19 +2,14 @@ require "tagen/core"
 require "fileutils"
 require "tmpdir"
 
-# init
-$tmpdir = Dir.mktmpdir
-Dir.chdir($tmpdir)
-
-at_exit do
-	FileUtils.rm_r $tmpdir
-end
-
 describe Pa do
+	before :all do
+		$tmpdir = Dir.mktmpdir
+		Dir.chdir($tmpdir)
+	end
 
 	after(:all) do
-		# empty $tmpdir
-		FileUtils.rm_r Dir["*"]-%w(. ..)
+		FileUtils.rm_r $tmpdir
 	end
 
 	describe "#glob" do

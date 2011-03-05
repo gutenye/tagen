@@ -1,19 +1,30 @@
 =begin
 == Overview 
-a python like format
+a python like string format libraray.
 
-1. "this is #{guten}" 											
-2. "this is {guten}".format(guten: 'x')
+1. "this is #{guten}"  # Ruby Builtin											
+2. "this is %s" % "guten"  # Ruby Builtin
+3. "this is {guten}".format(guten: 'x')
+
+use "#{var}" is easy and quick in many cases, but some times we need a more powerful format support.
+	"I like %s and %s" % %(apple, football)
+	"I like {fruit} and {sport}".format(%w(apple football))   # it has semantic meaning.
 
 == Usage
 	require "tagen/core"
 	"it costs {:.2f} dollar".format(1.123) #=> "it costs 1.12 dollar"
 
-== Examples
-	"{:.2f} {name:.2f} {{name}}" ¦ str#format(1, name:2) 
+* support abritry-argument or hash-argument
+	"{} {}".format(1,2) #=> "1 2"
+	"{a} {b}".format(a:1, b:2) #=> "1 2"
+	"{a} {b}".format(1, b:2) #=> "1 2"
 
-	"{} {}".format(1,2)
-	"{a} {b}".format(1, 2, b:3)
+* escape 
+	"my {{name}} is {name}".format("guten") #=> my name is guten.
+
+== Examples
+	"{:.2f}" 
+	"{name:.2f}" 
 
 == Specification
 	format_spec ::=  [[fill]align][sign][#][0][width][,][.precision][type]
@@ -29,12 +40,10 @@ a python like format
 	f/F 	fixed point. nan/NAN inf/INF
 	e/E 	exponent notation. 
 	g/G 	gernal format.  1.0 => 1
-	n 		number. thounds sep based on  local setting
-
+	n 		number. thounds sep based on local setting
 
 == Resources
 * http://docs.python.org/py3k/library/string.html#formatstrings
-
 
 =end
 class PyFormat
@@ -309,6 +318,5 @@ end # class PyFormat
 class String
 	def format(*args) PyFormat.new(self).format *args end
 end
-
 
 # vim:foldnestmax=4

@@ -14,11 +14,22 @@ end
 
 =begin
 * **Install**: gem(cairo)
+ 
+a wrap to Cairo.
+
+this library is deprecated, please don't use it.
+
 =end
 module Cairo
 
 	# compute width height by rotate and scale
-	def self.compute_wh(w, h, rotate=0,scale=1) #{{{1
+	#
+	# @param [Numeric] w
+	# @param [Numeric] h
+	# @param [Numeric] rotate 0<=x<=1
+	# @param [Numeric] scale 0<=x<=1
+	# @return [Array<Numeric>] \[length1, length2]
+	def self.compute_wh(w, h, rotate=0,scale=1) 
 	# selection=[x,y,w,h]
 		w,h=1,1 if w<=0 or h<=0
 		w,h = w*scale.to_f, h*scale.to_f
@@ -57,28 +68,30 @@ end
 module Cairo
 	# class FontExtents and TextExtents 
 	class FontExtents 
-		# return \[ascent, descent, height, max_x_advance, max_y_advance\]
+
+		# @return [Array] \[ascent, descent, height, max_x_advance, max_y_advance\]
 		def to_a
 			[ascent,descent,height,max_x_advance,max_y_advance]
 		end
 	end
 				
-	# Additional Method List
-	# ----------------------
-	# * \#w: _alias from width_
-	# * \#h: _alias from h_
+	# === Additional Method List
+	# * #w: _alias from width_
+	# * #h: _alias from h_
 	class TextExtents 
 		alias w width
 		alias h height
 
-		# get width, height
+		# @return [Array] \[width, height]
 		def wh; [width, height] end
-		# get \[x_advance, y_advance\]
+
+		# @return [Array] \[x_advance, y_advance]
 		def xy_advance; [x_advance, y_advance] end
-		# get [x_bearing, y_bearing\]
+
+		# @return [Array] \[x_bearing, y_bearing]
 		def xy_bearing; [x_bearing, y_bearing] end
 	
-		# get \[x_bearing, y_bearing, width, height, x_advance, y_advance\]
+		# @return [Array] \[x_bearing, y_bearing, width, height, x_advance, y_advance\]
 		def to_a
 			[x_bearing, y_bearing, width, height, x_advance, y_advance]
 		end
