@@ -1,48 +1,55 @@
-=begin
+=begin rdoc
+
 == Overview 
+
 a python like string format libraray.
 
-1. "this is #{guten}"  # Ruby Builtin											
+1. "this is #{guten}"  # Ruby Builtin
 2. "this is %s" % "guten"  # Ruby Builtin
 3. "this is {guten}".format(guten: 'x')
 
 use "#{var}" is easy and quick in many cases, but some times we need a more powerful format support.
-	"I like %s and %s" % %(apple, football)
-	"I like {fruit} and {sport}".format(%w(apple football))   # it has semantic meaning.
+
+  "I like %s and %s" % %(apple, football)
+  "I like {fruit} and {sport}".format(%w(apple football))   # it has semantic meaning.
 
 == Usage
-	require "tagen/core"
-	"it costs {:.2f} dollar".format(1.123) #=> "it costs 1.12 dollar"
+
+  require "tagen/core"
+  "it costs {:.2f} dollar".format(1.123) #=> "it costs 1.12 dollar"
 
 * support abritry-argument or hash-argument
-	"{} {}".format(1,2) #=> "1 2"
-	"{a} {b}".format(a:1, b:2) #=> "1 2"
-	"{a} {b}".format(1, b:2) #=> "1 2"
+  "{} {}".format(1,2) #=> "1 2"
+  "{a} {b}".format(a:1, b:2) #=> "1 2"
+  "{a} {b}".format(1, b:2) #=> "1 2"
 
 * escape 
-	"my {{name}} is {name}".format("guten") #=> my name is guten.
+  "my {{name}} is {name}".format("guten") #=> my name is guten.
 
 == Examples
-	"{:.2f}" 
-	"{name:.2f}" 
+
+  "{:.2f}" 
+  "{name:.2f}" 
 
 == Specification
-	format_spec ::=  [[fill]align][sign][#][0][width][,][.precision][type]
-	fill        ::=  <a character other than '}'> default is " " 
-	align       ::=  "<" | ">" | "=" | "^" 	default is >.  = is padding after sign. eg. +000000120
-	sign        ::=  "+" | "-" | " "
-	#						::=  <prefix 0b 0o 0x>
-	0						::=  <zero_padding>  equal to fill is 0
-	,						::=  <comma_sep> also type n
-	precision		::=  string truncate with 
-	type        ::=  s c b o d x X ¦ f/F g/G e/E n % 
 
-	f/F 	fixed point. nan/NAN inf/INF
-	e/E 	exponent notation. 
-	g/G 	gernal format.  1.0 => 1
-	n 		number. thounds sep based on local setting
+  format_spec ::=  [[fill]align][sign][#][0][width][,][.precision][type]
+  fill        ::=  <a character other than '}'> default is " " 
+  align       ::=  "<" | ">" | "=" | "^"   default is >.  = is padding after sign. eg. +000000120
+  sign        ::=  "+" | "-" | " "
+  #           ::=  <prefix 0b 0o 0x>
+  0           ::=  <zero_padding>  equal to fill is 0
+  ,           ::=  <comma_sep> also type n
+  precision   ::=  string truncate with 
+  type        ::=  s c b o d x X f/F g/G e/E n % 
+
+  f/F   fixed point. nan/NAN inf/INF
+  e/E   exponent notation. 
+  g/G   gernal format.  1.0 => 1
+  n     number. thounds sep based on local setting
 
 == Resources
+
 * http://docs.python.org/py3k/library/string.html#formatstrings
 
 =end
