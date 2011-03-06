@@ -1,15 +1,33 @@
 module Kernel 
 private
 
-	# same as `` `cmd` ``, but with option support.
+	# like `cmd`, but with option support.
 	#
-	# @param [String] cmd a shell command
-	# @param [Symbol, Hash] *o
-	# @option o [Boolean] :verbose puts(cmd) to STDOUT
-	def sh cmd, *o
-		o = o.to_o
+	# @overload sh(cmd, o={})
+	#   @param [String] cmd a shell command
+	#   @param [Symbol, Hash] o support {Array#extract_extend_options}
+	#   @option o [Boolean] :verbose print cmd if verbose
+	#   @return [String] result
+	def sh cmd, *args
+		o = args.extract_extend_options!
 		puts cmd if o[:verbose]
 		`#{cmd}`
+	end
+
+	alias original_system system
+
+	# like Builtin system, but add option support
+	#
+	# @overload system(cmd, o={})
+	#   @param [String] cmd
+	#   @param [Symbol, Hash] o support {Array#extract_extend_options}
+	#   @option o [Boolean] :verbose  print cmd if verbose
+	#   @return [Boolean,nil] true false nil
+	def system *cmds
+		o = args.extract_extend_options!
+		cmd = cmds.join(" ")
+		puts cmd if o[:verbose]
+		original_system cmd
 	end
 
 	# convert block to method.

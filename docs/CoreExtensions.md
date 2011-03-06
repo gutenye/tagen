@@ -22,7 +22,7 @@ From Tagen
 
 * {Array}
 	* `#extract_extend_options!  extract_options!`
-	* \#append
+	* `#append`
 	* `#delete(*values) delete_at` _support delete more than one values_
 
 * {Hash#delete}
