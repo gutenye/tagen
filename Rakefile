@@ -5,5 +5,5 @@ end
 
 desc "testing the library"
 task :test do
-	`rspec spec/`
+	system "rspec --color spec"
 end

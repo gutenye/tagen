@@ -1,7 +1,7 @@
 module Kernel 
 private
 
-	# same as `` `` ``, but add some options
+	# same as `` `cmd` ``, but with option support.
 	#
 	# @param [String] cmd a shell command
 	# @param [Symbol, Hash] *o

@@ -10,6 +10,12 @@ From Tagen
 ----------
 * {Object#deepdup}
 
+* {Kernel} 
+	* `#linux? win32?`
+	* `sh`
+	* `pd phr`
+	* `blk2method`
+
 * {Numeric#div2}
 
 * {String}.hexdigits octdigits letters uppercase lowercase
@@ -29,9 +35,11 @@ From Tagen
 
 * {Marshal}.load dump  _add Pa support_
 
-* {Pa} _a path lib_
-
 * {MatchData#to_hash}
+
+* {Pa} _a path library_
+
+* {PyFormat} _a string format libraray_
 
 From ActiveSupport
 ------------------
