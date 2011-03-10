@@ -40,9 +40,13 @@ describe Pa do
 			FileUtils.touch(%w(fa .fa fa~ dira/dirb/b))
 		end
 
-		it "each() -> Enumerator" do
+		it "return a Enumerator when call without block" do
 			Pa.each.should be_an_instance_of Enumerator
 			Pa.each.with_object([]){|pa,m|m<<pa.b}.sort.should == %w(.fa dira fa fa~)
+		end
+
+		it "each(.) return 'foo' not '.foo'" do 
+			Pa.each.with_object([]){|pa,m|m<<pa.p}.sort.should == %w(.fa dira fa fa~)
 		end
 
 		it "each(nodot: true) -> list all files except dot file" do

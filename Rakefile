@@ -8,7 +8,7 @@ end
 
 desc "testing the library"
 task :test do
-	sh "rspec --color spec"
+	sh "watchr tagen.watchr"
 end
 
 def sh cmd

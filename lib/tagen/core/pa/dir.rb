@@ -62,7 +62,7 @@ module Directory
 	#
 	# @example
 	#   each '.' do |pa|
-	#     p pa.path
+	#     p pa.path #=> "foo" not "./foo"
 	#   end
 	#   # => '/home' ..
 	#
@@ -87,7 +87,8 @@ module Directory
 			next if o[:nodot] and name=~/^\./
 			next if o[:nobackup] and name=~/~$/
 
-			blk.call pa.join(name)
+			# => "foo" not "./foo"
+			blk.call pa.p=="." ? Pa(name) : pa.join(name)
 		end
 	end
 
