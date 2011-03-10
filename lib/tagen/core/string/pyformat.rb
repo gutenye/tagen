@@ -6,30 +6,33 @@ a python like string format libraray.
 
 1. "this is #{guten}"  # Ruby Builtin
 2. "this is %s" % "guten"  # Ruby Builtin
-3. "this is {guten}".format(guten: 'x')
+3. "this is %{guten}".format(guten: 'x')
 
 use "#{var}" is easy and quick in many cases, but some times we need a more powerful format support.
 
   "I like %s and %s" % %(apple, football)
-  "I like {fruit} and {sport}".format(%w(apple football))   # it has semantic meaning.
+  "I like %{fruit} and %{sport}".format(%w(apple football))   # it has semantic meaning.
 
 == Usage
 
   require "tagen/core"
-  "it costs {:.2f} dollar".format(1.123) #=> "it costs 1.12 dollar"
+  "it costs %{:.2f} dollar".format(1.123) #=> "it costs 1.12 dollar"
 
 * support abritry-argument or hash-argument
-  "{} {}".format(1,2) #=> "1 2"
-  "{a} {b}".format(a:1, b:2) #=> "1 2"
-  "{a} {b}".format(1, b:2) #=> "1 2"
+  "%{} %{}".format(1,2) #=> "1 2"
+  "%{a} %{b}".format(a:1, b:2) #=> "1 2"
+  "%{a} %{b}".format(1, b:2) #=> "1 2"
 
 * escape 
-  "my {{name}} is {name}".format("guten") #=> my name is guten.
+  "my \\%{name} is %{name}".format("guten") #=> my name is guten.
 
 == Examples
 
-  "{:.2f}" 
-  "{name:.2f}" 
+  "%{:.2f}" 
+  "%{name:.2f}" 
+
+	"I'm %{guten} and is #{age} years old".format(guten: "guten") # combine Ruby Buintin with PyFormat
+
 
 == Specification
 
@@ -77,10 +80,14 @@ class PyFormat
 		# args -> argh and args
 		argh = Hash===args[-1] ? args.pop : {}
 
-		# "{0:.5f}"
-		pat = /{{.*?}} | { (.*?)? (?: :(.*?) )? } /x
+		# "%{0:.5f}"
+		pat = /
+			\\%{.*?}  # esacpe
+		  | %{ (.*?)? (?: :(.*?) )? }  # %{0:.f}
+			/x
+
 		ret = @fmt.gsub(pat) do |m|
-			if m.start_with? "{{"
+			if m.start_with? "\\%{"
 				m
 			else
 				field, spec = $1, $2
