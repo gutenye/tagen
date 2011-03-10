@@ -1,4 +1,4 @@
-require "tagen/core"
+require "spec_helper"
 require "fileutils"
 require "tmpdir"
 

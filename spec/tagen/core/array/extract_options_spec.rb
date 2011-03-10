@@ -1,4 +1,4 @@
-require "tagen/core"
+require "spec_helper"
 
 describe Array do
 	describe "#extract_options" do

@@ -13,7 +13,6 @@ From Tagen
 * {Kernel} 
 	* `#linux? win32?`
 	* `sh`
-	* `pd phr`
 	* `blk2method`
 
 * {Numeric#div2}
@@ -40,6 +39,13 @@ From Tagen
 * {Pa} _a path library_
 
 * {PyFormat} _a string format libraray_
+
+From [pd][1]
+--------
+
+* Kernel#pd phr 
+
+[1]: http://rubydoc.info/gems/pd/frames/Kernel
 
 From ActiveSupport
 ------------------

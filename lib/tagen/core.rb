@@ -10,6 +10,9 @@
 	hash/deep_merge
 ).each {|n| require "active_support/core_ext/#{n}"}
 
+# from pd
+require "pd"
+
 # from core
 %w(
 	core/kernel
