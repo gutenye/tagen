@@ -1,9 +1,17 @@
 desc "build a gem file"
-task :build do
-	`gem build tagen.gemspec`
+task :release do
+	`rm *.gem &>/dev/null`
+	sh "gem build tagen.gemspec"
+	sh "gem push *.gem"
+	sh "rm *.gem"
 end
 
 desc "testing the library"
 task :test do
-	system "rspec --color spec"
+	sh "rspec --color spec"
+end
+
+def sh cmd
+	puts cmd
+	system cmd
 end
