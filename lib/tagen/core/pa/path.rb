@@ -2,14 +2,23 @@ class Pa
 	module Path
 
 	# alias from File.absolute_path
-	# @param [String] path
+	# @param [String,Pa] path
 	# @return [String]
 	def absolute(path); File.absolute_path(get(path)) end
 
 	# alias from File.expand_path
-	# @param [String] path
+	# @param [String,Pa] path
 	# @return [String]
 	def expand(path); File.expand_path(get(path)) end
+
+	# shorten a path,
+	# convert /home/user/file to ~/file
+	#
+	# @param [String,Pa] path
+	# @return [String]
+	def shorten(path);
+		get(path).sub(%r!^#{Regexp.escape(ENV["HOME"])}!, "~")
+	end
 
 	# print current work directory
 	# @return [String] path
@@ -17,7 +26,7 @@ class Pa
 
 	# change directory
 	#
-	# @param [String] path
+	# @param [String,Pa] path
 	def cd(path=ENV["HOME"], &blk) Dir.chdir(get(path), &blk) end
 
 	# get path of an object. 
@@ -42,7 +51,7 @@ class Pa
 	# 	"a.ogg" => "ogg"
 	# 	"a" => nil
 	#
-	# @param [String] path
+	# @param [String,Pa] path
 	# @return [String]
 	def extname path
 		_, ext = get(path).match(/\.([^.]+)$/).to_a
@@ -51,13 +60,13 @@ class Pa
 
 	# is path an absolute path ?
 	#
-	# @param [String] path
+	# @param [String,Pa] path
 	# @return [Boolean]
 	def absolute?(path) absolute(path) == get(path) end
 
 	# get a basename of a path
 	#
-	# @param [String] name
+	# @param [String,Pa] name
 	# @param [Hash] o options
 	# @option o [Boolean, String] :ext (false) return \[name, ext] if true
 	#   
@@ -80,7 +89,7 @@ class Pa
 	# 	split(path)  #=> "/home/a", "file"
 	# 	split(path, :all)  #=> "/", "home", "a", "file"
 	#
-	# @param [String] name
+	# @param [String,Pa] name
 	# @param [Hash] o option
 	# @option o [Boolean] :all split all parts
 	# @return [Array<String>] 
@@ -118,7 +127,7 @@ class Pa
 
 	# get parent path
 	# 
-	# @param [String] path
+	# @param [String,Pa] path
 	# @return [String]
 	def parent path
 		join(get(path), "..")
@@ -130,7 +139,7 @@ class Pa
 	# @overload ln([src,..], directory)
 	#
 	# @param [Array<String>, String] src_s support globbing
-	# @param [String] dest
+	# @param [String,Pa] dest
 	# @param [Hash] o option
 	# @option o [Boolean] :force overwrite if exists.
 	# @return [nil]
@@ -174,7 +183,7 @@ class Pa
 	#
 	# a dangling symlink is a dead symlink.
 	#
-	# @param [String] path
+	# @param [String,Pa] path
 	# @return [Boolean]
 	def dangling? path
 		path=get(path)
