@@ -1,4 +1,4 @@
-=begin
+=begin rdoc
 Pa(Path) is similary to Pathname, but more powerful.
 it combines fileutils, tmpdir, find, tempfile, File, Dir, Pathname
 
@@ -94,6 +94,7 @@ class Pa
 	def replace path
 		initialize path
 	end
+
 
 	# add string to path
 	# 
