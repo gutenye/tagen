@@ -79,7 +79,7 @@ module ClassMethods::Dir
 		return Pa.to_enum(:each, *args) if not blk
 
 		(path,), o = args.extract_options
-		path ||= "."
+		path = path ? get(path) : "."
 		return if not File.directory?(path)
 
 		Dir.foreach path do |name|
