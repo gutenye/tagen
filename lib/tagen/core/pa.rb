@@ -136,19 +136,11 @@ class Pa
 		Pa(Pa.join(@path, *names))
 	end
 
-	# get parent path
-	# 
-	# return [Pa] 
-	def parent
-		Pa(Pa.join(@path, '..'))
-	end
-
-
 	# missing method goes to Pa.class-method 
 	# return@ [Pa,..] return Pa for some methods.
 	def method_missing(name, *args, &blk)
 		ret = self.class.__send__(name, *args, @path, &blk)
-		[ :readlink ]
+		[ :readlink, :parent ]
 			.include?(name) ? Pa(ret) : ret
 	end
 end
