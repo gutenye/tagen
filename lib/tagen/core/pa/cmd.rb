@@ -9,7 +9,7 @@ rm family
   rmdir path #  it's clear: remove a directory
 =end
 class Pa
-module Cmd
+module ClassMethods::Cmd
 
 	# chroot
 	# @see {Dir.chroot}
@@ -39,14 +39,12 @@ module Cmd
 	def _touch(paths, o)
 		o[:mode] ||= 0644
 		paths.map!{|v|get(v)}
-		paths.each {|p|
-			if exists?(p) 
-				o[:force] ? next : raise(Errno::EEXIST, "File exist -- #{p}")
+		paths.each {|path|
+			if File.exists?(path) 
+				o[:force] ? next : raise(Errno::EEXIST, "File exist -- #{path}")
 			end
 
-			if o[:mkdir]
-				mkdir(dirname(p))
-			end
+			mkdir(File.dirname(p)) if o[:mkdir]
 
 			if win32?
 				# win32 BUG. must f.write("") then file can be deleted.
@@ -137,9 +135,9 @@ module Cmd
 		collision = 0
 		path = "#{o[:dir]}/#{o[:prefix]}#{$$}-#{(Time.time*100_000).to_i.to_s(36)}"
 		orgi_path = path.dup
-		while exists?(path)
-		path = orgi_path+ collision.to_s
-		collision +=1
+		while File.exists?(path)
+			path = orgi_path+ collision.to_s
+			collision +=1
 		end
 		path << o[:suffix]
 
@@ -153,7 +151,7 @@ module Cmd
 	# @return [nil]
 	def rm(*paths) 
 		glob(*paths) { |pa|
-			next if not pa.exists?
+			next if not File.exists?(pa.p)
 			File.delete(pa.p)
 		}
 	end
@@ -164,7 +162,7 @@ module Cmd
 	# @return [nil]
 	def rmdir *paths
 		glob(*paths) { |pa|
-			raise Errno::ENOTDIR, "-- #{pa}" if not pa.directory?
+			raise Errno::ENOTDIR, "-- #{pa}" if not File.directory?(pa.p)
 			_rmdir(pa)
 		}
 	end
@@ -175,8 +173,8 @@ module Cmd
 	# @return [nil]
 	def rm_r(*paths)
 		glob(*paths){ |pa|
-			next if not pa.exists?
-			pa.directory?  ? _rmdir(pa) : File.delete(pa.p)
+			next if not File.exists?(pa.p)
+			File.directory?(pa.p)  ? _rmdir(pa) : File.delete(pa.p)
 		}
 	end
 
@@ -201,11 +199,11 @@ module Cmd
 	# I'm recusive 
 	# param@ [Pa] path
 	def _rmdir(pa, o={})
-		return if not pa.exists?
+		return if not File.exists?(pa.p)
 		pa.each {|pa1|
-			pa1.directory? ? _rmdir(pa1, o) : File.delete(pa1.p)
+			File.directory?(pa1.p) ? _rmdir(pa1, o) : File.delete(pa1.p)
 		}
-		pa.directory? ? Dir.rmdir(pa.p) : File.delete(pa.p)
+		File.directory?(pa.p) ? Dir.rmdir(pa.p) : File.delete(pa.p)
 	end
 	private :_rmdir
 
@@ -238,20 +236,20 @@ module Cmd
 	#   @yield [src,dest,o]
 	#   @return [nil]
 	def cp(src_s, dest, o={}, &blk)
-		srcs = glob(*Array.wrap(src_s))
-		dest = Pa(dest)
+		srcs = glob(*Array.wrap(src_s)).map{|v| v.path}
+		dest = Pa.get(dest)
 
-		if o[:mkdir] and (not dest.exists?)
-			mkdir dest
+		if o[:mkdir] and (not File.exists?(dest))
+			Pa.mkdir dest
 		end
 
 		# cp file1 file2 .. dir
-		if srcs.size>1 and (not dest.directory?)
+		if srcs.size>1 and (not File.directory?(dest))
 			raise Errno::ENOTDIR, "dest not a directory when cp more than one src -- #{dest}"  
 		end
 
 		srcs.each do |src|
-			dest1 = dest.directory? ? dest.join(src.b) : dest
+			dest1 = File.directory?(dest) ? File.join(dest, File.basename(src)) : dest
 
 			if blk
 				blk.call src, dest1, o, proc{_copy(src, dest1, o)}
@@ -265,29 +263,30 @@ module Cmd
 
 	# I'm recursive 
 	#
-	# @param [Pa] src
-	# @param [Pa] dest
+	# @param [String] src
+	# @param [String] dest
 	def _copy(src, dest, o={})  
-		raise Errno::EEXIST, "dest exists -- #{dest}" if dest.exists? and (not o[:overwrite])
+		raise Errno::EEXIST, "dest exists -- #{dest}" if File.exists?(dest) and (not o[:overwrite])
 
-		case type=src.type
+
+		case type=File.ftype(src)
 		when "file", "socket"
 			puts "cp #{src} #{dest}" if o[:verbose]
-			File.copy_stream(src.p, dest.p)
+			File.copy_stream(src, dest)
 		when "directory"
 			begin
-				mkdir dest
+				Pa.mkdir dest
 				puts "mkdir #{dest}" if o[:verbose]
 			rescue Errno::EEXIST
 			end
 			each(src) { |pa|
-				_copy(pa, dest.join(pa.b), o)
+				_copy(pa.p, File.join(dest, File.basename(pa.p)), o)
 			}
-		when "symlink"
+		when "link" # symbol link
 			if o[:folsymlink] 
-				_copy(src.readlink, dest) 
+				_copy(Pa.readlink(src), dest) 
 			else
-				symln(src.readlink, dest, force: true)	
+				Pa.symln(Pa.readlink(src), dest, force: true)	
 				puts "symlink #{src} #{dest}" if o[:verbose]
 			end
 		when "unknow"
@@ -295,11 +294,11 @@ module Cmd
 		end
 
 		# chmod chown utime
-		src_stat = o[:folsymlink] ? stat(src) : lstat(src)
+		src_stat = o[:folsymlink] ? File.stat(src) : File.lstat(src)
 		begin
-			chmod(src_stat.mode, dest)
-			chown(src_stat.uid, src_stat.gid, dest)
-			utime(src_stat.atime, src_stat.mtime, dest)
+			File.chmod(src_stat.mode, dest)
+			File.chown(src_stat.uid, src_stat.gid, dest)
+			File.utime(src_stat.atime, src_stat.mtime, dest)
 		rescue Errno::ENOENT
 		end
 	end # _copy
@@ -314,20 +313,20 @@ module Cmd
 	# @option o [Boolean] :overwrite
 	# @return [nil]
 	def mv(src_s, dest, o={}, &blk)
-		srcs = glob(*Array.wrap(src_s))
-		dest = Pa(dest)
+		srcs = glob(*Array.wrap(src_s)).map{|v| get(v)}
+		dest = get(dest)
 
-		if o[:mkdir] and (not dest.exists?)
+		if o[:mkdir] and (not File.exists?(dest))
 			mkdir dest
 		end
 
 		# mv file1 file2 .. dir
-		if srcs.size>1 and (not dest.directory?)
+		if srcs.size>1 and (not File.directory?(dest))
 			raise Errno::ENOTDIR, "dest not a directory when mv more than one src -- #{dest}"  
 		end
 
 		srcs.each do |src|
-			dest1 = dest.directory? ? dest.join(src.b) : dest
+			dest1 = File.directory?(dest) ? File.join(dest, File.basename(src)) : dest
 
 			if blk
 				blk.call src, dest1, o, proc{_move(src, dest1, o)}
@@ -342,27 +341,27 @@ module Cmd
 	#
 	# _move "file", "dir/file"
 	#
-	# @param [Pa] src
-	# @param [Pa] dest
+	# @param [String] src
+	# @param [String] dest
 	def _move(src, dest, o)
-		raise Errno::EEXIST, "dest exists -- #{dest}" if dest.exists? and (not o[:overwrite])
+		raise Errno::EEXIST, "dest exists -- #{dest}" if File.exists?(dest) and (not o[:overwrite])
 
 		# overwrite. mv "dir", "dira" and 'dira' exists and is a directory. 
-		if dest.exists? and dest.directory? 
+		if File.exists?(dest) and File.directory?(dest)
 				ls(src) { |pa|
-					dest1 = dest.join(pa.b)
-					_move pa, dest1, o
+					dest1 = File.join(dest, File.basename(pa.p))
+					_move pa.p, dest1, o
 				}
-				rm_r src
+				Pa.rm_r src
 
 		else
 			begin
-				rm_r dest if o[:overwrite] and dest.exists?
+				Pa.rm_r dest if o[:overwrite] and File.exists?(dest)
 				puts "rename #{src} #{dest}" if o[:verbose]
-				File.rename(src.p, dest.p)
+				File.rename(src, dest)
 			rescue Errno::EXDEV # cross-device
 				_copy(src, dest, o)
-				rm_r src
+				Pa.rm_r src
 			end
 
 		end

@@ -1,5 +1,5 @@
 class Pa
-	module Path
+module ClassMethods::Path
 
 	# alias from File.absolute_path
 	# @param [String,Pa] path
@@ -33,14 +33,14 @@ class Pa
 	#
 	# return obj#path if object has a 'path' instance method
 	#
-	# @param [String,Pa] obj
+	# @param [String,#path] obj
 	# @return [String,nil] path
 	def get obj
-		return obj if String === obj
-
-		begin 
+		if obj.respond_to?(:path)
 			obj.path
-		rescue NoMethodError
+		elsif String === obj 
+			obj
+		else
 			raise Error, "not support type -- #{obj.inspect}(#{obj.class})"
 		end
 	end
@@ -62,7 +62,7 @@ class Pa
 	#
 	# @param [String,Pa] path
 	# @return [Boolean]
-	def absolute?(path) absolute(path) == get(path) end
+	def absolute?(path) path=get(path); File.absolute_path(path) == path end
 
 	# get a basename of a path
 	#
@@ -124,7 +124,6 @@ class Pa
 
 		File.join(*paths)
 	end
-	alias + join
 
 	# get parent path
 	# 
@@ -132,9 +131,11 @@ class Pa
 	# @param [Fixnum] n up level
 	# @return [String]
 	def parent path, n=1
-		path = join(get(path), ([".."]*n).join('/'))
-		path2 = realpath(path)
-		path2 ? path2 : path
+		path = get(path)
+		n.times do
+			path = File.dirname(path)
+		end
+		path
 	end
 
 	# link
@@ -168,20 +169,21 @@ class Pa
 	# @return [nil]
 	def symln_f(src_s, dest, o) o[:force]=true; _ln(File.method(:symlink), src_s, dest, o) end
 
-	# param
+	# @param [Array,String,#path] src_s
+	# @param [String,#path] dest
 	def _ln(method, src_s, dest, o={})
-		dest = Pa(dest)
+		dest = get(dest)
 		glob(*Array.wrap(src_s)) {|src|
-			dest = dest.join(src.b) if dest.directory?
-			rm_r(dest) if o[:force] and dest.exists?
-			method.call(src.p, dest.p)
+			src = get(src)
+			dest = File.join(dest, File.basename(src)) if File.directory?(dest)
+			Pa.rm_r(dest) if o[:force] and File.exists?(dest)
+			method.call(src, dest)
 		}	
 	end
 	private :_ln
 
 	# @see File.readlink
 	def readlink(path) File.readlink(get(path)) end
-
 
 	# is path a dangling symlink?
 	#
@@ -191,20 +193,62 @@ class Pa
 	# @return [Boolean]
 	def dangling? path
 		path=get(path)
-		if symlink?(path)
-			src = readlink(path)
-			not exists?(src)
+		if File.symlink?(path)
+			src = File.readlink(path)
+			not File.exists?(src)
 		else
 			nil
 		end
 	end # def dsymlink?
 
 	def realpath(path) File.realpath(get(path)) end
-	end
+
+end
 end
 
 class Pa
-	attr_reader :short
-	def short; @short ||= Pa.shorten(@path) end
+=begin
+
+attribute absolute and dir return String, method absolute_path(), dirname() return Pa
+	
+	Pa("/home/a").dir #=> "/home"
+	Pa("/home/a").dirname #=> Pa("/home")
+=end
+module Path
+	# @return [String] 
+	attr_reader :absolute, :dir, :base, :name, :ext, :fext, :short
+
+	def initialize_variables
+		super
+		@absolute = Pa.absolute(@path) 
+		@dir = Pa.dirname(@path)
+		@base = Pa.basename(@path) 
+		@name, @ext = Pa.basename(@path, ext: true)
+		@fext = @ext.empty? ? "" : "."+@ext
+		@short = Pa.shorten(@path) 
+	end
+
+	alias a absolute
+	alias d dir
+	alias	b base
+	alias n name
+	alias e ext
+	alias fe fext
+
+	# @return [Pa] absolute path
+	def absolute_path() Pa(absolute) end
+	# @return [Pa] dirname
+	def dirname() Pa(dir) end
+
+	# add string to path
+	# 
+	# @example 
+	#  pa = Pa('/home/foo/a.txt')
+	#  pa+'~' #=> new Pa('/home/foo/a.txt~')
+	#
+	# @param [String] str
+	# @return [Pa]
+	def +(str) Pa(path+str) end
+end
 end
 

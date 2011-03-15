@@ -4,12 +4,14 @@ require "tmpdir"
 
 describe Pa do
 	before :all do
-		$tmpdir = Dir.mktmpdir
-		Dir.chdir($tmpdir)
+		@curdir = Dir.pwd
+		@tmpdir = Dir.mktmpdir
+		Dir.chdir(@tmpdir)
 	end
 
 	after(:all) do
-		FileUtils.rm_r $tmpdir
+		Dir.chdir(@curdir)
+		FileUtils.rm_r @tmpdir
 	end
 
 	describe "#glob" do

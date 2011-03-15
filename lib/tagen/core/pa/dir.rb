@@ -12,7 +12,7 @@
 	each(".").with_index(2){|pa,i| ... }
 =end
 class Pa
-module Directory
+module ClassMethods::Dir
 
 	# path globbing, exclude '.' '..' for :dotmatch
 	# @note glob is * ** ? [set] {a,b}
@@ -79,16 +79,16 @@ module Directory
 		return Pa.to_enum(:each, *args) if not blk
 
 		(path,), o = args.extract_options
-		pa = Pa(path || ".")
-		return if not pa.directory?
+		path ||= "."
+		return if not File.directory?(path)
 
-		Dir.foreach pa.p do |name|
+		Dir.foreach path do |name|
 			next if %w(. ..).include? name
 			next if o[:nodot] and name=~/^\./
 			next if o[:nobackup] and name=~/~$/
 
 			# => "foo" not "./foo"
-			blk.call pa.p=="." ? Pa(name) : pa.join(name)
+			blk.call path=="." ? Pa(name) : Pa(File.join(path, name))
 		end
 	end
 
@@ -109,15 +109,16 @@ module Directory
 		(path,), o = args.extract_options
 		path ||= "."
 
-		_each_r(Pa(path), "", o, &blk)
+		_each_r(path, "", o, &blk)
 	end
 
-	def _each_r pa, relative, o, &blk
-		each(pa, o) do |pa1|
+	# @param [String] path
+	def _each_r path, relative, o, &blk
+		Pa.each(path, o) do |pa1|
 			relative1 = Pa.join(relative, pa1.b) 
 			blk.call pa1, relative1
 			if pa1.directory?
-				_each_r(pa1, relative1, o, &blk)
+				_each_r(pa1.p, relative1, o, &blk)
 			end
 		end
 		rescue Errno::ENOENT, Errno::EPERM => e

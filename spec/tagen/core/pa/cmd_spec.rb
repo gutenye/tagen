@@ -4,12 +4,14 @@ require "tmpdir"
 
 describe Pa do
 	before :all do
-		$tmpdir = Dir.mktmpdir
-		Dir.chdir($tmpdir)
+		@curdir = Dir.pwd
+		@tmpdir = Dir.mktmpdir
+		Dir.chdir(@tmpdir)
 	end
 
 	after(:all) do
-		FileUtils.rm_r $tmpdir
+		Dir.chdir(@curdir)
+		FileUtils.rm_r @tmpdir
 	end
 
 	describe "#_rmdir" do
@@ -103,7 +105,6 @@ describe Pa do
 		#   b  # tag
 		#   dir/ 
 		before :all do
-			@_copy = Pa.method(:_copy)
 			FileUtils.mkdir_p(%w(dir/dira destdir/dir))
 			FileUtils.touch(%w(a ab ac dir/b dir/dira/c destdir/dir/b))
 			File.symlink("a", "symfile")
@@ -112,24 +113,24 @@ describe Pa do
 		end
 
 		it "_copy file" do
-			@_copy.call Pa('a'), Pa('b')
+			Pa._copy 'a', 'b'
 			File.exists?('b').should be_true
 		end
 
 		it "_copy directory" do
-			@_copy.call Pa('dir'), Pa('dirc')
+			Pa._copy 'dir', 'dirc'
 			Dir.entries('dirc').should == Dir.entries('dir')
 		end
 
 		context "with :symlink" do
 
 			it "_copy" do
-				@_copy.call Pa('symfile'), Pa('symfilea')
+				Pa._copy 'symfile', 'symfilea'
 				File.symlink?('symfilea').should be_true
 			end
 
 			it "_copy with :folsymlink" do
-				@_copy.call Pa('symfile'), Pa('folsymlink'), folsymlink:true
+				Pa._copy 'symfile', 'folsymlink', folsymlink:true
 				File.symlink?('folsymlink').should be_false
 				File.file?('folsymlink').should be_true
 			end
@@ -192,7 +193,6 @@ describe Pa do
 		# a
 		# dir/ b  
 		before :each do
-			@_move = Pa.method(:_move)
 			FileUtils.mkdir_p(%w(dir))
 			FileUtils.touch(%w(a dir/b))
 		end
@@ -202,19 +202,19 @@ describe Pa do
 
 		it "mv a dir/a" do
 			ino = File.stat('a').ino
-			@_move.call Pa("a"), Pa("dir/a"), {}
+			Pa._move "a", "dir/a", {}
 			File.stat('dir/a').ino.should == ino
 			File.exists?("a").should be_false
 		end
 		
 		context "with :overwrite" do
 			it "mv a dir/b" do
-				lambda{@_move.call Pa("a"), Pa("dir/b"), {}}.should raise_error Errno::EEXIST
+				lambda{Pa._move "a", "dir/b", {}}.should raise_error Errno::EEXIST
 			end
 
 			it "mv a dir/b :overwrite" do
 				ino = File.stat('a').ino
-				@_move.call Pa("a"), Pa("dir/b"), overwrite:true
+				Pa._move "a", "dir/b", overwrite:true
 				File.stat("dir/b").ino.should == ino
 			end
 		end
@@ -224,7 +224,6 @@ describe Pa do
 		# a b c
 		# dir/ aa  
 		before :each do
-			@_move = Pa.method(:_move)
 			FileUtils.mkdir_p(%w(dir))
 			FileUtils.touch(%w(a b c dir/aa))
 		end

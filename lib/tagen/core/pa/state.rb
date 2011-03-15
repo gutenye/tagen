@@ -1,5 +1,5 @@
 class Pa
-module State
+module ClassMethods::State
 
 	# @see File.chmod
 	def chmod(mode, *paths) paths.map!{|v|get(v)}; File.chmod(mode, *paths) end
@@ -25,7 +25,7 @@ module State
 	# @param [String] path
 	# @return [String] 
 	def type(path)
-		case (t=ftype(get(path)))
+		case (t=File.ftype(get(path)))
 		when "characterSpecial"
 			"chardev"
 		when "blockSpecial"
@@ -45,8 +45,8 @@ module State
 	def mountpoint? path
 		path=get(path)
 		begin
-			stat1 = path.lstat
-			stat2 = path.parent.lstat
+			stat1 = File.lstat(path)
+			stat2 = File.lstat(File.join(path, '..'))
 			stat1.dev == stat2.dev && stat1.ino == stat2.ino || stat1.dev != stat2.dev
 		rescue Errno::ENOENT
 			false

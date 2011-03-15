@@ -59,56 +59,26 @@ class Pa
 	Error = Class.new Exception
 	EUnkonwType = Class.new Error
 
-	attr_accessor :path
-	attr_reader :absolute, :dir, :base, :name, :ext, :fext
+	attr_reader :path
 
-	# @param [String,Pa,Pathname] path
-	# @api also used by replace
+	# @param [String,#path] path
 	def initialize path
-		@path = case path.class.to_s
-			when "Pathname"
-				path.to_s
-			when "Pa"
-				path.path
-			when "String"
-				path
-			else
-				raise ArgumentError, path.inspect
-			end
-		@absolute = Pa.absolute(@path) 
-		@dir = Pa.dirname(@path)
-		@base = Pa.basename(@path) 
-		@name, @ext = Pa.basename(@path, ext: true)
-		@fext = @ext.empty? ? "" : "."+@ext
+		@path = path.respond_to?(:path) ? path.path : path
+		initialize_variables
 	end
+
+	chainable = Module.new do
+		def initialize_variables; end
+	end
+	include chainable
 
 	alias p path
-	alias a absolute
-	alias d dir
-	alias	b base
-	alias n name
-	alias e ext
-	alias fe fext
 
-	def absolute_pa() Pa(absolute) end
-	def dir_pa() Pa(dir) end
-
-	# @param [String,Pa,Pathname]
+	# @param [String,#path]
 	# @return [Pa] the same Pa object
 	def replace path
-		initialize path
-	end
-
-	# add string to path
-	# 
-	# @example 
-	#  pa = Pa('/home/foo/a.txt')
-	#  pa+'~' #=> new Pa('/home/foo/a.txt~')
-	#
-	# @param [String] str
-	# @return [Pa]
-	def + str
-		Pa(@path+str)
+		@path = path.respond_to?(:path) ? path.path : path
+		initialize_variables
 	end
 
 	# return '#<Pa @path="foo", @absolute="/home/foo">'
@@ -116,7 +86,7 @@ class Pa
 	# @return [String]
 	def inspect
 		ret="#<" + self.class.to_s + " "
-		ret += "@path=\"#{@path}\", @absolute=\"#{@absolute}\""
+		ret += "@path=\"#{path}\", @absolute=\"#{absolute}\""
 		ret += " >"
 		ret
 	end
@@ -128,45 +98,49 @@ class Pa
 		@path
 	end
 
-	# join path
-	#
-	# param [String] *names
-	# return [Pa]
-	def join(*names)
-		Pa(Pa.join(@path, *names))
-	end
-
 	# missing method goes to Pa.class-method 
-	# return@ [Pa,..] return Pa for some methods.
 	def method_missing(name, *args, &blk)
-		ret = self.class.__send__(name, *args, @path, &blk)
-		[ :readlink, :parent ]
-			.include?(name) ? Pa(ret) : ret
+		ret = self.class.__send__(name, path, *args, &blk)
+
+		case ret	
+
+		# e.g. readlink ..
+		when String
+			Pa(ret)
+
+		# e.g. directory? 
+		else
+			ret
+		end
+
 	end
 end
 
+class Pa
+module ClassMethods
+	UNDEFS = [:open, :fstat]
+
+	# missing method goes to File class method
+	def method_missing name, *args, &blk
+		raise NoMethodError, name.inspect if UNDEFS.include?(name)
+		return if args.size>1 
+		File.__send__ name, get(args[0]), &blk
+	end
+end
+end
 
 require_relative "pa/path"
 require_relative "pa/cmd"
 require_relative "pa/dir"
 require_relative "pa/state"
 class Pa
-class << self
+	extend ClassMethods
+	extend ClassMethods::Path
+	extend ClassMethods::Dir
+	extend ClassMethods::State
+	extend ClassMethods::Cmd
 
-	# missing method goes to File class method
-	def method_missing name, *args, &blk
-		return if args.size>1
-		File.__send__ name, get(args[0]), &blk
-	end
-
-end
-end
-
-class Pa
-	extend Path
-	extend Directory
-	extend State
-	extend Cmd
+	include Path
 end
 
 module Kernel
