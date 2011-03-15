@@ -61,13 +61,6 @@ class Pa
 
 	attr_accessor :path
 	attr_reader :absolute, :dir, :base, :name, :ext, :fext
-	alias p path
-	alias a absolute
-	alias d dir
-	alias	b base
-	alias n name
-	alias e ext
-	alias fe fext
 
 	# @param [String,Pa,Pathname] path
 	# @api also used by replace
@@ -89,12 +82,22 @@ class Pa
 		@fext = @ext.empty? ? "" : "."+@ext
 	end
 
+	alias p path
+	alias a absolute
+	alias d dir
+	alias	b base
+	alias n name
+	alias e ext
+	alias fe fext
+
+	def absolute_pa() Pa(absolute) end
+	def dir_pa() Pa(dir) end
+
 	# @param [String,Pa,Pathname]
 	# @return [Pa] the same Pa object
 	def replace path
 		initialize path
 	end
-
 
 	# add string to path
 	# 

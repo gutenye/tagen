@@ -124,13 +124,17 @@ class Pa
 
 		File.join(*paths)
 	end
+	alias + join
 
 	# get parent path
 	# 
 	# @param [String,Pa] path
+	# @param [Fixnum] n up level
 	# @return [String]
-	def parent path
-		join(get(path), "..")
+	def parent path, n=1
+		path = join(get(path), ([".."]*n).join('/'))
+		path2 = realpath(path)
+		path2 ? path2 : path
 	end
 
 	# link
@@ -195,6 +199,7 @@ class Pa
 		end
 	end # def dsymlink?
 
+	def realpath(path) File.realpath(get(path)) end
 	end
 end
 

@@ -6,9 +6,14 @@ task :release do
 	sh "rm *.gem"
 end
 
-desc "testing the library"
-task :test do
+desc "autotest with watchr"
+task :autotest do
 	sh "watchr tagen.watchr"
+end
+
+desc "testing the libraray"
+task :test do
+	sh "rspec --color spec"
 end
 
 def sh cmd
