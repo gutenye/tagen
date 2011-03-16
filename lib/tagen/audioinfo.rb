@@ -1,3 +1,4 @@
+require "audioinfo"
 =begin
 * **gem**: ruby-audioinfo
 =end

@@ -1,3 +1,5 @@
+require "tree"
+
 =begin
 * **Install**: gem(rubytree)
 =end

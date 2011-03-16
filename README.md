@@ -32,6 +32,10 @@ use extra extension
 	require "pathname"
 	require "tagen/pathname"
 
+or
+
+	require "tagen/pathname" # auto require "pathname"
+
 add #path method to Pathname, see API doc.
 
 

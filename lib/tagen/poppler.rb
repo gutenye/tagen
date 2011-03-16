@@ -1,3 +1,4 @@
+require "poppler"
 =begin
 * **Install**: Ruby-Gnome
 =end

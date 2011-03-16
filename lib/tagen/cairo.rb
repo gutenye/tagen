@@ -1,3 +1,5 @@
+require "cairo"
+
 # gdk_pixbuf2 for 
 # 	Context#set_source
 # 		set_source_pixbuf

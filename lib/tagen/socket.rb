@@ -1,3 +1,5 @@
+require "socket"
+
 class Socket
 class <<self
 	# pack human-readable address to Socket address

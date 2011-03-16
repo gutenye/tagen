@@ -1,3 +1,4 @@
+require "pathname"
 =begin
 Additional Methods List
 -----------------------

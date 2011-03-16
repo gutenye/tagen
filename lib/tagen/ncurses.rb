@@ -1,3 +1,4 @@
+require "ncurses"
 =begin
 
 Ncurses
