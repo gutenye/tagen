@@ -92,7 +92,6 @@ describe Pa do
 		end
 	end
 
-
 	describe "#_copy" do
 		# a symfile
 		# ab
@@ -162,6 +161,11 @@ describe Pa do
 			it "_copy with :overwrite" do
 				lambda{Pa.cp "a", "destdir/overwrite", overwrite:true}.should_not raise_error(Errno::EEXIST)
 			end
+		end
+
+		it "_copy with :normal" do
+			Pa._copy 'dir', 'dir_normal', special: true
+			Dir.empty?('dir_normal').should be_true
 		end
 
 	end

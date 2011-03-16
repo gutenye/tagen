@@ -231,6 +231,7 @@ module ClassMethods::Cmd
 	#   @option o [Boolean] :verbose puts cmd when execute
 	#   @option o [Boolean] :folsymlink follow symlink
 	#   @option o [Boolean] :overwrite overwrite dest file if dest is a file
+	#   @option o [Boolean] :special special copy, when cp a directory, only mkdir, not cp the directory's content, usefull in Pa.each_r
 	#   @return [nil]
 	# @overload cp(src_s, dest, o)
 	#   @yield [src,dest,o]
@@ -270,18 +271,24 @@ module ClassMethods::Cmd
 
 
 		case type=File.ftype(src)
+
 		when "file", "socket"
 			puts "cp #{src} #{dest}" if o[:verbose]
 			File.copy_stream(src, dest)
+
 		when "directory"
 			begin
 				Pa.mkdir dest
 				puts "mkdir #{dest}" if o[:verbose]
 			rescue Errno::EEXIST
 			end
+
+			return if o[:special]
+
 			each(src) { |pa|
 				_copy(pa.p, File.join(dest, File.basename(pa.p)), o)
 			}
+
 		when "link" # symbol link
 			if o[:folsymlink] 
 				_copy(Pa.readlink(src), dest) 
@@ -289,6 +296,7 @@ module ClassMethods::Cmd
 				Pa.symln(Pa.readlink(src), dest, force: true)	
 				puts "symlink #{src} #{dest}" if o[:verbose]
 			end
+
 		when "unknow"
 			raise EUnKnownType, "Can't handle unknow type(#{:type}) -- #{src}"
 		end
