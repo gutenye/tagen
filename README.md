@@ -55,6 +55,19 @@ which rspec
 
 	Pa('/home/foo').should be_exists
 
+more see API doc
+
+An Introduction to PyFormat
+---------------------------
+
+	require "tagen/core"
+	"I like %{fruit} and %{sport}".format('apple', 'football') 
+	"I like %{fruit} and %{sport}".format(apple: 'apple', footbal: 'football') 
+
+	"it costs %{howmatch:.2f} dollars".format(1.123) #=> "it costs 1.12 dollars"
+	
+more see API doc
+
 
 Documentation
 -------------

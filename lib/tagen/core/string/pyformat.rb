@@ -11,12 +11,12 @@ a python like string format libraray.
 use "#{var}" is easy and quick in many cases, but some times we need a more powerful format support.
 
   "I like %s and %s" % %(apple, football)
-  "I like %{fruit} and %{sport}".format(%w(apple football))   # it has semantic meaning.
+  "I like %{fruit} and %{sport}".format('apple', 'football')   # it has semantic meaning.
 
 == Usage
 
   require "tagen/core"
-  "it costs %{:.2f} dollar".format(1.123) #=> "it costs 1.12 dollar"
+  "it costs %{:.2f} dollars".format(1.123) #=> "it costs 1.12 dollars"
 
 * support abritry-argument or hash-argument
   "%{} %{}".format(1,2) #=> "1 2"
