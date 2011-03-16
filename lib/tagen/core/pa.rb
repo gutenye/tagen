@@ -53,8 +53,13 @@ Example3:
   name      n      filename of a path
   ext       e      extname of a path,  return "" or "ogg"  
   fext      fe     return "" or ".ogg"
-=end
 
+== used with rspec
+
+	File.exists?(path).should be_true
+	Pa(path).should be_exists
+
+=end
 class Pa 
 	Error = Class.new Exception
 	EUnkonwType = Class.new Error

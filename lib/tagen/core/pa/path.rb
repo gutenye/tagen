@@ -1,4 +1,5 @@
 class Pa
+	NAME_EXT_PAT = /^(.+?)(?:\.([^.]+))?$/
 module ClassMethods::Path
 
 	# alias from File.absolute_path
@@ -66,16 +67,19 @@ module ClassMethods::Path
 
 	# get a basename of a path
 	#
+	# @example
+	#   Pa.basename("foo.bar.c", ext: true)  #=> \["foo.bar", "c"]
+	#
 	# @param [String,Pa] name
 	# @param [Hash] o options
 	# @option o [Boolean, String] :ext (false) return \[name, ext] if true
 	#   
-	# @return [String] basename of a path 
-	# @return [Array<String,String>] \[name, ext] if o[:ext] is true
+	# @return [String] basename of a path unless o[:ext]
+	# @return [Array<String>] \[name, ext] if o[:ext].  
 	def basename(name, o={})
 		name = File.basename(get(name))
 		if o[:ext]
-			_, name, ext = name.match(/^(.+?)(\.[^.]+)?$/).to_a
+			name, ext = name.match(NAME_EXT_PAT).captures
 			[ name, (ext || "")]
 		else
 			name

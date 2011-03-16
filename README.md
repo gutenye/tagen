@@ -34,6 +34,7 @@ use extra extension
 
 add #path method to Pathname, see API doc.
 
+
 Documentation
 -------------
 * {file:docs/CoreExtensions.md CoreExtensions} A list of core extensions.

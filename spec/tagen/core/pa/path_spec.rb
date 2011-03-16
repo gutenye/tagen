@@ -13,6 +13,29 @@ describe Pa do
 		end
 	end
 
+	describe "NAME_EXT_PAT" do
+		it "matchs `foo.bar'" do
+			"foo.bar".match(Pa::NAME_EXT_PAT).captures.should == %w(foo bar)
+		end
+
+		it "matchs `foo'" do
+			"foo".match(Pa::NAME_EXT_PAT).captures.should == ["foo", nil]
+		end
+
+	end
+
+	describe "basename" do
+		it "get a basename of a path" do
+			Pa.basename("/home/foo").should == "foo"
+		end
+
+		it "get name, ext with :ext => true" do
+			Pa.basename("/home/foo.bar", ext: true).should == ["foo", "bar"]
+		end
+
+	end
+	
+
 	describe '.parent' do
 		before :each do
 			@path = "/home/foo/a.txt"
