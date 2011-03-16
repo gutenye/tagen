@@ -36,7 +36,24 @@ or
 
 	require "tagen/pathname" # auto require "pathname"
 
-add #path method to Pathname, see API doc.
+this will add #path method to Pathname, see API doc.
+
+An Introduction to Pa 
+---------------------
+
+	require "tagen/core"
+	pa = Pa('/home/foo')
+	pa.exists? #=> false
+	pa.dir #=> '/home'
+	pa.base #=> 'foo'
+	pa.join('a.ogg') #=> '/home/a.ogg'
+	pa.join(a.ogg).exists? #=> true.
+
+	Pa.exists?('/home/foo') # alternate way
+
+which rspec
+
+	Pa('/home/foo').should be_exists
 
 
 Documentation
