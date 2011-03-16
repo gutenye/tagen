@@ -8,10 +8,10 @@ module ClassMethods::State
 	def lchmod(mode, *paths) paths.map!{|v|get(v)}; File.lchmod(mode, *paths) end
 
 	# @see File.chown
-	def chown(user, group, *paths) paths.map!{|v|get(v)}; File.chown(user, group, *paths) end
+	def chown(user, group=nil, *paths) paths.map!{|v|get(v)}; File.chown(user, group, *paths) end
 
 	# @see File.lchown
-	def lchown(user, group, *paths) paths.map!{|v|get(v)}; File.lchown(user, group, *paths) end
+	def lchown(user, group=nil, *paths) paths.map!{|v|get(v)}; File.lchown(user, group, *paths) end
 
 	# @see File.utime
 	def utime(atime, mtime, *paths) paths.map!{|v|get(v)}; File.utime(atime, mtime, *paths) end
@@ -53,4 +53,15 @@ module ClassMethods::State
 		end
 	end
 end
+
+module State
+	def chmod(mode); File.chmod(mode, path) end
+	def lchmod(mode); File.lchmod(mode, path) end
+	def chown(uid, gid=nil); File.chown(uid, gid, path) end
+	def lchown(uid, gid=nil); File.lchown(uid, gid, path) end
+	def utime(atime, mtime); File.utime(atime, mtime, path) end
 end
+
+end
+
+

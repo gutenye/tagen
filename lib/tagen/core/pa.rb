@@ -146,6 +146,7 @@ class Pa
 	extend ClassMethods::Cmd
 
 	include Path
+	include State
 end
 
 module Kernel

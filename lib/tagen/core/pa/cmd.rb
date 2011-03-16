@@ -305,7 +305,7 @@ module ClassMethods::Cmd
 		src_stat = o[:folsymlink] ? File.stat(src) : File.lstat(src)
 		begin
 			File.chmod(src_stat.mode, dest)
-			File.chown(src_stat.uid, src_stat.gid, dest)
+			#File.chown(src_stat.uid, src_stat.gid, dest)
 			File.utime(src_stat.atime, src_stat.mtime, dest)
 		rescue Errno::ENOENT
 		end
