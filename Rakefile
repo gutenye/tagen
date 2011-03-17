@@ -7,13 +7,15 @@ task :release do
 end
 
 desc "autotest with watchr"
-task :autotest do
+task :test do
 	sh "watchr tagen.watchr"
 end
 
-desc "testing the libraray"
-task :test do
-	sh "rspec --color spec"
+namespace :test do
+	desc "testing the whole library"
+	task :all do
+		sh "rspec --color spec"
+	end
 end
 
 def sh cmd

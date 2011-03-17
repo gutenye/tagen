@@ -17,7 +17,7 @@ class Enumerator
 	def with_iobject *args, &blk
 		return self.to_enum(:with_iobject, *args) unless blk
 
-		offset = args.find!{|v| Fixnum==v} or 0
+		offset = args.find!{|v| Fixnum===v} || 0
 		raise ArgumentError "must provide memo_obj" if args.empty?
 		memo = args[0]
 
