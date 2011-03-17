@@ -35,7 +35,6 @@ describe Pa do
 
 	end
 	
-
 	describe '.parent' do
 		before :each do
 			@path = "/home/foo/a.txt"
@@ -49,5 +48,70 @@ describe Pa do
 			Pa.parent(@path, 2).should == "/home"
 		end
 	end
+
+	describe "#==" do
+		it "runs ok" do
+			(Pa('/home') == Pa('/home')).should be_true
+		end
+	end
+
+	describe "#+" do
+		it "runs ok" do
+			(Pa('/home')+'~').should == Pa('/home~')
+		end
+	end
+
+	describe "#sub" do
+		it "runs ok" do
+			Pa('/home/foo').sub(/o/,'').should == Pa('/hme/foo')
+		end
+	end
+
+	describe "#sub!" do
+		it "runs ok" do
+			pa = Pa('/home/foo')
+			pa.sub!(/o/,'')
+			pa.should == Pa('/hme/foo')
+		end
+	end
+
+	describe "#gsub" do
+		it "runs ok" do
+			Pa('/home/foo').gsub(/o/,'').should == Pa('/hme/f')
+		end
+	end
+
+	describe "#gsub!" do
+		it "runs ok" do
+			pa = Pa('/home/foo')
+			pa.gsub!(/o/,'')
+			pa.should == Pa('/hme/f')
+		end
+	end
+
+	describe "#match" do
+		it "runs ok" do
+			Pa('/home/foo').match(/foo/)[0].should == 'foo'
+		end
+	end
+
+	describe "#start_with?" do
+		it "runs ok" do
+			Pa('/home/foo').start_with?('/home').should be_true
+		end
+	end
+
+	describe "#end_with?" do
+		it "runs ok" do
+			Pa('/home/foo').end_with?('foo').should be_true
+		end
+	end
+
+	describe "#=~" do
+		it "runs ok" do
+			(Pa('/home/foo') =~ /foo/).should be_true
+		end
+	end
+
 
 end

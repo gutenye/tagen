@@ -66,6 +66,10 @@ module ClassMethods::Dir
 	#   end
 	#   # => '/home' ..
 	#
+	#  each('.', error: true).with_object([]) do |(pa,err),m|
+	#    ...
+	#  end
+	#
 	# @overload each(path=".", o={})
 	#   @param [String,Pa] path
 	#   @prarm [Hash] o
@@ -88,7 +92,7 @@ module ClassMethods::Dir
 			dir = Dir.open(path)
 		rescue Errno::EPERM => err
 		end
-		raise err unless o[:error]
+		raise err if err and !o[:error]
 
 		while (entry=dir.read)
 			next if %w(. ..).include? entry
@@ -97,7 +101,11 @@ module ClassMethods::Dir
 
 			# => "foo" not "./foo"
 			pa = path=="." ? Pa(entry) : Pa(File.join(path, entry))
-			blk.call pa, err  
+			if o[:error]
+				blk.call pa, err  
+			else
+				blk.call pa
+			end
 		end
 	end
 

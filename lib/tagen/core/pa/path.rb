@@ -217,6 +217,12 @@ attribute absolute and dir return String, method absolute_path(), dirname() retu
 	
 	Pa("/home/a").dir #=> "/home"
 	Pa("/home/a").dirname #=> Pa("/home")
+
+== methods from String
+* +
+* [g]sub[!] match =~ 
+* start_with? end_with?
+
 =end
 module Path
 	# @return [String] 
@@ -255,6 +261,31 @@ module Path
 	# @param [String] str
 	# @return [Pa]
 	def +(str) Pa(path+str) end
+
+	# @return [Pa]
+	def sub(*args,&blk) Pa(path.sub(*args,&blk)) end
+
+	# @return [Pa]
+	def gsub(*args,&blk) Pa(path.gsub(*args,&blk)) end
+
+	# @return [Pa]
+	def sub!(*args,&blk) self.replace path.sub(*args,&blk) end
+
+	# @return [Pa]
+	def gsub!(*args,&blk) self.replace path.gsub(*args,&blk) end
+
+	# @return [MatchData]
+	def match(*args,&blk) path.match(*args,&blk) end 
+
+	# @return [Boolean]
+	def start_with?(*args) path.start_with?(*args) end
+
+	# @return [Boolean]
+	def end_with?(*args) path.end_with?(*args) end
+
+	def =~(regexp) path =~ regexp end
+
+	def ==(other) self.path == other.path end
 end
 end
 
