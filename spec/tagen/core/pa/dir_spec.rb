@@ -47,6 +47,19 @@ describe Pa do
 			Pa.each.with_object([]){|pa,m|m<<pa.b}.sort.should == %w(.fa dira fa fa~)
 		end
 
+		it "yield err when an error occurs" do
+			Pa.each "path_doesn't_exist" do
+			end
+		end
+
+		it "raise Errno::ENOENT if path doesn't exists" do
+			lambda { Pa.each("path_doesn't_exits") }.should raise_error(Errno::ENOTENT)
+		end
+
+		it "raise Errno::ENOTDIDR if path isn't a directory" do
+			lambda { Pa.each("fa") }.should raise_error(Errno::ENOTDIR)
+		end
+
 		it "each(.) return 'foo' not '.foo'" do 
 			Pa.each.with_object([]){|pa,m|m<<pa.p}.sort.should == %w(.fa dira fa fa~)
 		end

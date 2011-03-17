@@ -38,4 +38,62 @@ class Array
 		end
 		indexs.length==1 ? values[0] : values
 	end
+
+
+	# first n values, not works at Range, Range don't have #replace method
+	# @note modify IN PLACE
+	#
+	# @example
+	#   a = %w(1 2 3)
+	#   a.first!(2)  #=> [1, 2]
+	#   a            #=> [3]
+	#   @return Array
+	def first! n=1
+		i = 0 
+		j = i + n
+		k = -1
+
+		ret = self[i...j]
+		self.replace self[j..k]
+		ret
+	end
+
+	# last n values
+	# @see first!
+	def last! n=1
+		i = -1 
+		j = -1 - n + 1
+		k = 0
+
+		ret = self[j..i]
+		self.replace self[k...j]
+		ret
+	end
+
+
+
+	# same as find, but delete the finded value 
+	def find! &blk
+		idx = self.find_index(&blk)
+		if idx
+			self.delete_at(idx)
+		else
+			nil
+		end
+	end
+
+	# same as find_all, but delete all finded values
+	def find_all! &blk
+		ret, rest = [], []
+		self.each do |k|
+			if blk.call(k)
+				ret << k
+			else
+				rest << k
+			end
+		end
+		self.replace rest
+		ret
+	end
+
 end # class Array

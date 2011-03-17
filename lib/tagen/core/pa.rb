@@ -139,14 +139,14 @@ require_relative "pa/cmd"
 require_relative "pa/dir"
 require_relative "pa/state"
 class Pa
-	extend ClassMethods
-	extend ClassMethods::Path
-	extend ClassMethods::Dir
-	extend ClassMethods::State
-	extend ClassMethods::Cmd
+  extend ClassMethods
+  extend ClassMethods::Path
+  extend ClassMethods::Dir
+  extend ClassMethods::State
+  extend ClassMethods::Cmd
 
-	include Path
-	include State
+  include Path
+  include State
 end
 
 module Kernel

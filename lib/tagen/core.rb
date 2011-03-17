@@ -19,6 +19,8 @@ require "pd"
 	core/object
 	core/module
 
+	core/enumerable
+	core/enumerator
 	core/numeric
 	core/string
 	core/array

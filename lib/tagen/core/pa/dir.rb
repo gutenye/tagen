@@ -58,7 +58,7 @@ module ClassMethods::Dir
 	def empty?(path) Dir.entries(get(path)).empty? end
 
 	# traverse directory 
-	# @note return if not a directory.
+	# @note raise Errno::ENOTDIR, Errno::ENOENT  
 	#
 	# @example
 	#   each '.' do |pa|
@@ -69,26 +69,35 @@ module ClassMethods::Dir
 	# @overload each(path=".", o={})
 	#   @param [String,Pa] path
 	#   @prarm [Hash] o
-	#   @option o [Boolean] :nodot (nil) include dot file
-	#   @option o [Boolean] :nobackup (nil) include backup file
+	#   @option o [Boolean] :nodot (false) include dot file
+	#   @option o [Boolean] :nobackup (false) include backup file
+	#   @option o [Boolean] :error (false) yield(pa, err) instead of raise Errno::EPERM when Dir.open(dir)
 	#   @return [Enumerator<Pa>]
 	# @overload each(path=".", o={})
 	#   @yieldparam [Pa] path
 	#   @return [nil]
 	def each(*args, &blk) 
-		return Pa.to_enum(:each, *args) if not blk
+		return Pa.to_enum(:each, *args) unless blk
 
 		(path,), o = args.extract_options
 		path = path ? get(path) : "."
-		return if not File.directory?(path)
+		raise Errno::ENOENT, "`#{path}' doesn't exists."  unless File.exists?(path)
+		raise Errno::ENOTDIR, "`#{path}' not a directoyr."  unless File.directory?(path)
 
-		Dir.foreach path do |name|
-			next if %w(. ..).include? name
-			next if o[:nodot] and name=~/^\./
-			next if o[:nobackup] and name=~/~$/
+		begin
+			dir = Dir.open(path)
+		rescue Errno::EPERM => err
+		end
+		raise err unless o[:error]
+
+		while (entry=dir.read)
+			next if %w(. ..).include? entry
+			next if o[:nodot] and entry=~/^\./
+			next if o[:nobackup] and entry=~/~$/
 
 			# => "foo" not "./foo"
-			blk.call path=="." ? Pa(name) : Pa(File.join(path, name))
+			pa = path=="." ? Pa(entry) : Pa(File.join(path, entry))
+			blk.call pa, err  
 		end
 	end
 
@@ -101,7 +110,9 @@ module ClassMethods::Dir
 	# @overload each_r(path=".", o={})
 	#   @return [Enumerator<Pa>]
 	# @overload each_r(path=".", o={})
-	#   @yield [pa,err]
+	#   @yieldparam [Pa] pa
+	#   @yieldparam [String] relative relative path
+	#   @yieldparam [Errno::ENOENT,Errno::EPERM] err 
 	#   @return [nil]
 	def each_r(*args, &blk)
 		return Pa.to_enum(:each_r, *args) if not blk
@@ -114,15 +125,16 @@ module ClassMethods::Dir
 
 	# @param [String] path
 	def _each_r path, relative, o, &blk
-		Pa.each(path, o) do |pa1|
+		o.merge!(error: true)
+		Pa.each(path, o) do |pa1, err|
 			relative1 = Pa.join(relative, pa1.b) 
-			blk.call pa1, relative1
+
+			blk.call pa1, relative1, err
+
 			if pa1.directory?
 				_each_r(pa1.p, relative1, o, &blk)
 			end
 		end
-		rescue Errno::ENOENT, Errno::EPERM => e
-			blk.call pa, relative, e 
 	end
 	private :_each_r
 
