@@ -14,6 +14,9 @@ describe ERB do
 
 		it "runs ok with local " do
 			@erb.result(nil, a: 2).should == "2"
+		end
+
+		it "support string as key in locals" do
 			@erb.result(nil, "a" => 2).should == "2"
 		end
 
