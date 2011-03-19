@@ -21,9 +21,12 @@ module ClassMethods::Path
 		get(path).sub(%r!^#{Regexp.escape(ENV["HOME"])}!, "~")
 	end
 
-	# print current work directory
+	# return current work directory
 	# @return [String] path
 	def pwd() Dir.getwd end
+
+	# @return [Pa] path
+	def pwd2() Pa(Dir.getwd) end
 
 	# change directory
 	#
@@ -230,12 +233,12 @@ module Path
 
 	def initialize_variables
 		super
-		@absolute = Pa.absolute(@path) 
-		@dir = Pa.dirname(@path)
-		@base = Pa.basename(@path) 
-		@name, @ext = Pa.basename(@path, ext: true)
+		@absolute = File.absolute_path(@path) 
+		@dir = File.dirname(@path)
+		@base = File.basename(@path) 
+		@name, @ext = @name.match(NAME_EXT_PAT).captures
+		@ext ||= ""
 		@fext = @ext.empty? ? "" : "."+@ext
-		@short = Pa.shorten(@path) 
 	end
 
 	alias a absolute
@@ -245,12 +248,17 @@ module Path
 	alias e ext
 	alias fe fext
 
+	def short
+		@short ||= Pa.shorten(@path) 
+	end
+
 	# @return [Pa] absolute path
-	def absolute_path() Pa(absolute) end
+	def absolute2() @absolute2 ||= Pa(absolute) end
+
 	# @return [Pa] dirname
 	# @example
 	#   Pa(__FILE__).dirname.join('.opts')
-	def dirname() Pa(dir) end
+	def dir2() @dir2 ||= Pa(dir) end
 
 	# add string to path
 	# 

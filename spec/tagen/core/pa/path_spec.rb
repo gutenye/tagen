@@ -1,6 +1,25 @@
 require "spec_helper"
 
 describe Pa do
+
+	describe "#dir2" do
+		it "runs ok" do
+			Pa('/home/foo').dir2.should be_an_instance_of Pa
+		end
+	end
+
+	describe "#absoulte2" do
+		it "runs ok" do
+			Pa('.').absolute2.should be_an_instance_of Pa
+		end
+	end
+
+	describe "pwd2" do
+		it "runs ok" do
+			Pa.pwd2.should be_an_instance_of Pa
+		end
+	end
+
 	describe ".shorten" do
 		it "short /home/usr/file into ~/file" do
 			ENV["HOME"] = "/home/foo"

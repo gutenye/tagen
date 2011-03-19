@@ -1,12 +1,16 @@
 PATH
   remote: .
   specs:
-    guten (0.0.1)
+    tagen (0.2.3)
+      activesupport
+      pd
 
 GEM
   remote: http://rubygems.org/
   specs:
+    activesupport (3.0.5)
     diff-lcs (1.1.2)
+    pd (1.0.1)
     rspec (2.4.0)
       rspec-core (~> 2.4.0)
       rspec-expectations (~> 2.4.0)
@@ -20,5 +24,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  guten!
   rspec
+  tagen!
