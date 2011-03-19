@@ -236,7 +236,7 @@ module Path
 		@absolute = File.absolute_path(@path) 
 		@dir = File.dirname(@path)
 		@base = File.basename(@path) 
-		@name, @ext = @name.match(NAME_EXT_PAT).captures
+		@name, @ext = @base.match(NAME_EXT_PAT).captures
 		@ext ||= ""
 		@fext = @ext.empty? ? "" : "."+@ext
 	end
