@@ -23,7 +23,7 @@ class ERB
 		@locals = locals
 		evalstr = <<-EOF
 def run_erb
-	#{locals.map{|k,v| "#{k} = @locals[:#{k}]"}.join(';')}
+	#{locals.map{|k,v| %~#{k} = @locals[ #{Symbol===k ? ':' : ''}'#{k}' ]~}.join(';')}
 	#{self.src}
 	_erbout
 end
