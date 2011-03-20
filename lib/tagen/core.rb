@@ -32,6 +32,7 @@ require "pd"
 	core/process
 
 	core/pa
+	core/open_option
 ).each {|n| require_relative n }
 
 # from stdlib

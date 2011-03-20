@@ -24,7 +24,7 @@ private
 	#   @option o [Boolean] :verbose  print cmd if verbose
 	#   @return [Boolean,nil] true false nil
 	def system *cmds
-		o = args.extract_extend_options!
+		o = cmds.extract_extend_options!
 		cmd = cmds.join(" ")
 		puts cmd if o[:verbose]
 		original_system cmd
@@ -44,7 +44,6 @@ private
 		end
 		method(:__blk2method)
 	end
-
 
 	# detect Platform information.
 	#
