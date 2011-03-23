@@ -38,6 +38,11 @@ class String
 		# @return [String]
 		def letters; @@letters end
 	end
+
+	# return ascii code
+	# @example
+	#   'a'.ascii #=> 97
+	def ascii() bytes.first end
 end # class String
 
 require_relative "string/pyformat"

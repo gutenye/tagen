@@ -15,8 +15,6 @@ Ruby has an 'Open Class' feature, so we can extend any class by ourself.
 
 This library provides some usefull Ruby core extension.  some comes from ActiveSupport. ActiveSupport is mainly target to Rails, but tagen is target to generic ruby development, and tagen is smaller. It is a colletion of most common core,extra extensions.
 
-not support ruby1.8, win32
-
 This library comes with a path lib named {Pa} and a string format lib named {PyFormat}.
 
 Usage
@@ -37,6 +35,11 @@ or
 	require "tagen/pathname" # auto require "pathname"
 
 this will add #path method to Pathname, see API doc.
+
+Requirements
+------------
+
+	tested: ruby1.9 linux
 
 An Introduction to Pa 
 ---------------------
