@@ -23,6 +23,7 @@ require "pd"
 	core/enumerator
 	core/numeric
 	core/string
+	core/symbol
 	core/array
 	core/hash
 	core/re
