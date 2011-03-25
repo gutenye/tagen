@@ -21,12 +21,12 @@ class ERB
 
 	private
 	def result_with_locals bind, locals
-		map_method = locals.class.to_s=="OpenOption" ? :_map : :map
+		locals = locals.class.to_s=="OpenOption" ? locals._data : locals
 
 		@locals = locals
 		evalstr = <<-EOF
 def run_erb
-	#{locals.send(map_method){|k,v| %~#{k} = @locals[ #{Symbol===k ? ':' : ''}'#{k}' ]~}.join(';')}
+	#{locals.map{|k,v| %~#{k} = @locals[ #{Symbol===k ? ':' : ''}'#{k}' ]~}.join(';')}
 	#{self.src}
 	_erbout
 end
