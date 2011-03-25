@@ -66,13 +66,12 @@ class OpenOption
 		# deep convert hash to OpenOption
 		def convert_hash data, ret={}
 			data.each do |k,v|
-				k = k.to_sym
 				if Hash === v
 					new_v = self.new(v)
-					ret[k] = new_v
-					convert_hash(data[k], ret[k])
+					ret[k.to_sym] = new_v
+					convert_hash(data[k], ret[k.to_sym])
 				else
-					ret[k] = v
+					ret[k.to_sym] = v
 				end
 			end
 			ret
