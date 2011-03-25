@@ -12,7 +12,7 @@ Example:
 	p o.force? #=> true
 
 
-OverView:
+Overview:
 
 	o = OpenOption.new
 
@@ -40,13 +40,40 @@ access data
 	o._data #=> {a: 1} 
 
 
+it is a deep convertion of Hash.
+
+	a = { a: {b: 1} }
+	o = OpenOption.new(a)
+	o #=> <#OpenOption a: <#OpenOption b:1> > 
+	# so you can access b by o.a.b
+
+
 =end
 class OpenOption
+
+	class <<self
+		# I'm rescurive
+		# deep convert hash to OpenOption
+		def convert_hash data, ret={}
+			data.each do |k,v|
+				if Hash === v
+					new_v = self.new(v)
+					ret[k] = new_v
+					convert_hash(data[k], ret[k])
+				else
+					ret[k] = v
+				end
+			end
+			ret
+		end
+	end
+
 	attr_accessor :_data
 
 	def initialize(data={})
-		@data = data
+		@data = OpenOption.convert_hash(data)
 	end # def initialize
+
 
 	def _data() @data end
 	def _data=(data) @data = data end

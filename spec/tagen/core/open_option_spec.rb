@@ -9,6 +9,8 @@ describe OpenOption do
 		@o._data.should == {a: 1, force: true}
 	end
 
+
+
 	it "read value using [:sym] " do
 		@o[:a].should == 1
 	end
@@ -61,6 +63,17 @@ describe OpenOption do
 
 	it "support normal hash method" do
 		@o._keys.should == [:a, :force]
+	end
+
+	describe ".convert_hash" do
+		it "deep convert hash" do
+			data = {a: {b: 1} }
+			newdata = OpenOption.convert_hash(data)
+			newdata[:a].should be_an_instance_of OpenOption
+		end
+
+
+
 	end
 
 end
