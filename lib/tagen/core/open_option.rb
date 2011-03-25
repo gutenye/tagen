@@ -11,7 +11,6 @@ Example:
 	o.force = true
 	p o.force? #=> true
 
-
 Overview:
 
 	o = OpenOption.new
@@ -40,12 +39,23 @@ access data
 	o._data #=> {a: 1} 
 
 
+new(data={})
+------------
+
+data's key can be string or symbol, but internal store key is use symbol.
+
+	data = { "a" => 1 }
+same as
+	data = { :a => 1 }
+
 it is a deep convertion of Hash.
 
 	a = { a: {b: 1} }
 	o = OpenOption.new(a)
 	o #=> <#OpenOption a: <#OpenOption b:1> > 
 	# so you can access b by o.a.b
+
+
 
 
 =end
@@ -56,6 +66,7 @@ class OpenOption
 		# deep convert hash to OpenOption
 		def convert_hash data, ret={}
 			data.each do |k,v|
+				k = k.to_sym
 				if Hash === v
 					new_v = self.new(v)
 					ret[k] = new_v
@@ -73,7 +84,6 @@ class OpenOption
 	def initialize(data={})
 		@data = OpenOption.convert_hash(data)
 	end # def initialize
-
 
 	def _data() @data end
 	def _data=(data) @data = data end

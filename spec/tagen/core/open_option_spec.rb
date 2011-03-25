@@ -72,7 +72,11 @@ describe OpenOption do
 			newdata[:a].should be_an_instance_of OpenOption
 		end
 
-
+		it "store string-key as symbol-key internal" do
+			data = {'a' => 1 }
+			newdata = OpenOption.convert_hash(data)
+			newdata.keys[0].should be_an_instance_of Symbol
+		end
 
 	end
 
