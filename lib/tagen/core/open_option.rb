@@ -82,9 +82,9 @@ class OpenOption
 	# _method goes to Hash
 	# method? return !!value
 	# method= define a new key
-	def method_missing(name, *args) 
+	def method_missing(name, *args, &blk) 
 		if name =~ /^_(.*)/
-			return @data.send($1.to_sym, *args)
+			return @data.send($1.to_sym, *args, &blk)
 		elsif name =~ /(.*)\?$/
 			return !!@data[$1.to_sym]
 		elsif name =~ /(.*)=$/
@@ -114,6 +114,10 @@ class OpenOption
 	def [](key) @data[key.to_sym] end
 			
 	def hash() @data.hash end
+
+	def dup
+		@data.dup
+	end
 
 	def inspect
 		out = "#<#{self.class} "

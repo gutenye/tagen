@@ -9,6 +9,7 @@ class ERB
 	#  erb = Erb.new("<%=a%>")
 	#  erb.result(nil, a: 1) #=> "1"
 	#
+	# @param [Hash,OpenOption] locals
 	def result bind=nil, locals={}
 		bind ||= TOPLEVEL_BINDING
 		if locals.empty?
@@ -20,10 +21,12 @@ class ERB
 
 	private
 	def result_with_locals bind, locals
+		map_method = locals.class.to_s=="OpenOption" ? :_map : :map
+
 		@locals = locals
 		evalstr = <<-EOF
 def run_erb
-	#{locals.map{|k,v| %~#{k} = @locals[ #{Symbol===k ? ':' : ''}'#{k}' ]~}.join(';')}
+	#{locals.send(map_method){|k,v| %~#{k} = @locals[ #{Symbol===k ? ':' : ''}'#{k}' ]~}.join(';')}
 	#{self.src}
 	_erbout
 end
