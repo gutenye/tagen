@@ -70,7 +70,6 @@ describe Pa do
 			end
 		end
 
-
 		describe "#rm_r" do
 			it "remove both file and directory" do
 				Pa.rm "a"

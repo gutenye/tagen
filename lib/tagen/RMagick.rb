@@ -1,4 +1,3 @@
-require "rmagic"
 =begin
 * **gem**: rmagic
 =end
