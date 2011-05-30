@@ -245,6 +245,8 @@ module Path
 	alias d dir
 	alias	b base
 	alias n name
+	alias fname base
+	alias fn fname
 	alias e ext
 	alias fe fext
 
