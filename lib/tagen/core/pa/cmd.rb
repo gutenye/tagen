@@ -230,7 +230,7 @@ module ClassMethods::Cmd
 	#   @option o [Boolean] :mkdir mkdir(dest) if dest not exists.
 	#   @option o [Boolean] :verbose puts cmd when execute
 	#   @option o [Boolean] :folsymlink follow symlink
-	#   @option o [Boolean] :overwrite overwrite dest file if dest is a file
+	#   @option o [Boolean] :force force dest file if dest is a file
 	#   @option o [Boolean] :special special copy, when cp a directory, only mkdir, not cp the directory's content, usefull in Pa.each_r
 	#   @return [nil]
 	# @overload cp(src_s, dest, o)
@@ -261,14 +261,17 @@ module ClassMethods::Cmd
 		end
 	end
 
+	def cp_f src_s, dest, o={}, &blk
+		o[:force] = true
+		cp src_s, dest, o, &blk
+	end
 
 	# I'm recursive 
 	#
 	# @param [String] src
 	# @param [String] dest
 	def _copy(src, dest, o={})  
-		raise Errno::EEXIST, "dest exists -- #{dest}" if File.exists?(dest) and (not o[:overwrite])
-
+		raise Errno::EEXIST, "dest exists -- #{dest}" if File.exists?(dest) and (not o[:force])
 
 		case type=File.ftype(src)
 
@@ -318,7 +321,7 @@ module ClassMethods::Cmd
 	# @param [Hash] o option
 	# @option o [Boolean] :verbose
 	# @option o [Boolean] :mkdir
-	# @option o [Boolean] :overwrite
+	# @option o [Boolean] :fore
 	# @return [nil]
 	def mv(src_s, dest, o={}, &blk)
 		srcs = glob(*Array.wrap(src_s)).map{|v| get(v)}
@@ -345,6 +348,11 @@ module ClassMethods::Cmd
 		end
 	end
 
+	def mv_f src_s, dest, o={}, &blk
+		o[:force] = true
+		mv src_s, dest, o, &blk
+	end
+
 	# I'm recusive
 	#
 	# _move "file", "dir/file"
@@ -352,9 +360,9 @@ module ClassMethods::Cmd
 	# @param [String] src
 	# @param [String] dest
 	def _move(src, dest, o)
-		raise Errno::EEXIST, "dest exists -- #{dest}" if File.exists?(dest) and (not o[:overwrite])
+		raise Errno::EEXIST, "dest exists -- #{dest}" if File.exists?(dest) and (not o[:force])
 
-		# overwrite. mv "dir", "dira" and 'dira' exists and is a directory. 
+		# :force. mv "dir", "dira" and 'dira' exists and is a directory. 
 		if File.exists?(dest) and File.directory?(dest)
 				ls(src) { |pa|
 					dest1 = File.join(dest, File.basename(pa.p))
@@ -364,7 +372,7 @@ module ClassMethods::Cmd
 
 		else
 			begin
-				Pa.rm_r dest if o[:overwrite] and File.exists?(dest)
+				Pa.rm_r dest if o[:force] and File.exists?(dest)
 				puts "rename #{src} #{dest}" if o[:verbose]
 				File.rename(src, dest)
 			rescue Errno::EXDEV # cross-device

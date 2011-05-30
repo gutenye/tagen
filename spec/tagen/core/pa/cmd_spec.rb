@@ -152,14 +152,14 @@ describe Pa do
 			end
 		end
 
-		context "with :overwrite" do
+		context "with :force" do
 			it "_copy" do
 				File.open("destdir/overwrite","w"){|f|f.write("")}
 				lambda{Pa.cp "a", "destdir/overwrite"}.should raise_error(Errno::EEXIST)
 			end
 
-			it "_copy with :overwrite" do
-				lambda{Pa.cp "a", "destdir/overwrite", overwrite:true}.should_not raise_error(Errno::EEXIST)
+			it "_copy with :force" do
+				lambda{Pa.cp "a", "destdir/overwrite", force:true}.should_not raise_error(Errno::EEXIST)
 			end
 		end
 
@@ -192,7 +192,7 @@ describe Pa do
 			File.exists?("dird/ab").should be_true
 		end
 	end
-
+	
 	describe "#_move" do
 		# a
 		# dir/ b  
@@ -211,17 +211,18 @@ describe Pa do
 			File.exists?("a").should be_false
 		end
 		
-		context "with :overwrite" do
+		context "with :force" do
 			it "mv a dir/b" do
 				lambda{Pa._move "a", "dir/b", {}}.should raise_error Errno::EEXIST
 			end
 
-			it "mv a dir/b :overwrite" do
+			it "mv a dir/b :force" do
 				ino = File.stat('a').ino
-				Pa._move "a", "dir/b", overwrite:true
+				Pa._move "a", "dir/b", force:true
 				File.stat("dir/b").ino.should == ino
 			end
 		end
+
 	end
 
 	describe "#mv" do

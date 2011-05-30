@@ -6,6 +6,14 @@ task :release do
 	sh "rm *.gem"
 end
 
+desc "install a gem"
+task :install do
+	`rm *.gem &>/dev/null`
+	sh "gem build tagen.gemspec"
+	sh "gem install *.gem"
+	sh "rm *.gem"
+end
+
 desc "autotest with watchr"
 task :test do
 	sh "watchr tagen.watchr"
