@@ -152,20 +152,38 @@ module ClassMethods::Cmd
 	def rm *paths
 		paths, o = paths.extract_options
 		glob(*paths) { |pa|
+			if File.directory?(pa.p)
+				if o[:force]; next else raise Errno::EISDIR, "is a directory -- #{pa.p}" end
+			end
+			next if pa.directory?
 			File.delete(pa.p)
 		}
 	end
-	alias rm_f rm
+
+	def rm_f *paths
+		paths, o = paths.extract_options
+		o[:force] = true
+		rm *paths, o
+	end
 
 	# rm directory only. still remove if directory is not empty.
 	#
 	# @param [String] *paths support globbing
 	# @return [nil]
 	def rmdir *paths
+		paths, o = paths.extract_options
 		glob(*paths) { |pa|
-			raise Errno::ENOTDIR, "-- #{pa}" if not File.directory?(pa.p)
+			if not File.directory?(pa.p)
+				if o[:force]; next else raise Errno::ENOTDIR, "not a directory -- #{pa.p}" end
+			end
 			_rmdir(pa)
 		}
+	end
+
+	def rmdir_f *paths
+		paths, o = paths.extract_options
+		o[:force] = true
+		rmdir *paths, o
 	end
 
 	# rm recusive, rm both file and directory
@@ -178,6 +196,7 @@ module ClassMethods::Cmd
 		}
 	end
 	alias rm_rf rm_r
+
 
 	# rm_if(path) if condition is true
 	#

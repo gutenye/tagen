@@ -50,6 +50,12 @@ describe Pa do
 			end
 		end
 
+		describe "#rm_f" do
+			it "remove file force" do
+				lambda{Pa.rm_f("dir")}.should_not raise_error(Errno::EISDIR)
+			end
+		end
+
 		describe "#rmdir" do
 			it "remove directory" do
 				Pa.rmdir "dir"
@@ -57,6 +63,13 @@ describe Pa do
 				lambda{Pa.rmdir("a")}.should raise_error(Errno::ENOTDIR)
 			end
 		end
+
+		describe "#rmdir_f" do
+			it "remove directory force" do
+				lambda{Pa.rmdir_r("a")}.should_not raise_error(Errno::ENOTDIR) 
+			end
+		end
+
 
 		describe "#rm_r" do
 			it "remove both file and directory" do
