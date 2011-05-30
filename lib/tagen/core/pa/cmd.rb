@@ -149,12 +149,13 @@ module ClassMethods::Cmd
 	#
 	# @param [String] *paths support globbing
 	# @return [nil]
-	def rm(*paths) 
+	def rm *paths
+		paths, o = paths.extract_options
 		glob(*paths) { |pa|
-			next if not File.exists?(pa.p)
 			File.delete(pa.p)
 		}
 	end
+	alias rm_f rm
 
 	# rm directory only. still remove if directory is not empty.
 	#
@@ -171,14 +172,14 @@ module ClassMethods::Cmd
 	#
 	# @see rm
 	# @return [nil]
-	def rm_r(*paths)
+	def rm_r *paths
 		glob(*paths){ |pa|
-			next if not File.exists?(pa.p)
 			File.directory?(pa.p)  ? _rmdir(pa) : File.delete(pa.p)
 		}
 	end
+	alias rm_rf rm_r
 
-	# rm_r(path) if condition is true
+	# rm_if(path) if condition is true
 	#
 	# @example
 	#   Pa.rm_if '/tmp/**/*.rb' do |pa|

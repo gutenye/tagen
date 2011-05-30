@@ -67,6 +67,8 @@ describe Pa do
 			end
 		end
 
+
+
 		describe "#rm_if" do
 			it "remove if condition" do
 				Pa.rm_if "." do |pa|
