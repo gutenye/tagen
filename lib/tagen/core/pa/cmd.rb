@@ -59,7 +59,7 @@ module ClassMethods::Cmd
 	# make a directory
 	#
 	# @overload mkdir(*paths, o={})
-	#   @param [String] *paths
+	#   @param [String, Pa] *paths
 	#   @param [Hash] o option
 	#   @option o [Fixnum] :mode
 	#   @option o [Boolean] :force
@@ -71,7 +71,7 @@ module ClassMethods::Cmd
 	#
 	# @overload mkdir_f(*paths, o={})
 	#   @return [nil]
-	def mkdir_f(*args) paths, o = args.extract_options; o[:force]=true; _mkdir(*paths, o) end
+	def mkdir_f(*args) paths, o = args.extract_options; o[:force]=true; _mkdir(paths, o) end
 
 	def _mkdir(paths, o)
 		o[:mode] ||= 0744
