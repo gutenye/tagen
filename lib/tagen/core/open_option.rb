@@ -45,7 +45,9 @@ new(data={})
 data's key can be string or symbol, but internal store key is use symbol.
 
 	data = { "a" => 1 }
+
 same as
+
 	data = { :a => 1 }
 
 it is a deep convertion of Hash.
@@ -55,8 +57,15 @@ it is a deep convertion of Hash.
 	o #=> <#OpenOption a: <#OpenOption b:1> > 
 	# so you can access b by o.a.b
 
+inheritance
+-----------
 
-
+	class Foo < OpenOption
+		def initialize data={}
+			super
+			@data[:x] = data[:x].to_i
+		end
+	end
 
 =end
 class OpenOption

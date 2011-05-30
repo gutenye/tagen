@@ -65,7 +65,7 @@ An Introduction to PyFormat
 
 	require "tagen/core"
 	"I like %{fruit} and %{sport}".format('apple', 'football') 
-	"I like %{fruit} and %{sport}".format(apple: 'apple', footbal: 'football') 
+	"I like %{fruit} and %{sport}".format(fruit: 'apple', sport: 'football') 
 
 	"it costs %{howmatch:.2f} dollars".format(1.123) #=> "it costs 1.12 dollars"
 	
@@ -74,6 +74,7 @@ more see API doc
 
 Documentation
 -------------
+
 * {file:docs/CoreExtensions.md CoreExtensions} A list of core extensions.
 * {file:docs/ExtraExtensions.md ExtraExtensions} A list of extra extensions.
 * {file:docs/Architecture.md Architecture} Source code architecture.
@@ -84,10 +85,11 @@ Install
 
 Contributing
 -------------
+
 * report bugs/featues to issue tracker.
 * fork it and pull a request.
 * improve documentation.
-* any ideas are welcome.
+* feel free to post any ideas. 
 
 Contributors
 ------------
