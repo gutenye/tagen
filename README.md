@@ -93,7 +93,6 @@ Contributors
 ------------
 
 WORD-III
-this is me
 
 
 Copyright
