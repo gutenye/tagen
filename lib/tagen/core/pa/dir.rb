@@ -159,7 +159,7 @@ module ClassMethods::Dir
 	#
 	# @return [Array<String>]
 	def ls_r(*args)
-		each_r(*args).with_object([]){|pa,m| m<<pa.b}
+		each_r(*args).with_object([]){|pa,m| m<<pa.base}
 	end
 
 end
