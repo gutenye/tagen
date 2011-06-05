@@ -1,5 +1,4 @@
 Tagen, a core and extra extension to Ruby library.
-d
 ==========================================
 
 **Homepage**: [https://github.com/GutenLinux/tagen](https://github.com/GutenLinux/tagen) <br/>
