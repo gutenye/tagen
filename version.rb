@@ -1,8 +1,8 @@
 module Tagen 
 	module VERSION
-		MAJOR = 0
-		MINOR = 2
-		PATCH = 6
+		MAJOR = 1
+		MINOR = 0
+		PATCH = 0
 
 		IS = [MAJOR, MINOR, PATCH].join(".") 
 	end

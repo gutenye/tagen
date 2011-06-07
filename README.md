@@ -1,6 +1,4 @@
 Tagen, a core and extra extension to Ruby library.
-b
-a
 ==========================================
 
 **Homepage**: [https://github.com/GutenLinux/tagen](https://github.com/GutenLinux/tagen) <br/>
@@ -17,7 +15,7 @@ Ruby has an 'Open Class' feature, so we can extend any class by ourself.
 
 This library provides some usefull Ruby core extension.  some comes from ActiveSupport. ActiveSupport is mainly target to Rails, but tagen is target to generic ruby development, and tagen is smaller. It is a colletion of most common core,extra extensions.
 
-This library comes with a path lib named {Pa} and a string format lib named {PyFormat}.
+This library comes with a string format lib named {PyFormat}.
 
 Usage
 -----
@@ -43,24 +41,6 @@ Requirements
 
 	tested: ruby1.9 linux
 
-An Introduction to Pa 
----------------------
-
-	require "tagen/core"
-	pa = Pa('/home/foo')
-	pa.exists? #=> false
-	pa.dir #=> '/home'
-	pa.base #=> 'foo'
-	pa.join('a.ogg') #=> '/home/a.ogg'
-	pa.join(a.ogg).exists? #=> true.
-
-	Pa.exists?('/home/foo') # alternate way
-
-which rspec
-
-	Pa('/home/foo').should be_exists
-
-more see API doc
 
 An Introduction to PyFormat
 ---------------------------
