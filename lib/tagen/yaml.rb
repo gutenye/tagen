@@ -1,6 +1,8 @@
 require "yaml"
 
 =begin
+support #respond_to?(:path). e.g. Pa
+
   YAML.load(Pa('/tmp/a'))
 	YAML.dump("x", Pa('/tmp/a'))
 =end
