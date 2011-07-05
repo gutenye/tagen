@@ -11,7 +11,7 @@ an extension to ruby core and gem library. use some active_support/core_ext, but
 
 	s.author = "Guten"
 	s.email = "ywzhaifei@gmail.com"
-	s.homepage = "http://github.com/GutenLinux/tagen"
+	s.homepage = "http://github.com/GutenYe/tagen"
 	s.rubyforge_project = "xx"
 
 	s.files = `git ls-files`.split("\n")

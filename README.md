@@ -1,12 +1,12 @@
 Tagen, a core and extra extension to Ruby library.
 ==========================================
 
-**Homepage**: [https://github.com/GutenLinux/tagen](https://github.com/GutenLinux/tagen) <br/>
+**Homepage**: [https://github.com/GutenYe/tagen](https://github.com/GutenYe/tagen) <br/>
 **Author**: 	Guten <br/>
 **Contributors**: See Contributors section below  <br/>
 **License**: MIT License <br/>
 **Documentation**: [http://rubydoc.info/gems/tagen/frames](http://rubydoc.info/gems/tagen/frames) <br/>
-**Issue Tracker**: [https://github.com/GutenLinux/tagen/issues](https://github.com/GutenLinux/tagen/issues) <br/>
+**Issue Tracker**: [https://github.com/GutenYe/tagen/issues](https://github.com/GutenYe/tagen/issues) <br/>
 
 Overview
 --------
