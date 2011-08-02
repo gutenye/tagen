@@ -24,10 +24,15 @@ class Hash
   #  foo.grep(:a) #=> {a: 1}
   #
   # @return [Hash]
-  def grep(pat)
-    filter_keys = keys.grep(pat)
-    filter_keys.each.with_object({}) { |k,memo|
+  def grep(pat_s)
+    pats = Array.wrap(pat_s)
+
+    filtered_keys = pats.each.with_object([]) { |pat, memo|
+      memo.push *self.keys.grep(pat)
+    }
+    filtered_keys.each.with_object({}) { |k,memo|
       memo[k] = self[k]
     }
-  end
+end
+
 end # class Hash

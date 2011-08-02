@@ -96,4 +96,14 @@ class Array
 		ret
 	end
 
+  alias original_grep grep
+
+  # add grep(array)
+  def grep(pat_s, &blk)
+    pats = Array.wrap(pat_s)
+    pats.each.with_object([]) { |k, memo|
+      memo.push *self.original_grep(k)
+    }
+  end
+
 end # class Array
