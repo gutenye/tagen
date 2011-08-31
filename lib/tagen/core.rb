@@ -26,6 +26,7 @@ require "pd"
 	core/symbol
 	core/array
 	core/hash
+	core/extend_hash
 	core/re
 
 	core/time

@@ -98,7 +98,7 @@ class Array
 
   alias original_grep grep
 
-  # add grep(array)
+  # add grep(arr rb/tage)
   def grep(pat_s, &blk)
     pats = Array.wrap(pat_s)
     pats.each.with_object([]) { |k, memo|
