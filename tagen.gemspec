@@ -1,5 +1,5 @@
-$: << "."
-require "version"
+$: << File.expand_path("../lib", __FILE__)
+require "tagen/version"
 
 Gem::Specification.new do |s|
 	s.name = "tagen"
