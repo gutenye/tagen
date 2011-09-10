@@ -25,7 +25,7 @@ class Hash
   #
   # @return [Hash]
   def grep(pat_s)
-    pats = Array.wrap(pat_s)
+    pats = Array===pat_s ? pat_s : [pat_s]
 
     filtered_keys = pats.each.with_object([]) { |pat, memo|
       memo.push *self.keys.grep(pat)

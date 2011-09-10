@@ -100,7 +100,7 @@ class Array
 
   # add grep(arr rb/tage)
   def grep(pat_s, &blk)
-    pats = Array.wrap(pat_s)
+    pats = Array===pat_s ? pat_s : [pat_s]
     pats.each.with_object([]) { |k, memo|
       memo.push *self.original_grep(k)
     }

@@ -8,9 +8,10 @@ Tagen, a core and extra extension to Ruby library.
 | Documentation: | http://rubydoc.info/gems/tagen/frames   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
 
-
 Overview
 --------
+
+extensions defined in "active_support" will not appear in here, so you can use it with "active_support". 
 
 Ruby has an 'Open Class' feature, so we can extend any class by ourself.
 
@@ -20,20 +21,16 @@ This library comes with a string format lib named {PyFormat}.
 
 Usage
 -----
+
 use core extension
 
 	require "tagen/core"
 
-then we have String#blank? method, for a list of core extensions, see {file:docs/CoreExtensions.md docs/CoreExtensions}.
+then we have Time.time method, for a list of core extensions, see {file:docs/CoreExtensions.md docs/CoreExtensions}.
 
 use extra extension
 
-	require "pathname"
-	require "tagen/pathname"
-
-or
-
-	require "tagen/pathname" # auto require "pathname"
+	require "tagen/pathname" # it also require "pathname"
 
 this will add #path method to Pathname, see API doc.
 
@@ -58,6 +55,7 @@ Documentation
 
 Install
 ----------
+
 	gem install tagen
 
 Contributing
@@ -70,8 +68,7 @@ Contributing
 Contributors
 ------------
 
-* [contributors](https://github.com/<%=github.username%>/<%=project%>/contributors)
-
+* [contributors](https://github.com/GutenYe/tagen/contributors)
 
 Copyright
 ---------
