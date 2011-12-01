@@ -14,7 +14,7 @@ a core and extra extension to ruby library.
 	s.homepage = 'http://github.com/GutenYe/tagen'
 	s.rubyforge_project = 'xx'
 
-	s.files = `git ls-files`.split('\n')
+	s.files = `git ls-files`.split("\n")
 
   s.add_dependency 'activesupport', '~>3.1.0'
 end
