@@ -14,7 +14,8 @@ class Hash
 		keys.length==1 ? values[0] : values
 	end
 
-
+  # confict with awesome_print which extend Array#grep
+  #
   # grep pat at hash's keys, and return a new hash.
   # @see Array#grep
   #
@@ -24,15 +25,15 @@ class Hash
   #  foo.grep(:a) #=> {a: 1}
   #
   # @return [Hash]
-  def grep(pat_s)
-    pats = Array===pat_s ? pat_s : [pat_s]
-
-    filtered_keys = pats.each.with_object([]) { |pat, memo|
-      memo.push *self.keys.grep(pat)
-    }
-    filtered_keys.each.with_object({}) { |k,memo|
-      memo[k] = self[k]
-    }
-end
+  #def grep(pat_s)
+  #  pats = Array===pat_s ? pat_s : [pat_s]
+#
+#    filtered_keys = pats.each.with_object([]) { |pat, memo|
+#      memo.push *self.keys.grep(pat)
+#    }
+#    filtered_keys.each.with_object({}) { |k,memo|
+#      memo[k] = self[k]
+#    }
+#  end
 
 end # class Hash

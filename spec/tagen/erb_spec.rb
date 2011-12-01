@@ -21,10 +21,10 @@ describe ERB do
 			@erb.result(nil, "a" => 2).should == "2"
 		end
 
-		it "support OpenOption" do
-			o = OpenOption.new(a: 1)
-			@erb.result(nil, o).should == '1'
-		end
+		#it "support OpenOption" do
+			#o = OpenOption.new(a: 1)
+			#@erb.result(nil, o).should == '1'
+		#end
 
 	end
 end
