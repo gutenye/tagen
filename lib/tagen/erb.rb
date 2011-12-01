@@ -10,7 +10,7 @@ class ERB
 	#  erb.result(nil, a: 1) #=> "1"
 	#
 	# @param [Hash,OpenOption] locals
-	def result bind=nil, locals={}
+	def result(bind=nil, locals={})
 		bind ||= TOPLEVEL_BINDING
 		if locals.empty?
 			original_result bind
@@ -20,9 +20,7 @@ class ERB
 	end
 
 	private
-	def result_with_locals bind, locals
-		locals = locals.class.to_s=="OpenOption" ? locals._data : locals
-
+	def result_with_locals(bind, locals)
 		@locals = locals
 		evalstr = <<-EOF
 def run_erb
