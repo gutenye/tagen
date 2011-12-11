@@ -8,7 +8,7 @@ private
 	#   @param [Symbol, Hash] o support {Array#extract_extend_options}
 	#   @option o [Boolean] :verbose print cmd if verbose
 	#   @return [String] result
-	def sh cmd, *args
+	def sh(cmd, *args)
 		o = args.extract_extend_options!
 		puts cmd if o[:verbose]
 		`#{cmd}`
@@ -23,7 +23,7 @@ private
 	#   @param [Symbol, Hash] o support {Array#extract_extend_options}
 	#   @option o [Boolean] :verbose  print cmd if verbose
 	#   @return [Boolean,nil] true false nil
-	def system *cmds
+	def system(*cmds)
 		o = cmds.extract_extend_options!
 		cmd = cmds.join(" ")
 		puts cmd if o[:verbose]
@@ -38,10 +38,10 @@ private
 	#   instance_eval(&blk)
 	#   blk2method(&blk).call *args
 	#
-	def blk2method &blk
-		self.class.class_eval do
+	def blk2method(&blk)
+		self.class.class_eval {
 			define_method(:__blk2method, &blk)
-		end
+    }
 		method(:__blk2method)
 	end
 
@@ -50,12 +50,15 @@ private
 	#   RUBY_PLATFORM is "i686-linux" "i386-migw32"
 	#
 	# @return [Boolean]
-	def linux?; RUBY_PLATFORM=~/linux/ end  
+	def linux?() 
+    RUBY_PLATFORM =~ /linux/ 
+  end  
 
 	# detect PLatform information.
 	#
 	# @return [Boolean]
 	# @see {#linux?}
-	def win32?; RUBY_PLATFORM=~/mingw32|mswin/ end 
-
+	def win32?() 
+    RUBY_PLATFORM =~ /mingw32|mswin/ 
+  end 
 end # module Kernel
