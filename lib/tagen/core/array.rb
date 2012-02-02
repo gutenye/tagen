@@ -70,8 +70,6 @@ class Array
 		ret
 	end
 
-
-
 	# same as find, but delete the finded value 
 	def find! &blk
 		idx = self.find_index(&blk)
@@ -96,9 +94,10 @@ class Array
 		ret
 	end
 
-  alias original_grep grep
+  # confict with gem
+  #alias original_grep grep
 
-  # confict with awesome_print which extend grep, too
+  # confict with awesome_print.
   # add grep(arr rb/tage)
   #def grep(pat_s, &blk)
     #pats = Array===pat_s ? pat_s : [pat_s]
