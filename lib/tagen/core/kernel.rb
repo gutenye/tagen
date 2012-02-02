@@ -50,7 +50,7 @@ private
 	#   RUBY_PLATFORM is "i686-linux" "i386-migw32"
 	#
 	# @return [Boolean]
-	def linux?() 
+	def linux?
     RUBY_PLATFORM =~ /linux/ 
   end  
 
@@ -58,7 +58,7 @@ private
 	#
 	# @return [Boolean]
 	# @see {#linux?}
-	def win32?() 
+	def win32?
     RUBY_PLATFORM =~ /mingw32|mswin/ 
   end 
 end # module Kernel
