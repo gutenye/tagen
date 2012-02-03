@@ -17,4 +17,5 @@ a core and extra extension to ruby library.
 	s.files = `git ls-files`.split("\n")
 
   s.add_dependency "activesupport", "~>3.1.0"
+  s.add_dependency "i18n"
 end
