@@ -36,41 +36,6 @@ class Date # ::Deta
   end
 end
 
-class Time # ::Deta
-  class Deta
-    class <<self
-      # @param [Time] from
-      # @param [Time] to
-      # @return [Time::Deta] deta
-      def deta(from, to)
-        seconds = (from-to).to_i
-        self.new(seconds)
-      end
-    end
-
-    attr_reader :hours, :minutes, :seconds
-
-    def initialize(seconds)
-      deta = seconds
-      deta, @seconds = deta.divmod(60)
-      @hours, @minutes = deta.divmod(60)
-    end
-
-    def display(include_times=true)
-      ret = ""
-      ret << "#{hours} hours " unless hours == 0
-      ret << "#{minutes} minutes " unless minutes == 0
-      ret << "#{seconds} seconds" unless (!include_times && seconds==0)
-
-      ret
-    end
-
-    # to [hours minutes seconds]
-    def to_a
-      [ hours, minutes, seconds ]
-    end
-  end
-end
 
 class DateTime # ::Deta
   class Deta
@@ -84,26 +49,25 @@ class DateTime # ::Deta
       end
     end
 
-    attr_reader :date, :time, :years, :months, :days, :hours, :minutes, :seconds
+    attr_reader :years, :months, :days, :hours, :minutes, :seconds
 
     def initialize(seconds)
-      days, seconds = seconds.divmod(86400)
-
-      @date = Date::Deta.new(days)
-      @time = Time::Deta.new(seconds)
-
-      @years = @date.years
-      @months = @date.months
-      @days = @date.days
-      @hours = @time.hours
-      @minutes = @time.minutes
-      @seconds = @time.seconds
+      deta = seconds
+      deta, @seconds = deta.divmod(60)
+      deta, @minutes = deta.divmod(60)
+      deta, @hours = deta.divmod(24)
+      deta, @days = deta.divmod(30)
+      @years, @months = deta.divmod(12)
     end
 
-    def display
+    def display(include_seconds=true)
       ret = ""
-      ret << "#{@date.display(false)} " unless @date.days == 0
-      ret << @time.display
+      ret << "#{years} years " unless years == 0
+      ret << "#{months} months " unless months == 0
+      ret << "#{days} days " unless days==0
+      ret << "#{hours} hours " unless hours == 0
+      ret << "#{minutes} minutes " unless minutes == 0
+      ret << "#{seconds} seconds" if include_seconds
 
       ret
     end
@@ -114,5 +78,3 @@ class DateTime # ::Deta
     end
   end
 end
-
-
