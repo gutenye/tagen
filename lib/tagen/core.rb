@@ -8,7 +8,6 @@
 	core/enumerator
 	core/numeric
 	core/string
-	core/symbol
 	core/array
 	core/hash
 	core/extend_hash
@@ -20,3 +19,6 @@
 
 	core/open_option
 ).each {|n| require_relative n }
+
+# from active_support
+require "active_support/core_ext"

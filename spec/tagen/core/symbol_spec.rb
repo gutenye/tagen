@@ -1,5 +1,6 @@
 require "spec_helper"
 
+=begin
 describe Symbol do
 	describe "#method_missing" do
 		it "#sub. returns a symbol" do
@@ -9,6 +10,6 @@ describe Symbol do
 		it "#chars. return a enumerator" do
 			:_foo.chars.should be_an_instance_of Enumerator
 		end
-		
 	end
 end
+=end
