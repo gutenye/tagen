@@ -2,7 +2,7 @@ sudo = Process.pid==0 ? "" : "sudo"
 
 desc "build a gem file"
 task :release do
-	run "gem build rag.gemspec"
+	run "gem build tagen.gemspec"
 	run "gem push *.gem"
   run "#{sudo} gem install *.gem"
 	run "rm *.gem"
@@ -10,14 +10,14 @@ end
 
 desc "install a gem file"
 task :install do
-	run "gem build rag.gemspec"
+	run "gem build tagen.gemspec"
 	run "#{sudo} gem install *.gem"
 	run "rm *.gem"
 end
 
 desc "autotest with watchr"
 task :test do
-	run "watchr rag.watchr"
+	run "watchr tagen.watchr"
 end
 
 desc "testing the libraray"
