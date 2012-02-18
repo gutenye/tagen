@@ -48,6 +48,14 @@ class BasicSocket
       end
     end
   end
+
+  def send_obj(obj)
+    send2 Marshal.dump(obj)
+  end
+
+  def recv_obj
+    Marshal.load recv2
+  end
 end
 
 class Socket
@@ -70,5 +78,3 @@ class Socket
     def unaddr(str) str.unpack("CCCC").join(".") end
   end
 end
-
-
