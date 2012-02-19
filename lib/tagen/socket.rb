@@ -18,14 +18,14 @@ class BasicSocket
     send(message, 0)
   end
 
-  # Receive a message from the socket. Returns +nil+ when there are no
+  # Receive a message from the socket. Returns +""+ when there are no
   # more messages (the writer has closed its end of the socket).
   # Yields each time more data is received, even if partial. This can
   # be used for a progress indicator.
   def recv2
     if (data = recv(LEN_LEN))
       if data.empty?
-        nil
+        ""
       else
         len = data.unpack("N")[0]
         if len > MAXLEN
