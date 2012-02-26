@@ -1,3 +1,5 @@
+require "pd"
+
 # from core
 %w(
 	core/kernel

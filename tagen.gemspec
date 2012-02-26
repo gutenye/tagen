@@ -1,5 +1,4 @@
-$: << File.expand_path("../lib", __FILE__)
-require "tagen/version"
+Kernel.load File.expand_path("../lib/tagen/version.rb", __FILE__)
 
 Gem::Specification.new do |s|
 	s.name = "tagen"
@@ -18,4 +17,5 @@ a core and extra extension to ruby library.
 
   s.add_dependency "activesupport", "~>3.1.0"
   s.add_dependency "i18n"
+  s.add_dependency "pd"
 end
