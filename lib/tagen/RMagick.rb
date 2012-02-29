@@ -1,23 +1,12 @@
-=begin
-* **gem**: rmagic
-=end
+require "RMagick"
+
 module Magick
-
-=begin
-Method list
------------
-* \#width _alias from columns_
-* \#height  _alias from rows_
-=end
-class Image
-
-	alias width columns
-	alias height rows
-
-	# get width height
-	#
-	# @return [Array] [width, height]
-	def wh; [columns, rows] end
-
-end
+  class Image
+    # get columns, rows
+    #
+    # @return [Array] [width, height]
+    def cr 
+      [columns, rows] 
+    end
+  end
 end
