@@ -9,8 +9,12 @@ describe Time do
   end
 end
 
-Deta = Time::Deta
-describe Deta do
+describe Time::Deta do
+  before :all do
+    Object.send :remove_const, :Deta if Object.const_defined?(:Deta)
+    Deta = Time::Deta
+  end
+
   describe "#initialize" do
     it "works for 36561906 seconds" do
       d = Deta.new(36561906)

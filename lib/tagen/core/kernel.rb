@@ -21,12 +21,13 @@ private
 	# @overload system(cmd, o={})
 	#   @param [String] cmd
 	#   @param [Symbol, Hash] o support {Array#extract_extend_options}
-	#   @option o [Boolean] :verbose  print cmd if verbose
+	#   @option o [Boolean] :show_cmd  print cmd
 	#   @return [Boolean,nil] true false nil
 	def system(*cmds)
 		o = cmds.extract_extend_options!
 		cmd = cmds.join(" ")
-		puts cmd if o[:verbose]
+    puts "WARNNING: system(cmd, :verbose => true) is departed, and will be removed."
+		puts cmd if (o[:show_cmd] or o[:verbose])
 		original_system cmd
 	end
 

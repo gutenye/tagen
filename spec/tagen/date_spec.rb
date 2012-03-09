@@ -3,6 +3,7 @@ require "tagen/date"
 
 describe Date::Deta do
   before :all do
+    Object.send :remove_const, :Deta if Object.const_defined?(:Deta)
     Deta = Date::Deta
   end
 
@@ -90,6 +91,7 @@ end
 
 describe DateTime::Deta do
   before :all do
+    Object.send :remove_const, :Deta if Object.const_defined?(:Deta)
     Deta = DateTime::Deta
   end
 
