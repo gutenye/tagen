@@ -22,6 +22,14 @@ This library comes with a string format lib named {PyFormat}.
 Usage
 -----
 
+	require "tagen/core/array/extract_options"
+
+	# @overload foo(*args, options={})
+	def foo(*args)
+		args, options = args.extract_options
+	end
+
+
 use core extension
 
 	require "tagen/core"

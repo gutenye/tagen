@@ -16,7 +16,7 @@ class Array
 	#
 	# @param [Symbol, Hash] *defaults
 	# @return [Array<Object>, Hash] \[args, options]
-	def extract_extend_options *defaults
+	def extract_extend_options(*defaults)
 		args, o = _parse_o(defaults)
 		args1, o1 = _parse_o(self)
 		[args+args1, o.merge(o1)]
@@ -36,14 +36,14 @@ class Array
 	#   
 	# @param [Symbol, Hash] *defaults
 	# @return [Hash] options
-	def extract_extend_options! *defaults
+	def extract_extend_options!(*defaults)
 		args, o = extract_extend_options *defaults
 		self.replace args
 		o
 	end
 
 	# @param [Array,Hash] args
-	def _parse_o args
+	def _parse_o(args)
 		args = args.dup
 		# name:1
 		o1 = Hash === args.last ? args.pop : {}
@@ -77,9 +77,9 @@ class Array
 	#
 	# @param [Hash] default default options
 	# @return [Hash]
-	def extract_options! default={}
-		if self.last.is_a?(Hash) && self.last.instance_of?(Hash)
-			self.pop.merge default
+	def extract_options!(default={})
+		if last.is_a?(Hash) && last.instance_of?(Hash)
+			pop.merge default
 		else
 			default
 		end
@@ -93,8 +93,8 @@ class Array
 	#   end
 	#
 	# @return [Array<Array,Hash>] 
-	def extract_options default={}
-		if self.last.is_a?(Hash) && self.last.instance_of?(Hash)
+	def extract_options(default={})
+		if last.is_a?(Hash) && last.instance_of?(Hash)
 			[self[0...-1], self[-1].merge(default)]
 		else
 			[self, default]

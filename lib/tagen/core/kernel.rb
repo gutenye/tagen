@@ -26,7 +26,7 @@ private
 	def system(*cmds)
 		o = cmds.extract_extend_options!
 		cmd = cmds.join(" ")
-    puts "WARNNING: system(cmd, :verbose => true) is departed, and will be removed."
+    puts "WARNNING: system(cmd, :verbose => true) is departed, use :show_cmd => true instead."
 		puts cmd if (o[:show_cmd] or o[:verbose])
 		original_system cmd
 	end
