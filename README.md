@@ -1,4 +1,4 @@
-# Tagen [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen) [![Dependency Status](https://gemnasium.com/GutenYe/tagen.png)](https://gemnasium.com/GutenYe/tagen)
+# Tagen, a core and extra extension to Ruby library. [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
 
 | Homepage:      |  https://github.com/GutenYe/tagen       |
 |----------------|-----------------------------------------|
@@ -7,7 +7,6 @@
 | Documentation: | http://rubydoc.info/gems/tagen/frames   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
 
-Tagen is a core and extra extension to Ruby library.
 
 extensions defined in "active_support" will not appear in here, so you can use it with "active_support". 
 
