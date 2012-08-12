@@ -1,5 +1,4 @@
-Tagen, a core and extra extension to Ruby library.
-==========================================
+# Tagen [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
 
 | Homepage:      |  https://github.com/GutenYe/tagen       |
 |----------------|-----------------------------------------|
@@ -10,6 +9,8 @@ Tagen, a core and extra extension to Ruby library.
 
 Overview
 --------
+
+Tagen is a core and extra extension to Ruby library.
 
 extensions defined in "active_support" will not appear in here, so you can use it with "active_support". 
 
