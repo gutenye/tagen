@@ -16,8 +16,6 @@ This library provides some usefull Ruby core extension.  some comes from ActiveS
 
 This library comes with a string format lib named {PyFormat}.
 
-Note: not support ruby 1.8
-
 Usage
 -----
 
@@ -76,6 +74,11 @@ Contributors
 ------------
 
 * [contributors](https://github.com/GutenYe/tagen/contributors)
+
+Requirements
+------------
+
+	* ruby 1.9.3
 
 Copyright
 ---------
