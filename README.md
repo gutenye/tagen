@@ -1,7 +1,7 @@
 # Tagen, a core and extra extension to Ruby library. [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
 
-| Homepage:      |  https://github.com/GutenYe/tagen       |
 |----------------|-----------------------------------------|
+| Homepage:      | https://github.com/GutenYe/tagen        |
 | Author:	       | Guten                                   |
 | License:       | MIT LICENSE                             |
 | Documentation: | http://rubydoc.info/gems/tagen/frames   |
