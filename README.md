@@ -1,13 +1,11 @@
 # Tagen, a core and extra extension to Ruby library. [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
 
-
 | Homepage:      | https://github.com/GutenYe/tagen        |
 |----------------|-----------------------------------------|
-| Author:	 | Guten                                   |
+| Author:	       | Guten                                   |
 | License:       | MIT LICENSE                             |
 | Documentation: | http://rubydoc.info/gems/tagen/frames   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
-
 
 extensions defined in "active_support" will not appear in here, so you can use it with "active_support". 
 
@@ -79,7 +77,7 @@ Contributors
 Requirements
 ------------
 
-	* ruby 1.9.3
+* ruby 1.9.3
 
 Copyright
 ---------
