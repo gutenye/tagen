@@ -6,29 +6,40 @@ private
 	# @overload sh(cmd, o={})
 	#   @param [String] cmd a shell command
 	#   @param [Symbol, Hash] o support {Array#extract_extend_options}
-	#   @option o [Boolean] :verbose print cmd if verbose
+	#   @option o [Boolean] :show_cmd print cmd if true
 	#   @return [String] result
+  #
+  # @see Kernel#`
 	def sh(cmd, *args)
 		o = args.extract_extend_options!
-		puts cmd if o[:verbose]
+		puts cmd if o[:show_cmd]
 		`#{cmd}`
 	end
 
-	alias original_system system
+  if !defined?(tagen_original_system) then
+    alias tagen_original_system system
+  end
 
 	# like Builtin system, but add option support
 	#
-	# @overload system(cmd, o={})
-	#   @param [String] cmd
-	#   @param [Symbol, Hash] o support {Array#extract_extend_options}
-	#   @option o [Boolean] :show_cmd  print cmd
-	#   @return [Boolean,nil] true false nil
-	def system(*cmds)
-		o = cmds.extract_extend_options!
-		cmd = cmds.join(" ")
-    puts "WARNNING: system(cmd, :verbose => true) is departed, use :show_cmd => true instead."
-		puts cmd if (o[:show_cmd] or o[:verbose])
-		original_system cmd
+	# @overload system([env,] command...[, options])
+	#   @option options [Boolean] :show_cmd print cmd if true
+  #
+  # @see Kernel#system
+	def system(*args)
+		o = args.extract_extend_options!
+    if Hash === args[0] then
+      env, *cmds = args
+    else
+      cmds = args
+    end
+
+    if o[:show_cmd]
+      puts cmds.join(" ") 
+      o.delete(:show_cmd)
+    end
+
+		tagen_original_system *args, o
 	end
 
 	# convert block to method.
