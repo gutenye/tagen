@@ -21,6 +21,3 @@ require "pd"
 
 	core/open_option
 ).each {|n| require_relative n }
-
-# from active_support
-require "active_support/core_ext"

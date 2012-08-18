@@ -1,5 +1,6 @@
+require "active_support/core_ext/array/extract_options"
+
 class Array
- 
 	# extend options are symbols and hash, symbol as a boolean option.
 	#
 	#   :a #=> { a: true }
@@ -23,7 +24,6 @@ class Array
 	end
 
 	# modify args IN PLACE.
-	# @ see extract_extend_options
 	#
 	# @example
 	#   def foo(*args)
@@ -36,6 +36,7 @@ class Array
 	#   
 	# @param [Symbol, Hash] *defaults
 	# @return [Hash] options
+	# @see extract_extend_options
 	def extract_extend_options!(*defaults)
 		args, o = extract_extend_options *defaults
 		self.replace args
@@ -63,42 +64,51 @@ class Array
 	end
 	private :_parse_o
 
-	# Extracts options from a set of arguments. Removes and returns the last
-	# element in the array if it's a hash, otherwise returns a blank hash.
-	# you can also pass a default option.
-	#
+  # Extracts options from a set of arguments. 
+  #
 	# @example
+  #
 	#   def options(*args)
-	#     o = args.extract_options!(:a=>1)
+	#     dirs, o = args.extract_options
 	#   end
-	#
-	#   options(1, 2)           # => {:a=>1}
-	#   options(1, 2, :a => :b) # => {:a=>:b}
-	#
-	# @param [Hash] default default options
-	# @return [Hash]
-	def extract_options!(default={})
-		if last.is_a?(Hash) && last.instance_of?(Hash)
-			pop.merge default
-		else
-			default
-		end
-	end
-
-	# extract options
-	# @see extract_options!
-	# @example
-	#   def mkdir(*args)
-	#     paths, o = args.extract_options
+  # 
+  #   options("foo", "bar", a: 1) #-> ["foo", "bar"], {a: 1}
+  #
+	#   def options(*args)
+	#     (dir,) o = args.extract_options
 	#   end
-	#
+  #
+  #   options("foo", a: 1)  #-> "foo", {a: 1}
+  #
 	# @return [Array<Array,Hash>] 
+	# @see extract_options!
 	def extract_options(default={})
-		if last.is_a?(Hash) && last.instance_of?(Hash)
-			[self[0...-1], self[-1].merge(default)]
+    if last.is_a?(Hash) && last.extractable_options?
+			[self[0...-1], defalut.merge(self[-1])]
 		else
 			[self, default]
 		end
 	end
 
+  # Extracts options from a set of arguments. Removes and returns the last
+  # element in the array if it's a hash, otherwise returns a blank hash.
+  #
+  # @example
+  #
+  #   def options(*args)
+  #     args.extract_options!(a: 1)
+  #   end
+  #
+  #   options(1, 2)          #-> {:a=>1}
+  #   options(1, 2, a: 2)    #-> {:a=>2}
+	#
+	# @param [Hash] default default options
+	# @return [Hash]
+	def extract_options!(default={})
+    if last.is_a?(Hash) && last.extractable_options?
+      default.merge pop
+    else
+      default
+    end
+	end
 end

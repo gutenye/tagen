@@ -7,6 +7,7 @@
 | License:       | MIT LICENSE                             |
 | Documentation: | http://rubydoc.info/gems/tagen/frames   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
+| Platforms:     | Ruby 1.9.3, JRuby, Rubinius             |
 
 extensions defined in "active_support" will not appear in here, so you can use it with "active_support". 
 
@@ -50,7 +51,6 @@ An Introduction to PyFormat
 	
 more see API doc
 
-
 Documentation
 -------------
 
@@ -75,17 +75,18 @@ Contributors
 
 * [contributors](https://github.com/GutenYe/tagen/contributors)
 
-Requirements
-------------
+Resources
+---------
 
-* ruby 1.9.3
+* [activesupport](https://github.com/rails/rails/tree/master/activesupport): Utility classes and Ruby extensions from Rails
+* [facets](https://github.com/rubyworks/facets): is the premiere collection of general purpose method extensions and standard additions for the Ruby programming language.
 
 Copyright
 ---------
 
 (the MIT License)
 
-Copyright (c) 2011 Guten
+Copyright (c) 2011-2012 Guten
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the 'Software'), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

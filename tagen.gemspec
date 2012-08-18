@@ -3,9 +3,9 @@ Kernel.load File.expand_path("../lib/tagen/version.rb", __FILE__)
 Gem::Specification.new do |s|
 	s.name = "tagen"
 	s.version = Tagen::VERSION
-	s.summary = "a core and extra extension to ruby library"
+	s.summary = "a lightweight core and extra extensions for Ruby."
 	s.description = <<-EOF
-a core and extra extension to ruby library. 
+a lightweight core and extra extensions for Ruby. 
 	EOF
 
 	s.author = "Guten"
@@ -15,7 +15,6 @@ a core and extra extension to ruby library.
 
 	s.files = `git ls-files`.split("\n")
 
-  s.add_dependency "activesupport", "~>3.1.0"
-  s.add_dependency "i18n"
   s.add_dependency "pd"
+  s.add_dependency "activesupport", "~>3.2.0"
 end

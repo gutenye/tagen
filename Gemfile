@@ -1,8 +1,7 @@
 source :rubygems
 
-gem "activesupport", "~>3.1.0"
-gem "i18n"
 gem "pd"
+gem "activesupport", "~>3.2.0"
 
 group :development, :test do
 	gem "rspec"
