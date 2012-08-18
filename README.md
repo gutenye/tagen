@@ -1,4 +1,4 @@
-# Tagen, a core and extra extension to Ruby library. [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
+# Tagen, a core and extra extension for Ruby [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
 
 |                |                                         |
 |----------------|-----------------------------------------|

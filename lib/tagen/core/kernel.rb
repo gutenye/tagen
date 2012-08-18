@@ -1,4 +1,5 @@
-module Kernel 
+# included by Object
+module TagenKernel 
 private
 
 	# like `cmd`, but with option support.
@@ -15,10 +16,6 @@ private
 		puts cmd if o[:show_cmd]
 		`#{cmd}`
 	end
-
-  if !defined?(tagen_original_system) then
-    alias tagen_original_system system
-  end
 
 	# like Builtin system, but add option support
 	#
@@ -39,7 +36,7 @@ private
       o.delete(:show_cmd)
     end
 
-		tagen_original_system *args, o
+    super *args, o
 	end
 
 	# convert block to method.
@@ -73,4 +70,6 @@ private
 	def win32?
     RUBY_PLATFORM =~ /mingw32|mswin/ 
   end 
-end # module Kernel
+end
+
+Object.send :include, TagenKernel

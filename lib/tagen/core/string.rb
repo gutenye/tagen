@@ -1,4 +1,4 @@
-class String 
+class String
 	@@didits = "0123456789" 
 	@@hexdigits = "01234567890ABCDEF" 
 	@@octdigits = "01234567" 
