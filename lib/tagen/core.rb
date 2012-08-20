@@ -1,23 +1,25 @@
 require "pd"
 
-# from core
-%w(
-	core/kernel
-	core/object
-	core/module
+require "tagen/core/object"
+require "tagen/core/kernel"
+require "tagen/core/module"
+require "tagen/core/class"
 
-	core/enumerable
-	core/enumerator
-	core/numeric
-	core/string
-	core/array
-	core/hash
-	core/extend_hash
-	core/re
+require "tagen/core/numeric"
+require "tagen/core/integer"
+require "tagen/core/string"
+require "tagen/core/enumerable"
+#require "tagen/core/enumerator"
+require "tagen/core/array"
+require "tagen/core/hash"
+#require "tagen/core/extend_hash"
+#require "tagen/core/re"
 
-	core/time
-	core/io
-	core/process
+require "tagen/core/time"
+#require "tagen/core/io"
+#require "tagen/core/process"
 
-	core/open_option
-).each {|n| require_relative n }
+#require "tagen/core/open_option"
+
+require "active_support/concern"
+require "active_support/deprecation"

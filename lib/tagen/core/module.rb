@@ -1,11 +1,9 @@
-class Module 
-	# return hash instead of names
-	# @see constants
-	# 
-	# @return [Hash] {key: value}
-	def consts
-		constants.each.with_object ({}) do |k,m|
-			m[k] = const_get(k)
-		end
-	end
-end #class Module
+require 'active_support/core_ext/module/aliasing'
+require 'active_support/core_ext/module/introspection'
+require 'active_support/core_ext/module/anonymous'
+require 'active_support/core_ext/module/reachable'
+require 'active_support/core_ext/module/attribute_accessors'
+require 'active_support/core_ext/module/attr_internal'
+require 'active_support/core_ext/module/delegation'
+require 'active_support/core_ext/module/remove_method'
+require 'active_support/core_ext/module/qualified_const'

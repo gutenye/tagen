@@ -48,3 +48,5 @@ class Time
     end
   end
 end
+
+require "active_support/time"

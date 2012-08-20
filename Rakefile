@@ -1,4 +1,5 @@
-sudo = Process.pid==0 ? "" : "sudo"
+require "rbconfig"
+sudo = Process.pid != 0 && Rbconfig::CONFIG["host_os"] !~ /mswin|mingw/ ? "sudo" : ""
 
 desc "build a gem file"
 task :release do

@@ -1,21 +1,6 @@
-class Object
-	# default \#dup is shallow. 
-	#
-	# @example
-	# 	# dup
-	# 	a={a: { b: 1 }}
-	# 	a2 = a.dup
-	# 	a2[:a][:b] = 2
-	# 	p a  #=> {a: {b: 2} }
-	#
-	# 	# use deepdup
-	# 	a= {a: {b: 1 }}
-	# 	a2 = a.deepdup
-	# 	a2[:a][:b] = 2
-	# 	p a #=> {a: {b: 1}}
-	#
-	# @return [Object]
-	def deepdup
-		Marshal.load(Marshal.dump(self))
-	end
-end
+require "active_support/core_ext/object/blank"
+require "active_support/core_ext/object/inclusion"
+require "active_support/core_ext/object/try"
+#require "active_support/core_ext/object/deep_dup"
+require "active_support/core_ext/object/instance_variables"
+require "active_support/core_ext/object/duplicable"

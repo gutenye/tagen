@@ -7,7 +7,7 @@
 | License:       | MIT LICENSE                             |
 | Documentation: | http://rubydoc.info/gems/tagen/frames   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
-| Platforms:     | Ruby 1.9.3, JRuby, Rubinius             |
+| Versions:      | Ruby 1.9.3, JRuby, Rubinius             |
 
 extensions defined in "active_support" will not appear in here, so you can use it with "active_support". 
 

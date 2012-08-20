@@ -7,8 +7,8 @@ Additional method list
 from ActiveSupport
 =end
 
-require "array/append"
-require "array/delete_values"
-require "array/extract_options"
+require "tagen/core/array/append"
+require "tagen/core/array/delete_values"
+require "tagen/core/array/extract_options"
 require "active_support/core_ext/array/wrap"
 require "active_support/core_ext/array/uniq_by"
