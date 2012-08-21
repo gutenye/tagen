@@ -1,0 +1,4 @@
+*tagen 2.0.0*
+
+	* remove 'PyFormat'
+	* a lot of methods come from 'active_support'

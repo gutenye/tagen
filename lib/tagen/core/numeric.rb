@@ -9,4 +9,4 @@ class Numeric
 	end
 end
 
-require 'active_support/core_ext/numeric/bytes'
+require "active_support/core_ext/numeric/bytes"

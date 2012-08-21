@@ -2,20 +2,18 @@ require "spec_helper"
 
 describe Enumerator do
 	describe "#with_iobject" do
-
-		it "support mem_obj" do
-			ret = [1,2].each.with_iobject [] do |v,i, m|
-				m << v
-			end
-			ret.should == [1,2]
+		it "has memo" do
+			ret = [1, 2].each.with_iobject([]) { |v, i, m|
+				m << v + i
+      }
+			expect(ret).to eq([1, 3])
 		end
 
-		it "support offset" do
-			ret = [1,2].each.with_iobject 2, [] do |v,i, m|
-				m << i
-			end
-			ret.should == [2,3]
+		it "has offset and memo" do
+			ret = [1, 2].each.with_iobject(1, []) { |v, i, m|
+				m << v + i
+      }
+			expect(ret).to eq([2, 4])
 		end
-
 	end
 end

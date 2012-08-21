@@ -4,7 +4,9 @@ class String
 	# @example
 	#   'a'.ascii #=> 97
   #
-	def ascii() bytes.first end
+	def ascii() 
+    bytes.first 
+  end
 end
 
 require "active_support/core_ext/string"

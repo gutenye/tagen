@@ -5,12 +5,14 @@
 #   MyError = Class.new(Exception)
 #   MyError.exit_code = 1
 #
-#   class MyError2 < Exception; @@eixt_code=1 end
+#   class MyError2 < Exception 
+#     @@eixt_code=1 
+#   end
 #
 #   begin
 #     ...
 #   rescue MyError => e
-#     p e.exit_code #=> 1
+#     p e.exit_code    -> 1
 #  end
 class Exception
   class << self
