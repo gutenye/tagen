@@ -1,13 +1,6 @@
-=begin
-Additional Method list
-----------------------
-
-* `#fd` _alias from fileno_
-
-=end
 class IO 
   class << self
-    # a convient function to append text.
+    # A convient method to append a file.
     #
     # @overload append(name, string, [offset], [open_args])
     #
@@ -24,7 +17,5 @@ class IO
     end
   end
 
-
   alias fd fileno
-
-end # class IO
+end

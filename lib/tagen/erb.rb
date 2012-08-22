@@ -2,12 +2,14 @@ require "erb"
 
 class ERB
 	# add locals support
+  #
+	# @param [Hash,OpenOption] locals
 	#
 	# @example
+  #
 	#  erb = Erb.new("<%=a%>")
 	#  erb.result(nil, a: 1) #=> "1"
 	#
-	# @param [Hash,OpenOption] locals
 	def result_with_tagen(bind=nil, locals={})
 		bind ||= TOPLEVEL_BINDING
 		if locals.empty?

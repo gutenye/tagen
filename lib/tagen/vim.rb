@@ -1,11 +1,11 @@
-=begin
-used by VimL(Vim Script)
-=end
+# used by VimL(Vim Script)
+#
 
-# in vim
-# 	print "guten" => guten\n
-#   print "guten\ntag" => guten\n
-# each_str.split("\n")
+# @example
+#
+# 	vimprint "guten"          -> guten\n
+#   vimprint "guten\ntag"     -> guten\n
+#
 def vimprint(*args)
 	args.each do |arg|
 		arg = arg.to_s

@@ -1,12 +1,3 @@
-=begin
-Additional method list
-----------------------
-
-* `#append` _alias from push_
-
-from ActiveSupport
-=end
-
 require "tagen/core/array/append"
 require "tagen/core/array/delete_values"
 require "tagen/core/array/extract_options"

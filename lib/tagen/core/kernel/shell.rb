@@ -1,12 +1,7 @@
-=begin
-included by Object
-
-* $sudo
-=end
 module Kernel
 private
 
-	# `cmd` with :show_cmd option.
+	# run `cmd` with :show_cmd option.
 	#
 	# @overload sh(cmd, o={})
 	#   @param [String] cmd a shell command

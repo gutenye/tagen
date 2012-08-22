@@ -1,6 +1,6 @@
 require "xmpp4r"
 
-# support UTF-8 
+# bugfix. support UTF-8 
 # patch from https://github.com/ln/xmpp4r/issues/3#issuecomment-1739952
 
 if RUBY_VERSION < "1.9"

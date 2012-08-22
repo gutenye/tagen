@@ -1,5 +1,11 @@
 class Array
   # Deletes items from self.
+  #
+  # @example
+  #
+  #  a = [1, 2, 3]
+  #  a.delete_values(1, 3)     -> [1, 3]
+  #  a                         -> [2]
 	#
 	# @return [Array]
   # @see Array#delete
@@ -13,9 +19,9 @@ class Array
   #
   # @example
   #
-  #  a = [1, 2, 3, 4]
+  #  a = [1, 2, 3]
   #  a.delete_values_at(0, 2)  -> [1, 3]
-  #  a                         -> [2, 4]
+  #  a                         -> [2]
   #
 	# @return [Array] 
   # @see Array#delete_at

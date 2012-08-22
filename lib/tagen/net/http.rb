@@ -5,12 +5,14 @@ module Net
     class << self
 
       # support params
+      #
+      # @param [String Hash] params Hash by URI.encoding_www_form
       # 
       # @example
+      #
       # 	get1("http://www.google.com/search", "&q=foo")
       # 	get1("http://www.google.com/search", {"q" => "foo"} )
       #
-      # @param [String Hash] params Hash by URI.encoding_www_form
       def get1 path, params, initheader={}, &blk
         path = path + "?" + (String===params ? params : URI.encode_www_form(params))
         req = Get.new(path, initheader)

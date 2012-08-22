@@ -1,4 +1,4 @@
-# +exit code+ for shell programming. 
+# +exit_code+ for shell programming. 
 #
 # @example
 #

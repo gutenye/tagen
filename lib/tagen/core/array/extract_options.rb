@@ -30,8 +30,8 @@ class Array
   #     args.extract_options!(a: 1)
   #   end
   #
-  #   options(1, 2)          #-> {:a=>1}
-  #   options(1, 2, a: 2)    #-> {:a=>2}
+  #   options(1, 2)            -> {a: 1}
+  #   options(1, 2, a: 2)      -> {a: 2}
 	#
 	# @param [Hash] default default options
 	# @return [Hash]
