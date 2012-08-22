@@ -15,7 +15,7 @@ class Array
 	# @see extract_options!
 	def extract_options(default={})
     if last.is_a?(Hash) && last.extractable_options?
-			[self[0...-1], defalut.merge(self[-1])]
+			[self[0...-1], default.merge(self[-1])]
 		else
 			[self, default]
 		end

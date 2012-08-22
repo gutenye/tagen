@@ -6,7 +6,7 @@ used by VimL(Vim Script)
 # 	print "guten" => guten\n
 #   print "guten\ntag" => guten\n
 # each_str.split("\n")
-def vimprint *args
+def vimprint(*args)
 	args.each do |arg|
 		arg = arg.to_s
 		arg.split("\n").each {|v| print v}

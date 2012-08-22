@@ -5,4 +5,3 @@ class MatchData
 		Hash[names.map(&:to_sym).zip(captures)]
 	end
 end
-

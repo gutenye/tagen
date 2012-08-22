@@ -1,4 +1,4 @@
 *tagen 2.0.0*
+	* based on 'active_support'
 
-	* remove 'PyFormat'
-	* a lot of methods come from 'active_support'
+	* remove 'PyFormat', 'Array#extract_extend_options[!]', 'Time:Deta'

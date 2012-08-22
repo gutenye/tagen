@@ -1,8 +1,6 @@
-require 'erb'
+require "erb"
 
 class ERB
-	alias original_result result
-
 	# add locals support
 	#
 	# @example
@@ -10,16 +8,19 @@ class ERB
 	#  erb.result(nil, a: 1) #=> "1"
 	#
 	# @param [Hash,OpenOption] locals
-	def result(bind=nil, locals={})
+	def result_with_tagen(bind=nil, locals={})
 		bind ||= TOPLEVEL_BINDING
 		if locals.empty?
-			original_result bind
+			result_without_tagen bind
 		else
 			result_with_locals bind, locals
 		end
 	end
 
-	private
+	alias result_without_tagen result
+  alias result result_with_tagen
+
+private
 	def result_with_locals(bind, locals)
 		@locals = locals
 		evalstr = <<-EOF
@@ -32,5 +33,4 @@ end
 		eval evalstr
 		run_erb
 	end
-
 end

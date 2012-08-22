@@ -10,12 +10,28 @@ class Array
 	end
 
   # Deletes the element at the specified indexes.
-	#
+  #
+  # @example
+  #
+  #  a = [1, 2, 3, 4]
+  #  a.delete_values_at(0, 2)  -> [1, 3]
+  #  a                         -> [2, 4]
+  #
 	# @return [Array] 
   # @see Array#delete_at
 	def delete_values_at(*indexs, &blk)
+    offset = 0
+
+    # convert to positve index
+    indexs.map { |i| i < 0 ? length + i : i }
+
 		indexs.each.with_object([]) {|i,m|
-			m << delete_at(i, &blk)
+      if i > length
+        m << nil
+      else
+        m << delete_at(i-offset, &blk)
+        offset += 1
+      end
     }
 	end
 end

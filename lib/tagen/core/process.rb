@@ -1,3 +1,5 @@
+require "tagen/core/kernel/platform"
+
 module Process
 	# check if the pid's process is running. 
 	#
@@ -5,7 +7,7 @@ module Process
 	# @param [String, Integer] pid process id
 	# @return [Boolean]
 	def self.exists?(pid)
-		raise NotImplementError unless linux?
+		raise NotImplementedError unless linux?
 		File.exists?("/proc/#{pid}")
 	end
 end

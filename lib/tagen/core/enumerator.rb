@@ -14,16 +14,16 @@ class Enumerator
 	#   @yieldparam [Object] (*args)
 	#   @yieldparam [Fixnum] idx index
 	#   @yieldparam [Object] memo_obj 
-	def with_iobject *args, &blk
+	def with_iobject(*args, &blk)
 		return self.to_enum(:with_iobject, *args) unless blk
 
-		offset = args.find!{|v| Fixnum===v} || 0
-		raise ArgumentError "must provide memo_obj" if args.empty?
-		memo = args[0]
+    (offset,), (memo,) = args.partition{|v| Fixnum === v}
+    index = offset || 0
+		raise ArgumentError, "must provide memo object" unless memo
 
-		i = offset-1
-		self.with_object memo do |args, m|
-			blk.call args,i+=1,m
+		with_object(memo) do |args2, m|
+			blk.call args2, index, m
+      index += 1
 		end
 	end
 end

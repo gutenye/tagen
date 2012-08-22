@@ -1,3 +1,6 @@
-/*.gem
-/.yardoc
 /tags
+
+/*.gem
+/Gemfile
+/spec/tmp/*
+/.yardoc

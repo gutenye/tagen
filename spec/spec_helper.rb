@@ -1,5 +1,9 @@
 require "tagen/core"
 
+$spec_dir = File.expand_path("..", __FILE__)
+$spec_data = File.join($spec_dir, "data")
+$spec_tmp = File.join($spec_dir, "tmp")
+
 class Dir
 	class << self
 		def empty? path
