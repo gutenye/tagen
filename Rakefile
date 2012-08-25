@@ -1,5 +1,5 @@
 require "rbconfig"
-sudo = Process.pid != 0 && Rbconfig::CONFIG["host_os"] !~ /mswin|mingw/ ? "sudo" : ""
+sudo = Process.pid != 0 && RbConfig::CONFIG["host_os"] !~ /mswin|mingw/ ? "sudo" : ""
 
 desc "build a gem file"
 task :release do
