@@ -6,7 +6,7 @@ $spec_tmp = File.join($spec_dir, "tmp")
 
 class Dir
 	class << self
-		def empty? path
+		def empty?(path)
 			Dir.entries(path).sort == %w(. ..)
 		end
 	end
@@ -29,24 +29,25 @@ RSpec.configure do |config|
   alias :silence :capture
 end
 
-module Kernel 
-private
+module RSpec
+  module Core
+    module DSL
+      def xdescribe(*args, &blk)
+        describe *args do
+          pending 
+        end
+      end
 
-  def xdescribe(*args, &blk)
-    describe *args do
-      pending "xxxxxxxxx"
+      alias xcontext xdescribe
     end
   end
+end
 
-  def xcontext(*args, &blk)
-    context *args do
-      pending "xxxxxxxxx"
-    end
-  end
-
-  def xit(*args, &blk)
-    it *args do
-      pending "xxxxxxxx"
-    end
-  end
+def public_all_methods(*klasses)
+	klasses.each {|klass|
+		klass.class_eval {
+      public *(self.protected_instance_methods(false) + self.private_instance_methods(false))
+      public_class_method *(self.protected_methods(false) + self.private_methods(false))
+    }
+	}
 end
