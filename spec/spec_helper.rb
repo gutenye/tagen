@@ -1,3 +1,4 @@
+require "pd"
 require "tagen/core"
 
 $spec_dir = File.expand_path("..", __FILE__)

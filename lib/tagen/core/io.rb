@@ -1,3 +1,5 @@
+require "tagen/core/array/extract_options"
+
 class IO 
   class << self
     # Extends IO#write with :mkdir option
