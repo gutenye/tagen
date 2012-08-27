@@ -2,4 +2,5 @@
 	* based on 'active_support'
 	* support 'rubinius' version
 
-	* remove 'PyFormat', 'Array#extract_extend_options[!]', 'Time:Deta'
+	* remove 'PyFormat', 'Array#extract_extend_options[!]'
+	* change 'Time::Detal' to 'Numberic#time_humanize'
