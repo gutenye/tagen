@@ -7,7 +7,7 @@
 | License:       | MIT LICENSE                             |
 | Documentation: | https://github.com/GutenYe/tagen/wiki   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
-| Versions:      | Ruby 1.9.3, Rubinius, JRuby             |
+| Versions:      | Ruby 1.9.3, Rubinius                    |
 
 It based on "active_support", but it focus on generic ruby programming.
 
