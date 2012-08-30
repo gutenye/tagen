@@ -3,7 +3,7 @@
 |                |                                         |
 |----------------|-----------------------------------------|
 | Homepage:      | https://github.com/GutenYe/tagen        |
-| Author:	       | Guten                                   |
+| Author:	       | Guten Ye                                |
 | License:       | MIT LICENSE                             |
 | Documentation: | https://github.com/GutenYe/tagen/wiki   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
@@ -26,23 +26,29 @@ Load All Core Extensions
 
 	require "tagen/core"
 
-
 Install
 ----------
 
 	gem install tagen
 
+Development [![Dependency Status](https://gemnasium.com/GutenYe/tagen.png?branch=master)](https://gemnasium.com/GutenYe/tagen) [![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/GutenYe/tagen)
+===========
+
 Contributing
 -------------
 
-* Feel free to join the project and make contributions (by submitting a pull request)
-* Submit any bugs/features/ideas to github issue tracker
+* Submit any bugs/features/ideas to github issue tracker.
+
+Pull requests are very welcome! Please try to follow these simple rules if applicable:
+
+* Please create a topic branch for every separate change you make.
+* Make sure your patches are well tested. All specs run with `rake spec:portability` must pass.
 * Coding Style Guide: https://gist.github.com/1105334
 
 Contributors
 ------------
 
-* [contributors](https://github.com/GutenYe/tagen/contributors)
+* [https://github.com/GutenYe/tagen/contributors](https://github.com/GutenYe/tagen/contributors)
 
 Resources
 ---------
