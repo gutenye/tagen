@@ -16,15 +16,15 @@ task :install do
 	run "rm *.gem"
 end
 
-desc "autotest with watchr"
+desc "run guard"
 task :test do
-	run "watchr tagen.watchr"
+	run "bundle exec guard -c -n f"
 end
 
 desc "testing the libraray"
 namespace :test do
 	task :all do
-		run "rspec spec"
+		run "bundle exec rspec spec"
 	end
 end
 
