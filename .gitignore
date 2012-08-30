@@ -1,6 +1,6 @@
 /tags
-
 /*.gem
 /Gemfile
 /spec/tmp/*
 /.yardoc
+.rbx

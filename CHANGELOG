@@ -1,6 +1,0 @@
-*tagen 2.0.0 (Aug 29, 2012)*
-	* based on 'active_support'
-	* support 'rubinius' version
-
-	* remove 'PyFormat', 'Array#extract_extend_options[!]'
-	* change 'Time::Detal' to 'Numberic#time_humanize'

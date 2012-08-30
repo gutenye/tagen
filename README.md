@@ -1,4 +1,5 @@
-# Tagen, a core and extra extension for Ruby [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
+Tagen, a core and extra extension for Ruby [![Build Status](https://secure.travis-ci.org/GutenYe/tagen.png)](http://travis-ci.org/GutenYe/tagen)
+=======
 
 |                |                                         |
 |----------------|-----------------------------------------|
@@ -7,7 +8,7 @@
 | License:       | MIT LICENSE                             |
 | Documentation: | https://github.com/GutenYe/tagen/wiki   |
 | Issue Tracker: | https://github.com/GutenYe/tagen/issues |
-| Versions:      | Ruby 1.9.3, Rubinius                    |
+| Ruby Versions: | Ruby 1.9.3, Rubinius                    |
 
 It based on "active_support", but it focus on generic ruby programming.
 
@@ -42,13 +43,13 @@ Contributing
 Pull requests are very welcome! Please try to follow these simple rules if applicable:
 
 * Please create a topic branch for every separate change you make.
-* Make sure your patches are well tested. All specs run with `rake spec:portability` must pass.
+* Make sure your patches are well tested. All specs run with `rake test:portability` must pass.
 * Coding Style Guide: https://gist.github.com/1105334
 
 Contributors
 ------------
 
-* [https://github.com/GutenYe/tagen/contributors](https://github.com/GutenYe/tagen/contributors)
+[https://github.com/GutenYe/tagen/contributors](https://github.com/GutenYe/tagen/contributors)
 
 Resources
 ---------

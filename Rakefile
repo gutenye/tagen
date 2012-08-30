@@ -21,11 +21,40 @@ task :test do
 	run "bundle exec guard -c -n f"
 end
 
-desc "testing the libraray"
 namespace :test do
+  desc "testing the libraray"
 	task :all do
 		run "bundle exec rspec spec"
 	end
+
+  desc "Run all specs on multiple ruby versions (requires rvm)"
+  task :portability do
+    require "yaml"
+
+    travis_config_file = File.expand_path("../.travis.yml", __FILE__)
+    begin
+      travis_options ||= YAML::load_file(travis_config_file)
+    rescue => ex
+      puts "Travis config file '#{travis_config_file}' could not be found: #{ex.message}"
+      return
+    end
+
+    travis_options['rvm'].each do |version|
+      system <<-BASH
+bash -c 'source ~/.rvm/scripts/rvm;
+rvm #{version};
+ruby_version_string_size=`ruby -v | wc -m`
+echo;
+for ((c=1; c<$ruby_version_string_size; c++)); do echo -n "="; done
+echo;
+echo "`ruby -v`";
+for ((c=1; c<$ruby_version_string_size; c++)); do echo -n "="; done
+echo;
+bundle install;
+bundle exec rspec spec 2>&1;'
+      BASH
+    end
+  end
 end
 
 desc "run yard server --reload"
