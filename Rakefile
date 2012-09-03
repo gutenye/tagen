@@ -1,4 +1,7 @@
 require "rbconfig"
+
+PROJECT = "tagen"
+
 sudo = Process.pid != 0 && RbConfig::CONFIG["host_os"] !~ /mswin|mingw/ ? "sudo" : ""
 
 desc "build a gem file"
@@ -67,7 +70,31 @@ task :clean do
 	run "rm *.gem"
 end
 
+desc "rewrite gemspec with add_dependency from Gemfile"
+task :gemspec do
+  require "bundler"
+  gemspec = "#{PROJECT}.gemspec"
+
+  deps = Bundler.definition.dependencies.find_all{|v|
+    v.groups.include? :default
+  }
+
+  deps = deps.map {|dep|
+    list = [dep.name] + dep.requirements_list
+    "\ts.add_dependency #{list.map(&:inspect).join(', ')}\n"
+  }
+
+  lines = File.read(gemspec).lines.to_a
+  idx = lines.find_index{|v| v =~ /s\.add_dependency/} || -2
+  lines.delete_if{|v| v =~ /s\.add_dependency/}
+  lines.insert(idx, *deps)
+
+  File.write(gemspec, lines.join(""))
+end
+
 def run cmd
 	puts cmd
 	system cmd
 end
+
+
