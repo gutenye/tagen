@@ -1,3 +1,9 @@
+## 2.0.1 (Sep 9, 2012)
+
+Bugfixes
+
+  - Fix 'activesupport' dependency error in gemspec
+
 ## 2.0.0 (Aug 29, 2012)
 
 Improvements
