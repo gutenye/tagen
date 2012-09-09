@@ -38,7 +38,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activesupport (~> 3.2.8)
+  activesupport
   guard
   guard-rspec
   pd

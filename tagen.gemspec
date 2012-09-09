@@ -16,4 +16,5 @@ a lightweight core and extra extensions for Ruby.
 	s.files = `git ls-files`.split("\n")
 
   s.add_dependency "pd"
+  s.add_dependency "activesupport"
 end
