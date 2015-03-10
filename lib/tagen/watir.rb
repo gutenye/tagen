@@ -86,10 +86,10 @@ module Watir
     # @example
     #
     #  form = browser.form(id: "foo")
-    #  form.set("//input[@name='value']", "hello")
-    #  form.set("//input[@name='check']", true)
-    #  form.set("//select[@name='foo']", "Bar")
-    #  form.set("//textarea[@name='foo']", "bar")
+    #  form.set2("//input[@name='value']", "hello")
+    #  form.set2("//input[@name='check']", true)
+    #  form.set2("//select[@name='foo']", "Bar")
+    #  form.set2("//textarea[@name='foo']", "bar")
     #
     def set2(selector, value=nil)
       elem = element(xpath: selector).to_subtype
