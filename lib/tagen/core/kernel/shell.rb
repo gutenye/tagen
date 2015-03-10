@@ -53,4 +53,4 @@ private
   end
 end
 
-$sudo = Process.pid != 0 && system("which sudo &>/dev/null") ? "sudo" : ""
+$sudo = Process.pid != 0 && system("which sudo >/dev/null") ? "sudo" : ""
